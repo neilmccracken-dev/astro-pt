@@ -10,7 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Enforces Node 24 across the entire pipeline
 env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
@@ -24,7 +23,7 @@ jobs:
       - name: Install, build, and upload your site output
         uses: withastro/action@v3
         with:
-          node-version: 24 # Forces Astro's runtime container to run Node 24
+          node-version: 20 # Forces Astro's runtime container to run Node 24
 
   deploy:
     needs: build
