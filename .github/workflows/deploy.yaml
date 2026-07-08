@@ -10,15 +10,22 @@ permissions:
   pages: write
   id-token: write
 
+# Enforces Node 24 across the entire pipeline
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository
-        uses: actions/checkout@v4.1.1 # Updated version tag
+        uses: actions/checkout@v4
 
       - name: Install, build, and upload your site output
-        uses: withastro/action@v3.0.2 # Explicitly uses Node 24 support defaults
+        uses: withastro/action@v3
+        with:
+          node-version: 24 # Forces Astro's runtime container to run Node 24
 
   deploy:
     needs: build
@@ -29,4 +36,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4.0.5 # Updated version tag
+        uses: actions/deploy-pages@v4
