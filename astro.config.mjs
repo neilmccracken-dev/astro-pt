@@ -8,8 +8,8 @@ import keystatic from '@keystatic/astro';
 const isProd = process.env.NODE_ENV === 'production';
 export default defineConfig({
   output: 'static',
-  site: isProd ? 'https://neilmccracken-dev.github.io' : undefined,
-  base: isProd ? '/astro-pt' : undefined,
+  site: 'https://neilmccracken-dev.github.io',
+  base: '/astro-pt',
   vite: {
     plugins: [tailwindcss()],
   },

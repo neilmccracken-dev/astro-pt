@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:
@@ -10,23 +11,29 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository
-        uses: actions/checkout@v4.2.2 # Fixed: Point to the minor version compiled for Node 24
 
-      - name: Install, build, and upload your site output
-        uses: withastro/action@v3.0.2 # Runs natively on modern Node runtimes
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/configure-pages@v5
+
+      - uses: withastro/action@v4
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4.0.5 # Fixed: Point to the minor version compiled for Node 24
+      - id: deployment
+        uses: actions/deploy-pages@v4
