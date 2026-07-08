@@ -5,7 +5,7 @@ export default config({
   storage: isProd
     ? {
         kind: 'github',
-        repo: '',
+        repo: 'neilmccracken-dev/astro-pt',
       }
     : {
         kind: 'local',
