@@ -1,0 +1,123 @@
+---
+// src/components/ThemeDropdown.astro
+
+// List the exact DaisyUI themes you want to support
+const themes = ["light", "dark","acid","coffee", "corporate", "cupcake","dracula","winter"];
+---
+
+<!-- Trigger Button using Popover API and Anchor Positioning -->
+<button 
+  class="btn btn-ghost btn-sm gap-1 normal-case" 
+  popovertarget="theme-popover" 
+  style="anchor-name: --theme-anchor;"
+>
+  <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" class="h-4 w-4 stroke-current">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+  </svg>
+  Theme
+  <svg xmlns="http://w3.org" viewBox="0 0 1792 1792" class="h-3 w-3 fill-current opacity-60">
+    <path d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"/>
+  </svg>
+</button>
+
+<!-- Popover Content Menu Container -->
+<ul 
+  popover 
+  id="theme-popover" 
+  class="menu p-2 shadow-2xl bg-base-100 rounded-box w-52 border border-base-200"
+  style="
+    position-anchor: --theme-anchor; 
+    top: anchor(bottom); 
+    right: anchor(right);
+    margin-top: 0.5rem;
+  "
+>
+  {themes.map((theme) => (
+    <li>
+      <button 
+        class="theme-btn text-left capitalize justify-between" 
+        data-set-theme={theme}
+      >
+        {theme}
+        <!-- Tiny color capsule layout blocks to preview the active palette -->
+        <span class="flex flex-shrink-0 flex-wrap gap-0.5 w-12 justify-end" data-theme={theme}>
+          <span class="bg-primary w-2 h-4 rounded-badge"></span>
+          <span class="bg-secondary w-2 h-4 rounded-badge"></span>
+          <span class="bg-accent w-2 h-4 rounded-badge"></span>
+          <span class="bg-neutral w-2 h-4 rounded-badge"></span>
+        </span>
+      </button>
+    </li>
+  ))}
+</ul>
+
+<script is:inline>
+  // 1. Unified function to determine user selection or fallback preferences
+  function getPreferredTheme() {
+    const defaultTheme = "light";
+    const systemDarkTheme = "dark";
+    
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? systemDarkTheme : defaultTheme;
+  }
+
+  // 2. Set theme INSTANTLY on first load before HTML parsing finishes to completely avoid FOUC
+  document.documentElement.setAttribute('data-theme', getPreferredTheme());
+
+  // 3. Main execution script for dynamic selection bindings
+  function setupThemeListeners() {
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    const popoverMenu = document.getElementById('theme-popover');
+
+    if (!themeButtons.length) return;
+
+    themeButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const btn = e.target.closest('.theme-btn');
+        if (!btn) return;
+        
+        const selectedTheme = btn.getAttribute('data-set-theme');
+
+        // Apply theme and persist choice via local storage API
+        document.documentElement.setAttribute('data-theme', selectedTheme);
+        localStorage.setItem('theme', selectedTheme);
+
+        // Native Popover API closing handler 
+        if (popoverMenu && typeof popoverMenu.hidePopover === 'function') {
+          popoverMenu.hidePopover();
+        }
+      });
+    });
+  }
+
+  // Bind on basic initialization entry paths
+  document.addEventListener('DOMContentLoaded', setupThemeListeners);
+
+  // 4. CRITICAL FOR CLIENT ROUTER: Enforce state check & rebind listener blocks across custom router swaps
+  document.addEventListener('astro:after-swap', () => {
+    document.documentElement.setAttribute('data-theme', getPreferredTheme());
+    setupThemeListeners();
+  });
+</script>
+
+<style>
+  /* 
+    Ensure the target stays completely hidden by default to block FOUC.
+    Native CSS Anchor Positioning features are enabled only upon valid interaction states.
+  */
+  #theme-popover {
+    display: none;
+  }
+
+  #theme-popover:popover-open {
+    display: flex; 
+    position: absolute;
+    inset: auto;
+    border: none;
+    background: transparent;
+    padding: 0;
+    overflow: visible;
+  }
+</style>

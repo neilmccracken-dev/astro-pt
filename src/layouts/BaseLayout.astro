@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  isHome?: boolean; // Optional flag for the homepage
+  hasWave?: boolean;
+}
+const { title, hasWave, isHome } = Astro.props;
+const BRAND_NAME = 'MVMNT Matters';
+const fullTitle = isHome ? BRAND_NAME : `${title} | ${BRAND_NAME}`;
+---
+
+<html lang="en" data-theme="winter">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{fullTitle}</title>
+    <ClientRouter />
+  </head>
+  <body class="flex flex-col min-h-screen m-0">
+    <NavBar />
+    <main id="root-layout" class="grow">
+      <slot />
+    </main>
+    <Footer hasWave={hasWave} />
+  </body>
+</html>

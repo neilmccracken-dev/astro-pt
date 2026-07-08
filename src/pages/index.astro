@@ -1,17 +1,356 @@
 ---
+import AutoCarousel from '../components/Carousel';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getImage } from 'astro:assets';
+const unsplashUrls = [
+  {
+    url: 'https://plus.unsplash.com/premium_photo-1664300093125-92bc8a26d3fa?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    focalY: 0.75,
+    ar: '16:9',
+    isTall: false,
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1608561807980-6e39958ae1c8?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    focalY: 0.65,
+    ar: '4:3',
+    isTall: true,
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1628609108761-7d1dbec20e4a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    focalY: 0.45,
+    ar: '4:3',
+    isTall: true,
+  },
+];
 
+// Map over your URLs and run them through Astro's image optimization engine
+const optimizedImages = await Promise.all(
+  unsplashUrls.map(async (item) => {
+    const modifiedUrl = `${item.url}?fit=crop&crop=focalpoint&ar=${item.ar}&fp-x=0.5&fp-y=${item.focalY}`;
+
+    const optimized = await getImage({
+      src: modifiedUrl,
+      inferSize: true,
+      widths: [240, 540, 720, 1024],
+      // Unsplash specific formatting parameter shortcut
+      format: 'webp',
+    });
+    return {
+      ...optimized,
+      isTall: item.isTall,
+    };
+  }),
+);
+const sizesAttribute = `(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1024px) 720px, 1024px`;
+const optimizedBg = await getImage({
+  src: 'https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?q=80&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&sat=-100',
+  inferSize: true,
+  widths: [1024, 1440, 1920],
+  format: 'webp',
+});
+console.log(optimizedBg.src);
+const bgSizesAttribute = '100vw';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="" isHome={true}>
+  <main class="relative w-full min-h-screen flex flex-col">
+    <div class="relative w-full aspect-3/2 overflow-hidden z-0">
+      <img
+        src={optimizedBg.src}
+        alt="Avatar"
+        srcset={optimizedBg.srcSet.attribute}
+        sizes={bgSizesAttribute}
+        alt="Page background"
+        loading="eager"
+        decoding="sync"
+        class="w-full h-full object-cover"
+      />
+      <div
+        class="absolute inset-0 flex flex-col gap-4 items-start justify-start p-6 bg-black/30"
+      >
+        <div class="overflow-hidden py-1 mx-auto">
+          <h1
+            class="text-3xl [-webkit-text-stroke:0.5px_#000000] font-raleway md:text-6xl font-bold text-white tracking-tight drop-shadow-md text-center animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0s]"
+          >
+            Movement Matters Physical Therapy
+          </h1>
+        </div>
+
+        <div class="overflow-hidden mx-auto">
+          <p
+            class="text-xl text-center text-white/90 max-w-md drop-shadow animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0.5s]"
+          >
+            Working to help you stay active and healthy
+          </p>
+        </div>
+      </div>
+    </div>
+    <section
+      class="w-full max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 min-h-150 place-items-center"
+    >
+      <!-- LEFT COLUMN: Company Header (Spans 4 out of 12 columns) -->
+      <div class="md:col-span-5 flex flex-col justify-start">
+        <div class="w-max">
+          <h2 class="text-3xl font-raleway tracking-tight">
+            Who We Are & What We Value
+          </h2>
+
+          <div class="mt-2 h-0.5 w-full bg-secondary"></div>
+        </div>
+        <!-- Decorative accent line -->
+      </div>
+
+      <!-- RIGHT COLUMN: Multiple Paragraphs (Spans 8 out of 12 columns) -->
+      <div class="md:col-span-7 flex flex-col gap-6 leading-relaxed text-lg">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+        <p>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est
+          laborum.
+        </p>
+      </div>
+    </section>
+    <section class="py-16 px-4 bg-base-200">
+      <div class="max-w-6xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+            Our Specialties
+          </h2>
+          <p class="text-lg text-base-content/70 max-w-2xl mx-auto">
+            Expert care tailored to your unique goals. Click a specialty to
+            learn about our treatment approach.
+          </p>
+        </div>
+
+        <!-- CSS Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1: Orthopedics -->
+          <div
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 border border-base-200 hover:-translate-y-1 group"
+          >
+            <figure class="h-56 w-full overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1706777227772-629b1cdb8a9f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Shoes"
+                class="w-full h-full object-cover object-center"
+              />
+            </figure>
+            <div class="card-body">
+              <div
+                class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-primary-content transition-colors"
+              >
+                <!-- Icon (e.g., Bone/Joint) -->
+                <svg
+                  xmlns="http://w3.org"
+                  class="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl font-bold">Orthopedic Rehab</h3>
+              <p class="text-base-content/70 text-sm">
+                Recover from joint replacements, chronic back pain, fractures,
+                and severe arthritis under expert guidance.
+              </p>
+              <div class="card-actions justify-end mt-4">
+                <a
+                  href="/specialties/orthopedics"
+                  class="btn btn-ghost btn-sm text-primary group-hover:btn-primary group-hover:text-primary-content gap-2"
+                >
+                  Learn More
+                  <svg
+                    xmlns="http://w3.org"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    ><path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"></path></svg
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Sports Medicine -->
+          <div
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 border border-base-200 hover:-translate-y-1 group"
+          >
+            <figure class="h-56 w-full overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1569731683228-5e7850ae0034?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Shoes"
+                class="w-full h-full object-cover object-center"
+              />
+            </figure>
+            <div class="card-body">
+              <div
+                class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary mb-4 group-hover:bg-secondary group-hover:text-secondary-content transition-colors"
+              >
+                <!-- Icon (e.g., Lightning/Performance) -->
+                <svg
+                  xmlns="http://w3.org"
+                  class="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl font-bold">Sports Performance</h3>
+              <p class="text-base-content/70 text-sm">
+                Accelerate ACL recovery, optimize golf biomechanics, and clear
+                mandatory return-to-sport testing safely.
+              </p>
+              <div class="card-actions justify-end mt-4">
+                <a
+                  href="/specialties/sports"
+                  class="btn btn-ghost btn-sm text-secondary group-hover:btn-secondary group-hover:text-secondary-content gap-2"
+                >
+                  Learn More
+                  <svg
+                    xmlns="http://w3.org"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    ><path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"></path></svg
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Pelvic Floor -->
+          <div
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 border border-base-200 hover:-translate-y-1 group"
+          >
+            <figure class="h-56 w-full overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1645005513709-77336f075dc8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Shoes"
+                class="w-full h-full object-cover object-center"
+              />
+            </figure>
+            <div class="card-body">
+              <div
+                class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-accent-content transition-colors"
+              >
+                <!-- Icon (e.g., Heart/Care) -->
+                <svg
+                  xmlns="http://w3.org"
+                  class="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl font-bold">Pelvic Floor Health</h3>
+              <p class="text-base-content/70 text-sm">
+                Compassionate treatment for pre/postnatal recovery, core
+                weakness, and deep pelvic pain.
+              </p>
+              <div class="card-actions justify-end mt-4">
+                <a
+                  href="/specialties/pelvic-health"
+                  class="btn btn-ghost btn-sm text-accent group-hover:btn-accent group-hover:text-accent-content gap-2"
+                >
+                  Learn More
+                  <svg
+                    xmlns="http://w3.org"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    ><path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"></path></svg
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <section>
+      <AutoCarousel images={optimizedImages} sizes={sizesAttribute} />
+    </section> -->
+  </main>
+</BaseLayout>
+
+<style>
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+  /* Target both elements, hide them at start, and freeze them at the end */
+  [class*='animate-[textReveal'] {
+    opacity: 0; /* Keeps them invisible until animation starts */
+    animation-fill-mode: forwards !important;
+  }
+</style>
+
+<!-- <Image
+      src={unsplashUrl}
+      inferSize={true}
+      widths={[240, 540, 720, 1024]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1024px) 720px, 1024px`}
+      alt="A beautiful dynamically resized scenery from Unsplash"
+      class="w-full h-full object-cover"
+    />
+    <div
+      class="absolute bottom-0 left-0 right-0 bg-black/70 p-4 text-white backdrop-blur-sm"
+    >
+      <h3 class="text-lg font-semibold">Your Image Title Here</h3>
+      <p class="text-sm text-slate-200">
+        Optional subtitle or caption text goes right here.
+      </p>
+    </div> -->

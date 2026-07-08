@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const blogs = await getCollection('blog');
+---
+
+<BaseLayout title="Blog" hasWave={true}>
+  <ul>
+    {
+      blogs.map((blog) => (
+        <li>
+          <a href={`/blog/${blog.id}`}>{blog.data.title}</a>
+          <p>{blog.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

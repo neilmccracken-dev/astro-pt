@@ -1,0 +1,356 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const testimonials = await getCollection('testimonials');
+const cardThemes = [
+  { bg: 'bg-bianco-caldo', text: 'text-stone-800', subtext: 'text-stone-500' }, // Card 1 (and 5, 9...)
+  { bg: 'bg-stone-600', text: 'text-white', subtext: 'text-stone-400' }, // Card 0 (and 4, 8...)
+  {
+    bg: 'bg-lino-naturale',
+    text: 'text-stone-800',
+    subtext: 'text-stone-500',
+  }, // Card 2 (and 6, 10...)
+  {
+    bg: 'bg-brand-sky-blue',
+    text: 'text-white',
+    subtext: 'text-gray-700',
+  }, // Card 3 (and 7, 11...)
+];
+---
+
+<BaseLayout title="testimonials" hasWave={true}>
+  <!-- <div class="w-full bg-white py-24 mt-20">
+    <div class="relative bg-[#0091ff] w-full">
+      <div
+        class="absolute top-0 left-0 w-full overflow-hidden leading-0 -translate-y-[100%]"
+      >
+        <svg
+          preserveAspectRatio="none"
+          class="relative block w-full h-50 fill-[#0091ff]"
+          xmlns="http://w3.org"
+          viewBox="0 0 1440 320"
+        >
+          <path
+            d="M0,192L60,170.7C120,149,240,107,360,101.3C480,96,600,128,720,165.3C840,203,960,245,1080,240C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+
+      <div
+        class="max-w-4xl mx-auto px-6 text-center py-40 z-10 relative text-white"
+      >
+        <h2 class="text-4xl font-bold tracking-tight mb-4">Our Approach</h2>
+        <p class="text-lg opacity-90">
+          Your custom text layout goes right here.
+        </p>
+      </div>
+
+      <div
+        class="absolute bottom-0 left-0 w-full overflow-hidden leading-0 translate-y-[99%] -scale-x-100 -scale-y-100 transform"
+      >
+        <svg
+          preserveAspectRatio="none"
+          class="relative block w-full h-50 fill-[#0091ff]"
+          xmlns="http://w3.org"
+          viewBox="0 0 1440 320"
+        >
+          <path
+            d="M0,192L60,170.7C120,149,240,107,360,101.3C480,96,600,128,720,165.3C840,203,960,245,1080,240C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="w-full py-12 px-4 mb-36">
+    <div
+      class="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-3 auto-rows-[minmax(150px,_280px)] grid-flow-row-dense"
+    >
+      {
+        testimonials.map((item, index) => {
+          const { name, relationship, review, headline } = item.data;
+
+          // Determine the layout state based on a pattern of 5
+          const isFeatured = index % 5 === 0;
+          const isTall = index % 5 === 2;
+
+          // Cycle through your 4 color schemes sequentially (0, 1, 2, 3, 0, 1, 2...)
+          const theme = cardThemes[index % cardThemes.length];
+
+          return (
+            <div
+              class:list={[
+                'relative overflow-hidden rounded-lg p-5 shadow-xl font-bold flex flex-col justify-between break-words',
+                // Inject sequential background and text values safely
+                theme.bg,
+                theme.text,
+                isFeatured && 'md:col-span-2',
+                isTall && 'md:row-span-2',
+              ]}
+            >
+              {index == 0 && (
+                <div class="absolute -top-4 right-4 w-32 h-40 z-0 opacity-20 pointer-events-none">
+                  <svg
+                    class="w-32 h-40"
+                    preserveAspectRatio="none"
+                    viewBox="-2.4 -2.4 28.80 28.80"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
+                    stroke="#b7cdd6"
+                    stroke-width="0.00024000000000000003"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke="#CCCCCC"
+                      stroke-width="0.048"
+                    />
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M9.62231 6.78278C10.0546 6.43909 10.1265 5.81001 9.78277 5.3777C9.43908 4.94539 8.81001 4.87354 8.37769 5.21724C4.73471 8.11342 4 11.8784 4 16C4 17.6569 5.34315 19 7 19C8.65685 19 10 17.6569 10 16C10 14.3432 8.65685 13 7 13C6.71233 13 6.43412 13.0405 6.17076 13.1161C6.5162 10.5872 7.45738 8.50391 9.62231 6.78278ZM20 16C20 17.6569 18.6569 19 17 19C15.3431 19 14 17.6569 14 16C14 11.8784 14.7347 8.11342 18.3777 5.21724C18.81 4.87354 19.4391 4.94539 19.7828 5.3777C20.1265 5.81001 20.0546 6.43909 19.6223 6.78278C17.4574 8.50391 16.5162 10.5872 16.1708 13.1161C16.4341 13.0405 16.7123 13 17 13C18.6569 13 20 14.3432 20 16Z"
+                        fill="#000000"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              )}
+              <div class="flex flex-col gap-y-4 relative z-10 ">
+                <div>
+                  <h3 class="text-xl font-raleway">{name}</h3>
+                  <p class:list={['text-sm italic', theme.subtext]}>
+                    {relationship || 'Patient'}
+                  </p>
+                </div>
+                <div class="flex">
+                  <p
+                    class:list={[
+                      !isTall && 'font-bold opacity-90 tracking-wide leading-7',
+                      (isTall || isFeatured) &&
+                        ' tracking-wide font-semibold text-lg leading-8  ',
+                    ]}
+                  >
+                    {review}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<!-- <div class="container mx-auto max-w-4/5 py-12 px-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto">
+    <div class="testimonial-post-it">
+      <div class="card-body p-6 pt-12 flex flex-col justify-between h-full">
+        <p class="text-lg italic font-medium leading-relaxed">
+          "This tool completely transformed my workflow! The pre-built
+          components saved me weeks of work."
+        </p>
+        <div class="post-it-footer">
+          <div class="avatar">
+            <div
+              class="w-10 rounded-full ring ring-yellow-400 ring-offset-2 ring-offset-yellow-100"
+            >
+              <img src="https://daisyui.com" alt="Avatar" />
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm">Jane Doe</h3>
+            <p class="text-xs text-stone-600">Founder, Acme Corp</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-post-it">
+      <div class="card-body p-6 pt-12 flex flex-col justify-between h-full">
+        <p class="text-lg italic font-medium leading-relaxed">
+          "This tool completely transformed my workflow! The pre-built
+          components saved me weeks of work."
+        </p>
+        <div class="post-it-footer">
+          <div class="avatar">
+            <div
+              class="w-10 rounded-full ring ring-yellow-400 ring-offset-2 ring-offset-yellow-100"
+            >
+              <img src="https://daisyui.com" alt="Avatar" />
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm">Jane Doe</h3>
+            <p class="text-xs text-stone-600">Founder, Acme Corp</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-post-it">
+      <div class="card-body p-6 pt-12 flex flex-col justify-between h-full">
+        <p class="text-lg italic font-medium leading-relaxed">
+          "This tool completely transformed my workflow! The pre-built
+          components saved me weeks of work."
+        </p>
+        <div class="post-it-footer">
+          <div class="avatar">
+            <div
+              class="w-10 rounded-full ring ring-yellow-400 ring-offset-2 ring-offset-yellow-100"
+            >
+              <img src="https://daisyui.com" alt="Avatar" />
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm">Jane Doe</h3>
+            <p class="text-xs text-stone-600">Founder, Acme Corp</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div
+      class="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-[2fr_1fr_1.2fr] md:grid-rows-[repeat(4,_minmax(180px,_auto))]"
+    >
+      <div
+        class="relative overflow-hidden rounded-lg bg-bianco-caldo p-5 shadow-2xl text-stone-800 md:col-span-2 md:row-start-1"
+      >
+        <div class="absolute -top-2 right-4 w-40 h-52 z-0 opacity-35">
+          <svg
+            class="w-32 h-40"
+            preserveAspectRatio="none"
+            viewBox="-2.4 -2.4 28.80 28.80"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
+            stroke="#b7cdd6"
+            stroke-width="0.00024000000000000003"
+            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke="#CCCCCC"
+              stroke-width="0.048"></g><g id="SVGRepo_iconCarrier">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M9.62231 6.78278C10.0546 6.43909 10.1265 5.81001 9.78277 5.3777C9.43908 4.94539 8.81001 4.87354 8.37769 5.21724C4.73471 8.11342 4 11.8784 4 16C4 17.6569 5.34315 19 7 19C8.65685 19 10 17.6569 10 16C10 14.3432 8.65685 13 7 13C6.71233 13 6.43412 13.0405 6.17076 13.1161C6.5162 10.5872 7.45738 8.50391 9.62231 6.78278ZM20 16C20 17.6569 18.6569 19 17 19C15.3431 19 14 17.6569 14 16C14 11.8784 14.7347 8.11342 18.3777 5.21724C18.81 4.87354 19.4391 4.94539 19.7828 5.3777C20.1265 5.81001 20.0546 6.43909 19.6223 6.78278C17.4574 8.50391 16.5162 10.5872 16.1708 13.1161C16.4341 13.0405 16.7123 13 17 13C18.6569 13 20 14.3432 20 16Z"
+                fill="#000000"></path>
+            </g>
+          </svg>
+        </div>
+        <div class="flex flex-col gap-y-4 relative z-10">
+          <div>
+            <h3
+              class="text-2xl font-raleway tracking-tight text-slate-900 leading-tight"
+            >
+              John Doe
+            </h3>
+            <p class="text-xs font-light italic leading-relaxed">Patient</p>
+          </div>
+          <div class="">
+            <p class="leading-relaxed font-mono text-slate-900/60 font-bold">
+              Physical therapy completely transformed my recovery from severe
+              lower back pain. My therapist designed a personalized plan that
+              targeted the stiffness, restored my core strength, and got me
+              moving comfortably again. I can finally return to my daily
+              activities pain-free. I highly recommend their expertise to anyone
+              struggling!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="rounded-lg shadow-xl bg-stone-600 p-5 font-bold md:col-start-3 md:row-span-2"
+      >
+        <div class="text-white">
+          <h3 class="text-lg font-bold font-raleway">Jane Doe</h3>
+          <p class="text-xs font-light italic">Former Manager</p>
+          <p class="mt-2 font-bold">
+            An exceptional physical therapist whose clinical expertise, empathy,
+            and dedication consistently delivered outstanding patient outcomes.
+          </p>
+          <p class="font-mono mt-2 text-gray-300">
+            "During their time with us, this therapist demonstrated a profound
+            understanding of sports medicine and rehabilitation. They excelled
+            at creating innovative, evidence-based treatment plans tailored to
+            complex patient needs. Their strong communication skills,
+            collaborative spirit, and genuine patient-first approach made them
+            an invaluable team member who consistently inspired trust and
+            recovery"
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="rounded-lg shadow-2xl bg-blu-oceano p-4 font-bold text-white md:col-start-1 md:row-start-2"
+      >
+        <div class="flex flex-col gap-y-2 relative z-10">
+          <div>
+            <h3 class="text-xl font-bold font-raleway">Eric Watson</h3>
+            <p class="text-xs font-light italic">Patient</p>
+          </div>
+          <div class="">
+            <p class="leading-relaxed font-mono text-gray-200 font-bold">
+              "Physical therapy completely transformed my recovery. Elie
+              designed a personalized plan that targeted my pain, restored my
+              strength, and got me back to living life fully. Highly
+              recommended!"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="rounded-lg bg-lino-naturale shadow-2xl p-5 font-bold text-white md:col-start-2 md:row-start-2"
+      >
+        4 (Standard)
+      </div>
+      <div
+        class="rounded-lg shadow-2xl bg-bianco-caldo text-stone-800 p-5 md:col-start-1 md:row-span-2 md:row-start-3"
+      >
+        <div class="flex flex-col gap-y-4 relative">
+          <div>
+            <h3
+              class="text-2xl font-raleway tracking-tight text-slate-900 leading-tight"
+            >
+              John Doe
+            </h3>
+            <p class="text-xs font-light leading-relaxed italic">Patient</p>
+          </div>
+          <div class="">
+            <p class="leading-relaxed font-mono text-slate-900/60 font-bold">
+              Physical therapy completely transformed my recovery from severe
+              lower back pain. My therapist designed a personalized plan that
+              targeted the stiffness, restored my core strength, and got me
+              moving comfortably again. I can finally return to my daily
+              activities pain-free. I highly recommend their expertise to anyone
+              struggling!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="rounded-lg bg-azzurro-polvere p-5 shadow-2xl text-white md:col-span-2 md:col-start-2 md:row-start-3"
+      >
+        6 (Featured Right)
+      </div>
+
+      <div
+        class="rounded-lg bg-stone-600 p-5 text-white md:col-start-2 md:row-start-4"
+      >
+        7
+      </div>
+      <div
+        class="rounded-lg bg-lino-naturale p-5 text-white md:col-start-3 md:row-start-4"
+      >
+        8
+      </div>
+    </div> -->

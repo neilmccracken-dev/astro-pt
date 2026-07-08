@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const services = await getCollection('services');
+import { Image, getImage } from 'astro:assets';
+import CalendlyButton from '../components/CalendyPopup';
+import CalBooking from '../components/CalBooking';
+import ServiceCard from '../components/ServiceCard';
+---
+
+<BaseLayout title="Services">
+  <div class="max-w-5xl my-8 mx-auto">
+    <!-- Page Header Banner -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-extrabold font-raleway text-base-content mb-3">
+        Our Services
+      </h1>
+      <p class="text-gray-400 max-w-md mx-auto">
+        Select from our premium wellness packages managed directly by our team.
+      </p>
+    </div>
+
+    <!-- Single-Column Flex Container for Wide Cards -->
+    <div class="flex flex-col gap-6">
+      {
+        await Promise.all(
+          services.map(async (service) => {
+            let optimizedSrc: string | undefined = undefined;
+
+            // If the service has an image, extract the optimized src URL string
+            if (service.data.image) {
+              const optimized = await getImage({
+                src: service.data.image,
+                width: 600,
+                height: 400,
+              });
+              optimizedSrc = optimized.src;
+            }
+
+            return (
+              <ServiceCard
+                client:only="react"
+                name={service.data.name}
+                duration={service.data.duration}
+                description={service.data.description}
+                pricing={service.data.pricing}
+                calLink={service.data.calLink}
+                optimizedImageSrc={optimizedSrc}
+              >
+                <div
+                  slot="fallback"
+                  class="card md:card-side bg-base-100 shadow-xl overflow-hidden animate-pulse border border-base-200"
+                >
+                  <div class="h-48 md:h-auto md:w-2/5 min-w-[200px] shrink-0 bg-base-300 min-h-[192px]" />
+                  <div class="card-body p-6 flex flex-col justify-between w-full">
+                    <div>
+                      <div class="flex flex-wrap justify-between items-start gap-2 mb-4">
+                        <div class="h-7 bg-base-300 rounded w-1/2" />
+                        <div class="h-6 bg-base-200 rounded w-16" />
+                      </div>
+                      <div class="h-4 bg-base-200 rounded w-full mb-2" />
+                      <div class="h-4 bg-base-200 rounded w-5/6" />
+                    </div>
+                    <div class="card-actions justify-between items-center mt-6 border-t border-base-200 pt-4">
+                      <div class="h-8 bg-base-300 rounded w-20" />
+                      <div class="h-10 bg-base-300 rounded-lg w-28" />
+                    </div>
+                  </div>
+                </div>
+              </ServiceCard>
+            );
+          }),
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<!--  
+        {services.map((service) => {
+          const { name, duration, pricing, description, image,calLink } = service.data;
+          
+          return (
+            <div class="card md:card-side bg-base-100 shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+              
+              <figure class="relative h-48 md:h-auto md:w-2/5 min-w-[200px] shrink-0">
+                {image ? (
+                  <Image 
+                    src={image} 
+                    alt={name} 
+                    width={600} 
+                    height={400} 
+                    class="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-neutral to-base-300 flex items-center justify-center min-h-[192px]">
+                    <span class="text-4xl">✨</span>
+                  </div>
+                )}
+              </figure>
+              
+              <div class="card-body p-6 flex flex-col justify-between">
+                
+                <div>
+                  <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+                    <h2 class="card-title text-2xl font-bold text-base-content">
+                      {name}
+                    </h2>
+                    <span class="badge badge-neutral whitespace-nowrap">⏱ {duration} min</span>
+                  </div>
+                  
+                  <p class="text-neutral-500 leading-relaxed">
+                    {description}
+                  </p>
+                </div>
+                
+                <div class="card-actions justify-between items-center mt-6 border-t border-base-200 pt-4">
+                  <div class="text-3xl font-black text-base-content">
+                    ${pricing}
+                  </div>
+                    <CalBooking client:only="react"calLink={calLink} />
+                </div>
+
+              </div>
+            </div>
+          );
+        })}
+
+        -->

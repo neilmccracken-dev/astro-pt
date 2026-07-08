@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image, getImage } from 'astro:assets';
+import elieHeadshot from '../assets/images/headshot.jpg';
+
+const backgroundImg =
+  'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&sat=-100';
+
+const optimizedBackground = await getImage({
+  src: backgroundImg,
+  format: 'webp',
+  inferSize: true,
+  widths: [1024, 1440, 1920, 2560],
+});
+---
+
+<BaseLayout hasWave={true} title="About">
+  <div class="grid grid-cols-6 w-full">
+    <!-- Top Row spanning the full width -->
+    <div
+      style={`background-image: url('${optimizedBackground.src}');`}
+      class="col-span-6 bg-base-200 text-white rounded-lg bg-cover bg-center bg-no-repeat min-h-220"
+    >
+      <div
+        class="w-full p-6 bg-black/80 backdrop-blur-md border border-white/10 text-center"
+      >
+        <h2 class="text-3xl font-bold mb-2 font-raleway tracking-wide">
+          Making you stronger is our mission!
+        </h2>
+      </div>
+    </div>
+
+    <!-- Bottom Left Column -->
+    <div class="col-span-6 p-5 gap-4 min-h-120">
+      <div class="flex gap-4 items-center justify-between">
+        <div class="flex-1">
+          <div class="max-w-2xl mx-auto">
+            <p class="text-2xl font-bold font-raleway italic mb-4">
+              Elie Sabins<span class="text-lg font-medium ml-2"
+                >PT,DPT, OCS, CSCS, TPS</span
+              >
+            </p>
+            <p class="leading-loose text-lg">
+              Elie grew up in Bellingham, WA, and went on to obtain her BS in
+              Biology from the University of Washington in Seattle. During her
+              years as a graduate student, she completed an internship with
+              Howard Head before receiving her Doctorate from Belmont University
+              in Nashville, TN. She takes a holistic approach to physical
+              therapy and also enjoys bringing components of strength and
+              conditioning into her treatment sessions. In her spare time, she
+              enjoys running, hiking, skiing, and spending time with friends and
+              family.
+            </p>
+          </div>
+        </div>
+        <div class="flex-1 flex justify-center items-center">
+          <Image
+            src={elieHeadshot}
+            alt="Avatar"
+            class="rounded-full border-4 border-neutral w-1/2 h-1/2 translate-y-8"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-6 bg-white py-24 my-20">
+      <!-- The Wavy Container -->
+      <div class="relative bg-brand-sky-blue w-full">
+        <!-- Top Wave: No scale transforms needed. The path naturally fills the bottom, connecting flush to our blue block -->
+        <div
+          class="absolute top-0 left-0 w-full overflow-hidden leading-0 -translate-y-[100%]"
+        >
+          <svg
+            preserveAspectRatio="none"
+            class="relative block w-full h-50 fill-brand-sky-blue"
+            xmlns="http://w3.org"
+            viewBox="0 0 1440 320"
+          >
+            <path
+              d="M0,192L60,170.7C120,149,240,107,360,101.3C480,96,600,128,720,165.3C840,203,960,245,1080,240C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+
+        <div class="relative z-10 h-full flex items-end justify-center">
+          <div class="grid grid-cols-3 gap-4 w-full max-w-[90%] mt-16">
+            <div class="h-56 shadow-xl bg-base-100 rounded-2xl px-2">
+              <p class="text-center font-bold text-xl font-raleway p-2">
+                Education
+              </p>
+              <ul class="list-disc list-inside space-y-2">
+                <li>Belmont University-Doctorate in Physical Therapy</li>
+                <li>University of Washington-Undergraduate</li>
+              </ul>
+            </div>
+
+            <div class="h-56 shadow-xl bg-base-100 rounded-2xl px-2">
+              <p class="text-center font-bold text-xl font-raleway p-2">
+                Professional Experience
+              </p>
+              <ul class="list-disc list-inside space-y-2">
+                <li>Belmont University-Doctorate in Physical Therapy</li>
+                <li>University of Washington-Undergraduate</li>
+              </ul>
+            </div>
+
+            <div class="h-56 shadow-xl bg-base-100 rounded-2xl px-2">
+              <p class="text-center font-bold text-xl font-raleway p-2">
+                Hobbies
+              </p>
+              <ul class="list-none space-y-2">
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Voluptatem.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Wave: Flipped on BOTH X and Y axes to make the solid blue fill push UP into the center block -->
+        <div
+          class="absolute bottom-0 left-0 w-full overflow-hidden leading-0 translate-y-[99%] -scale-x-100 -scale-y-100 transform"
+        >
+          <svg
+            preserveAspectRatio="none"
+            class="relative block w-full h-50 fill-brand-sky-blue"
+            xmlns="http://w3.org"
+            viewBox="0 0 1440 320"
+          >
+            <path
+              d="M0,192L60,170.7C120,149,240,107,360,101.3C480,96,600,128,720,165.3C840,203,960,245,1080,240C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

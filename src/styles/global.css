@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@import '@fontsource/raleway/400.css';
+@import '@fontsource/raleway/700.css';
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/montserrat/wght.css';
+
+@theme {
+  --font-sans: 'Inter Variable', sans-serif;
+  --font-raleway: 'Raleway', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --color-brand-blue: #046eb9;
+  --color-brand-accent: #388d72;
+  --color-brand-green: #69a72f;
+  --color-brand-dark-blue: #025693;
+  --color-brand-very-light-green: #b6d0ad;
+  /* Elie's custom palette */
+  --color-bianco-caldo: #f6f3ee;
+  --color-bianco-caldo-300: #d9cebc;
+  --color-sabbia-chiara: #e8dfd1;
+  --color-sabbia-chiara-300: #d6bd97;
+  --color-lino-naturale: #d9d1c4;
+  --color-lino-naturale-300: #c1ae90;
+  --color-azzurro-polvere: #b7cdd6;
+  --color-azzurro-polvere-300: #7eaec2;
+  --color-blu-oceano: #6d8fa6;
+  /* Elie's new custom palette */
+  --color-brand-warm-cream: #fbf9f4;
+  --color-brand-sky-blue: #7bbed6;
+  --color-brand-dark-slate: #0d1b2a;
+}
+@plugin 'daisyui' {
+  themes:
+    light --default,
+    dark --prefersdark,
+    acid,
+    cupcake,
+    dracula,
+    corporate,
+    winter,
+    coffee;
+}
+
+/* 2. Custom Component Styles Mapping to v4 Cascade Layers */
+@layer components {
+  /* The Base Post-It Structure (Universal Settings) */
+  .testimonial-post-it {
+    @apply card relative w-72 h-72 text-stone-600 font-extrabold shadow-xl rotate-1 transition-transform duration-300;
+    clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%);
+  }
+
+  .testimonial-post-it:hover {
+    @apply rotate-0;
+  }
+
+  /* The Base Folded Flap Structure */
+  .testimonial-post-it::before {
+    content: '';
+    @apply absolute top-0 right-0 w-10 h-10 rounded-bl-md;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ==========================================
+     COLOR 1: YELLOW (Cards 1, 4, 7...)
+     ========================================== */
+  .testimonial-post-it:nth-child(3n + 1) {
+    @apply bg-bianco-caldo border border-bianco-caldo-300;
+    transform: rotate(-1.8deg);
+  }
+  .testimonial-post-it:nth-child(3n + 1) .post-it-footer {
+    @apply flex items-center gap-3 mt-4 border-t border-bianco-caldo-300/90;
+    transform: rotate(-1.8deg);
+  }
+  /* Separate the pseudo-elements from main nesting rules */
+  .testimonial-post-it:nth-child(3n + 1)::before {
+    @apply bg-bianco-caldo-300/90;
+  }
+
+  /* ==========================================
+     COLOR 2: PINK (Cards 2, 5, 8...)
+     ========================================== */
+  .testimonial-post-it:nth-child(3n + 2) {
+    @apply bg-lino-naturale border border-lino-naturale-300;
+    transform: rotate(2deg);
+  }
+  .testimonial-post-it:nth-child(3n + 2) .post-it-footer {
+    @apply flex items-center gap-3 mt-4 border-t border-lino-naturale-300/90;
+    transform: rotate(-1.8deg);
+  }
+  .testimonial-post-it:nth-child(3n + 2)::before {
+    @apply bg-lino-naturale-300/90;
+  }
+
+  /* ==========================================
+     COLOR 3: BLUE (Cards 3, 6, 9...)
+     ========================================== */
+  .testimonial-post-it:nth-child(3n) {
+    @apply bg-azzurro-polvere border border-azzurro-polvere-300;
+    transform: rotate(0deg);
+  }
+  .testimonial-post-it:nth-child(3n) .post-it-footer {
+    @apply flex items-center gap-3 mt-4 border-t border-azzurro-polvere-300/90;
+    transform: rotate(-1.8deg);
+  }
+  .testimonial-post-it:nth-child(3n)::before {
+    @apply bg-azzurro-polvere-300/90;
+  }
+}

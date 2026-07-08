@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/mvmnt-skyblue-logo.png';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="navbar w-full bg-brand-sky-blue shadow-md">
+  <nav class="w-full flex items-center justify-between px-6 py-1">
+    <a href="/" class="flex items-center gap-2">
+      <Image
+        src={logoImage}
+        alt="My Project Logo"
+        width={350}
+        height={150}
+        class="object-contain"
+      />
+      <!-- <span
+        class="text-2xl tracking-wide font-montserrat font-bold bg-linear-to-r from-brand-blue via-brand-very-light-green to-brand-dark-blue bg-clip-text text-transparent"
+        >MVMNTMATTERSPT</span> -->
+    </a>
+
+    <div class="flex items-center gap-6">
+      <a
+        href="/about"
+        class="link link-hover font-semibold text-white tracking-wider text-lg"
+        >About</a
+      >
+      <a
+        href="/services"
+        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        >Services</a
+      >
+      <a
+        href="/blog"
+        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        >Blog</a
+      >
+      <a
+        href="/contact"
+        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        >Contact</a
+      >
+      <a
+        href="/pricing"
+        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        >Book</a
+      >
+      <a
+        href="/testimonials"
+        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        >Testimonials</a
+      >
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
