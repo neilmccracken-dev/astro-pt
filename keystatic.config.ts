@@ -1,6 +1,7 @@
 import { config, fields, collection } from '@keystatic/core';
 const isNetlify = process.env.NETLIFY === 'true';
-
+console.log('KEYSTATIC STORAGE:', isNetlify ? 'GITHUB' : 'LOCAL');
+console.log('APP SLUG:', process.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG);
 export default config({
   storage: isNetlify
     ? {
@@ -9,6 +10,7 @@ export default config({
           owner: 'neilmccracken-dev',
           name: 'astro-pt',
         },
+        branchPrefix: 'master',
       }
     : {
         kind: 'local',
