@@ -1,11 +1,11 @@
 import { config, fields, collection } from '@keystatic/core';
-const isProd = import.meta.env.PROD;
+const isProduction = process.env.CONTEXT === 'production';
 
 export default config({
-  storage: isProd
+  storage: isProduction
     ? {
         kind: 'github',
-        repo: 'neilmccracken-dev/astro-pt',
+        repo: { owner: 'neilmccracken-dev', name: 'astro-pt' },
       }
     : {
         kind: 'local',
