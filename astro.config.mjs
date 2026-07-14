@@ -17,7 +17,7 @@ export default defineConfig({
     : isNetlify
       ? undefined
       : 'https://neilmccracken-dev.github.io',
-  base: isDev ? undefined : isNetlify ? undefined : '/astro-pt',
+  base: isDev ? undefined : isNetlify ? undefined : '/astro-pt/',
   adapter: isNetlify ? netlify() : undefined,
 
   vite: {
