@@ -1,11 +1,14 @@
 import { config, fields, collection } from '@keystatic/core';
-const isProduction = process.env.CONTEXT === 'production';
+const isNetlify = process.env.NETLIFY === 'true';
 
 export default config({
-  storage: isProduction
+  storage: isNetlify
     ? {
         kind: 'github',
-        repo: { owner: 'neilmccracken-dev', name: 'astro-pt' },
+        repo: {
+          owner: 'neilmccracken-dev',
+          name: 'astro-pt',
+        },
       }
     : {
         kind: 'local',
