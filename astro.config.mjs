@@ -31,5 +31,5 @@ export default defineConfig({
     domains: ['images.unsplash.com', 'plus.unsplash.com'],
   },
 
-  integrations: [react(), markdoc(), ...(isNetlify ? [keystatic()] : [])],
+  integrations: [react(), markdoc(), keystatic()],
 });
