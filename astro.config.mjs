@@ -18,7 +18,7 @@ export default defineConfig({
   site: isDev
     ? undefined
     : isNetlify
-      ? 'https://pt-project.netlify.app/'
+      ? 'https://pt-project.netlify.app'
       : 'https://neilmccracken-dev.github.io',
   base: isDev ? undefined : isNetlify ? undefined : '/astro-pt/',
   adapter: isNetlify ? netlify() : undefined,
@@ -31,5 +31,5 @@ export default defineConfig({
     domains: ['images.unsplash.com', 'plus.unsplash.com'],
   },
 
-  integrations: [react(), markdoc(), keystatic()],
+  integrations: [react(), markdoc(), ...(isNetlify ? [keystatic()] : [])],
 });
