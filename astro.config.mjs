@@ -9,7 +9,7 @@ import keystatic from '@keystatic/astro';
 
 const isNetlify = process.env.NETLIFY;
 const isDev = process.env.NODE_ENV === 'development';
-
+console.log(isDev);
 console.log('NETLIFY:', process.env.NETLIFY);
 console.log('Using GitHub storage:', isNetlify);
 export default defineConfig({
