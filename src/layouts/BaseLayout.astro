@@ -31,9 +31,9 @@ const fullTitle = isHome ? BRAND_NAME : `${title} | ${BRAND_NAME}`;
     <title>{fullTitle}</title>
     <ClientRouter />
   </head>
-  <body class="flex flex-col min-h-screen m-0">
+  <body class="flex flex-col min-h-screen overflow-x-hidden m-0 w-full">
     <NavBar />
-    <main id="root-layout" class="grow">
+    <main id="root-layout">
       <slot />
     </main>
     <Footer hasWave={hasWave} />

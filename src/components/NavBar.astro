@@ -1,56 +1,50 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../assets/images/mvmnt-skyblue-logo.png';
+import MvmntLogo from '../assets/images/MVMNT-logo-hotizontal2-dark.svg';
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<header class="navbar w-full bg-brand-sky-blue shadow-md">
-  <nav class="w-full flex items-center justify-between px-6 py-1">
-    <a href={`${import.meta.env.BASE_URL}`} class="flex items-center gap-2">
-      <Image
-        src={logoImage}
-        alt="My Project Logo"
-        width={350}
-        height={150}
-        class="object-contain"
-      />
-      <!-- <span
-        class="text-2xl tracking-wide font-montserrat font-bold bg-linear-to-r from-brand-blue via-brand-very-light-green to-brand-dark-blue bg-clip-text text-transparent"
-        >MVMNTMATTERSPT</span> -->
-    </a>
+<header class="navbar w-full bg-deeper-teal shadow-md">
+  <nav class="w-full flex justify-between items-center px-4 py-1">
+    <div class="flex mt-8">
+      <a href={`${import.meta.env.BASE_URL}`} class="flex items-center">
+        <MvmntLogo class="w-lg h-28 fill-deeper-teal" />
+      </a>
+    </div>
 
     <div class="flex items-center gap-6">
       <a
         href={`${import.meta.env.BASE_URL}about`}
-        class="link link-hover font-semibold text-white tracking-wider text-lg"
+        class="link link-hover font-montserrat text-white tracking-wider"
         >About</a
       >
       <a
         href={`${import.meta.env.BASE_URL}services`}
-        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        class="link link-hover font-montserrat tracking-wider text-white"
         >Services</a
       >
       <a
         href={`${import.meta.env.BASE_URL}blog`}
-        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        class="link link-hover font-montserrat tracking-wider text-white"
         >Blog</a
       >
       <a
         href={`${import.meta.env.BASE_URL}contact`}
-        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        class="link link-hover font-montserrat tracking-wider text-white"
         >Contact</a
       >
       <a
         href={`${import.meta.env.BASE_URL}pricing`}
-        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        class="link link-hover font-montserrat tracking-wider text-white"
         >Book</a
       >
       <a
         href={`${import.meta.env.BASE_URL}testimonials`}
-        class="link link-hover font-semibold tracking-wider text-white text-lg"
+        class="link link-hover font-montserrat tracking-wider text-white"
         >Testimonials</a
       >
-      <ThemeToggle />
+      <!-- <ThemeToggle /> -->
     </div>
   </nav>
 </header>

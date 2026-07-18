@@ -29,7 +29,8 @@
   --color-brand-sky-blue: #7bbed6;
   --color-brand-dark-slate: #0d1b2a;
   /* Elie's new custom palette */
-  --color-deep-teal: #315d66;
+  --color-deep-teal: rgb(49, 93, 102);
+  --color-deeper-teal: #043945;
   --color-light-blue: #87c6d5;
   --color-sky: #d1e9ef;
   --color-gold: #d5b46c;
