@@ -15,11 +15,11 @@ const optimizedBackground = await getImage({
 ---
 
 <BaseLayout hasWave={true} title="About">
-  <div class="grid grid-cols-6 w-full">
+  <div class="grid grid-cols-6 w-full min-w-0">
     <!-- Top Row spanning the full width -->
     <div
       style={`background-image: url('${optimizedBackground.src}');`}
-      class="col-span-6 w-full bg-base-200 text-white rounded-lg bg-cover bg-center bg-no-repeat min-h-220"
+      class="col-span-full w-full bg-base-200 text-white rounded-lg bg-cover bg-center bg-no-repeat min-h-220"
     >
       <div
         class="w-full p-6 bg-black/80 backdrop-blur-md border border-white/10 text-center"
