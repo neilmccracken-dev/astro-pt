@@ -2,6 +2,8 @@
 import AutoCarousel from '../components/Carousel';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getImage } from 'astro:assets';
+import LogoStacked from '@assets/images/mvnmt-logo-stacked-black.svg';
+import LogoStackedColor from '@assets/images/mvmnt-logo-stacked-color.svg';
 const unsplashUrls = [
   {
     url: 'https://plus.unsplash.com/premium_photo-1664300093125-92bc8a26d3fa?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -45,16 +47,20 @@ const sizesAttribute = `(max-width: 360px) 240px, (max-width: 720px) 540px, (max
 const optimizedBg = await getImage({
   src: 'https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?q=80&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&sat=-100',
   inferSize: true,
-  widths: [1024, 1440, 1920],
+  widths: [360, 480, 640, 768, 1024, 1440, 1920],
   format: 'webp',
 });
 console.log(optimizedBg.src);
-const bgSizesAttribute = '100vw';
+const bgSizesAttribute = `
+  (max-width: 640px) 100vw,
+  (max-width: 1024px) 100vw,
+  100vw
+`;
 ---
 
 <BaseLayout title="" isHome={true}>
   <main class="relative w-full min-h-screen flex flex-col">
-    <div class="relative w-full aspect-3/2 overflow-hidden z-0">
+    <div class="relative w-full h-[60vh] md:h-screen overflow-hidden z-0">
       <img
         src={optimizedBg.src}
         alt="Avatar"
@@ -63,7 +69,7 @@ const bgSizesAttribute = '100vw';
         alt="Page background"
         loading="eager"
         decoding="sync"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover object-[40%_center]"
       />
       <div
         class="absolute inset-0 flex flex-col gap-4 items-start justify-start p-6 bg-black/30"
@@ -89,19 +95,23 @@ const bgSizesAttribute = '100vw';
       class="w-full max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 min-h-150 place-items-center"
     >
       <!-- LEFT COLUMN: Company Header (Spans 4 out of 12 columns) -->
-      <div class="md:col-span-5 flex flex-col justify-start">
-        <div class="w-max">
-          <h2 class="text-3xl font-raleway tracking-tight">
-            Who We Are & What We Value
-          </h2>
+      <div class="md:col-span-6 flex flex-col">
+        <LogoStackedColor class="w-full h-auto" />
+        <!-- <div class="w-max">
+
 
           <div class="mt-2 h-0.5 w-full bg-secondary"></div>
-        </div>
-        <!-- Decorative accent line -->
+        </div> -->
       </div>
 
       <!-- RIGHT COLUMN: Multiple Paragraphs (Spans 8 out of 12 columns) -->
-      <div class="md:col-span-7 flex flex-col gap-6 leading-relaxed text-lg">
+      <div class="md:col-span-6 flex flex-col gap-4 leading-relaxed text-lg">
+        <div>
+          <h2 class="text-3xl tracking-tight text-center text-deeper-teal">
+            Who We Are & What We Value
+            <div class="h-1 w-full bg-sky"></div>
+          </h2>
+        </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
