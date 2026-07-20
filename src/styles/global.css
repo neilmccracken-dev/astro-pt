@@ -50,8 +50,7 @@
 }
 
 /* 2. Custom Component Styles Mapping to v4 Cascade Layers */
-@layer components {
-  /* The Base Post-It Structure (Universal Settings) */
+/* @layer components {
   .testimonial-post-it {
     @apply card relative w-72 h-72 text-stone-600 font-extrabold shadow-xl rotate-1 transition-transform duration-300;
     clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%);
@@ -61,16 +60,13 @@
     @apply rotate-0;
   }
 
-  /* The Base Folded Flap Structure */
   .testimonial-post-it::before {
     content: '';
     @apply absolute top-0 right-0 w-10 h-10 rounded-bl-md;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.15);
   }
 
-  /* ==========================================
-     COLOR 1: YELLOW (Cards 1, 4, 7...)
-     ========================================== */
+
   .testimonial-post-it:nth-child(3n + 1) {
     @apply bg-bianco-caldo border border-bianco-caldo-300;
     transform: rotate(-1.8deg);
@@ -79,14 +75,11 @@
     @apply flex items-center gap-3 mt-4 border-t border-bianco-caldo-300/90;
     transform: rotate(-1.8deg);
   }
-  /* Separate the pseudo-elements from main nesting rules */
   .testimonial-post-it:nth-child(3n + 1)::before {
     @apply bg-bianco-caldo-300/90;
   }
 
-  /* ==========================================
-     COLOR 2: PINK (Cards 2, 5, 8...)
-     ========================================== */
+
   .testimonial-post-it:nth-child(3n + 2) {
     @apply bg-lino-naturale border border-lino-naturale-300;
     transform: rotate(2deg);
@@ -99,9 +92,7 @@
     @apply bg-lino-naturale-300/90;
   }
 
-  /* ==========================================
-     COLOR 3: BLUE (Cards 3, 6, 9...)
-     ========================================== */
+
   .testimonial-post-it:nth-child(3n) {
     @apply bg-azzurro-polvere border border-azzurro-polvere-300;
     transform: rotate(0deg);
@@ -113,4 +104,4 @@
   .testimonial-post-it:nth-child(3n)::before {
     @apply bg-azzurro-polvere-300/90;
   }
-}
+} */

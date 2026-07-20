@@ -11,7 +11,7 @@ import CircleLogo from '@assets/images/mvnmt-logo-circle-dark.svg';
       <div class="absolute top-0 left-0 w-full overflow-hidden leading-0 -translate-y-[99%]">
         <svg
           preserveAspectRatio="none"
-          class="relative block w-full h-52 fill-deeper-teal"
+          class="relative block w-full h-24 md:h-52 fill-deeper-teal"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
         >
@@ -24,18 +24,17 @@ import CircleLogo from '@assets/images/mvnmt-logo-circle-dark.svg';
   <div
     class="footer sm:footer-horizontal bg-deeper-teal text-neutral-content p-6"
   >
-    <aside>
-      <div>
-        <CircleLogo
-          class:list={[
-            hasWave && '-mt-8 ml-8 w-xl h-44',
-            !hasWave && 'w-lg h-36',
-          ]}
-        />
-      </div>
+    <aside class="items-center text-center">
+      <CircleLogo
+        class:list={[
+          'block w-full max-w-32',
+          hasWave && '-mt-6 ml-2 w-md h-auto sm:w-24',
+          !hasWave && 'w-lg h-auto sm:w-80',
+        ]}
+      />
     </aside>
-    <nav>
-      <div class="grid grid-flow-col gap-4">
+    <nav class="flex items-center">
+      <div class="flex gap-4">
         <a>
           <svg
             xmlns="http://www.w3.org/2000/svg"
