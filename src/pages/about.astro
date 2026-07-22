@@ -2,7 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image, getImage } from 'astro:assets';
 import elieHeadshot from '../assets/images/headshot.jpg';
-
+interface Props {
+  index?: number;
+}
+const { index = 1 } = Astro.props;
 const backgroundImg =
   'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&sat=-100';
 
@@ -35,7 +38,7 @@ const optimizedBackground = await getImage({
         class="flex flex-col-reverse md:flex-row items-center justify-center gap-8"
       >
         <!-- Text -->
-        <div class="flex-1 max-w-3xl">
+        <div class="bio flex-1 max-w-3xl" style={`--i: ${index};`}>
           <h2 class="mb-4 text-2xl font-bold font-raleway italic">
             Elie Sabins
             <span class="ml-2 text-lg font-medium">
@@ -55,7 +58,7 @@ const optimizedBackground = await getImage({
           </p>
         </div>
 
-        <div class="flex justify-center md:w-1/3">
+        <div class="bio flex justify-center md:w-1/3" data-attribute={index}>
           <Image
             src={elieHeadshot}
             alt="Elie Sabins"
@@ -86,39 +89,106 @@ const optimizedBackground = await getImage({
           class="relative z-10 h-full flex items-center justify-center px-4 pt-8 pb-20 md:px-8 md:py-16"
         >
           <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-[80%] -translate-y-4"
+            class="experience grid grid-cols-1 md:grid-cols-3 gap-4 w-full md:max-w-[90%] max-w-[80%] -translate-y-4"
           >
-            <div class="md:min-h-56 shadow-xl bg-base-100 rounded-2xl px-2">
-              <p class="text-center font-bold text-xl font-raleway p-2">
-                Education
-              </p>
-              <ul class="list-disc list-inside space-y-1">
-                <li>Belmont University-Doctorate in Physical Therapy</li>
-                <li>University of Washington-Undergraduate</li>
-              </ul>
+            <div
+              class="relative overflow-hidden bg-base-100 card-bio md:min-h-56 shadow-xl rounded px-2"
+            >
+              <!-- Blob 1: Bottom-Left (Warm Peach) -->
+              <div
+                class="absolute -bottom-16 -left-16 w-44 h-44 bg-slate-300/80 rounded-full blur-3xl opacity-50 pointer-events-none"
+              >
+              </div>
+
+              <!-- Blob 2: Top-Right (Soft Pink) -->
+              <div
+                class="absolute -top-16 -right-16 w-44 h-44 bg-stone-300 rounded-full blur-3xl opacity-50 pointer-events-none"
+              >
+              </div>
+
+              <!-- Blob 3: Center-Left (Soft Lavender) <-- NEW THIRD COLOR -->
+              <div
+                class="absolute top-12 -left-20 w-40 h-40 bg-blue-100/80 rounded-full blur-3xl opacity-50 pointer-events-none"
+              >
+              </div>
+
+              <!-- Content Wrapper (relative and z-10 ensures text stays on top of the blur) -->
+              <div class="relative z-10 text-slate-900">
+                <p class="text-center font-semibold font-raleway p-2">
+                  Education
+                </p>
+                <ul class="list-disc text-sm list-inside space-y-1">
+                  <li>Belmont University-Doctorate in Physical Therapy</li>
+                  <li>University of Washington-Undergraduate</li>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="relative overflow-hidden bg-base-100 card-bio md:min-h-56 shadow-xl rounded px-2"
+            >
+              <!-- Blob 1: Bottom-Left (Warm Peach) -->
+              <div
+                class="absolute -bottom-16 -left-16 w-44 h-44 bg-gray-300/70 rounded-full blur-3xl opacity-50 pointer-events-none"
+              >
+              </div>
+
+              <!-- Blob 2: Top-Right (Soft Pink) -->
+              <div
+                class="absolute -top-16 -right-16 w-44 h-44 bg-ivory rounded-full blur-3xl opacity-40 pointer-events-none"
+              >
+              </div>
+
+              <!-- Blob 3: Center-Left (Soft Lavender) <-- NEW THIRD COLOR -->
+              <div
+                class="absolute top-12 -left-20 w-40 h-40 bg-sand/80 rounded-full blur-3xl opacity-30 pointer-events-none"
+              >
+              </div>
+
+              <!-- Content Wrapper (relative and z-10 ensures text stays on top of the blur) -->
+              <div class="relative z-10 text-slate-900">
+                <p class="p-2 text-center w-full font-semibold font-raleway">
+                  Professional Experience
+                </p>
+                <ul class="list-disc text-sm list-inside space-y-1">
+                  <li>Belmont University-Doctorate in Physical Therapy</li>
+                  <li>University of Washington-Undergraduate</li>
+                  <li>Over 5 years of outpatient orthopedic experience</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="md:min-h-56 shadow-xl bg-base-100 rounded-2xl px-2">
-              <p class="text-center font-bold text-xl font-raleway p-2">
-                Professional Experience
-              </p>
-              <ul class="list-disc text-sm list-inside space-y-2">
-                <li>Belmont University-Doctorate in Physical Therapy</li>
-                <li>University of Washington-Undergraduate</li>
-              </ul>
-            </div>
+            <div
+              class="relative overflow-hidden bg-base-100 card-bio md:min-h-56 shadow-xl rounded px-2"
+            >
+              <!-- Blob 1: Bottom-Left (Warm Peach) -->
+              <div
+                class="absolute -bottom-16 -left-16 w-44 h-44 bg-gray-200 rounded-full blur-3xl opacity-30 pointer-events-none"
+              >
+              </div>
 
-            <div class="md:min-h-56 shadow-xl bg-base-100 rounded-2xl px-2">
-              <p class="text-center font-bold text-xl font-raleway p-2">
-                Hobbies
-              </p>
-              <ul class="list-disc list-inside space-y-1">
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Voluptatem.
-                </li>
-              </ul>
+              <!-- Blob 2: Top-Right (Soft Pink) -->
+              <div
+                class="absolute -top-16 -right-16 w-44 h-44 bg-stone-200 rounded-full blur-3xl opacity-30 pointer-events-none"
+              >
+              </div>
+
+              <!-- Blob 3: Center-Left (Soft Lavender) <-- NEW THIRD COLOR -->
+              <div
+                class="absolute top-12 -left-20 w-40 h-40 bg-deeper-teal/60 rounded-full blur-3xl opacity-50 pointer-events-none"
+              >
+              </div>
+
+              <!-- Content Wrapper (relative and z-10 ensures text stays on top of the blur) -->
+              <div class="relative z-10 text-slate-900">
+                <p class="p-2 text-center w-full font-semibold font-raleway">
+                  Professional Experience
+                </p>
+                <ul class="list-disc text-sm list-inside space-y-1">
+                  <li>Belmont University-Doctorate in Physical Therapy</li>
+                  <li>University of Washington-Undergraduate</li>
+                  <li>Over 5 years of outpatient orthopedic experience</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -141,3 +211,110 @@ const optimizedBackground = await getImage({
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .bio {
+    /* 1. Initial hidden state */
+    opacity: 0;
+    translate: -5rem 0;
+    scale: 1.5;
+
+    /* 2. Transition rules */
+    transition-property: opacity, translate, scale;
+    transition-duration: 1.5s;
+    transition-timing-function: ease-in-out;
+
+    /* Pull the index value from the dataset via CSS attr() */
+    transition-delay: calc(200ms * var(--i));
+    will-change: opacity, translate, scale;
+  }
+  @media (min-width: 768px) {
+    .bio {
+      translate: -30rem 0;
+      scale: 1.5;
+    }
+  }
+
+  /* 3. Final visible state triggered by JS */
+  .bio.is-in-view {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  .experience {
+    opacity: 0;
+    transform: translateY(2.5rem);
+    transition-property: opacity, transform;
+    transition-duration: 1s; /* Pure fades usually feel snappier at 1s instead of 1.5s */
+    transition-timing-function: ease-out;
+
+    /* Keeps your staggered layout delay feature active */
+    will-change: opacity;
+  }
+
+  /* 2. Final visible state triggered by the Observer */
+  .experience.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  let activeObserver: IntersectionObserver | null = null;
+
+  function initScrollAnimations() {
+    // 1. Define the elements and their corresponding active classes
+    const configs = [
+      { selector: '.bio', activeClass: 'is-in-view' },
+      { selector: '.experience', activeClass: 'fade-in' }, // Your new element
+    ];
+
+    // 2. Gather all elements that actually exist on the current page
+    const elementsToWatch: { element: Element; activeClass: string }[] = [];
+
+    configs.forEach(({ selector, activeClass }) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        elementsToWatch.push({ element: el, activeClass });
+      });
+    });
+
+    if (elementsToWatch.length === 0) return;
+
+    // 3. Create a single observer instance
+    activeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Retrieve the custom class stored on the element's dataset
+            const targetClass = (entry.target as HTMLElement).dataset
+              .animationClass;
+            if (targetClass) {
+              entry.target.classList.add(targetClass);
+            }
+            activeObserver?.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: '0px 0px -150px 0px',
+        threshold: 0.05,
+      },
+    );
+
+    // 4. Attach the class mapping to the DOM element and start observing
+    elementsToWatch.forEach(({ element, activeClass }) => {
+      (element as HTMLElement).dataset.animationClass = activeClass;
+      activeObserver?.observe(element);
+    });
+  }
+
+  // Astro Lifecycle Hooks (Keep these exactly as you had them)
+  initScrollAnimations();
+  document.addEventListener('astro:after-swap', initScrollAnimations);
+  document.addEventListener('astro:before-swap', () => {
+    if (activeObserver) {
+      activeObserver.disconnect();
+      activeObserver = null;
+    }
+  });
+</script>
