@@ -271,7 +271,7 @@ const optimizedBackground = await getImage({
 
     // 2. Gather all elements that actually exist on the current page
     const elementsToWatch: { element: Element; activeClass: string }[] = [];
-
+    console.log(elementsToWatch);
     configs.forEach(({ selector, activeClass }) => {
       document.querySelectorAll(selector).forEach((el) => {
         elementsToWatch.push({ element: el, activeClass });
