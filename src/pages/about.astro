@@ -25,10 +25,10 @@ const optimizedBackground = await getImage({
       class="col-span-full w-full bg-base-200 text-white rounded-lg bg-cover bg-center bg-no-repeat min-h-220"
     >
       <div
-        class="w-full p-6 bg-black/80 backdrop-blur-md border border-white/10 text-center"
+        class="w-full p-4 bg-deeper-teal/90 backdrop-blur-2xl border border-white/10 text-center"
       >
-        <h2 class="text-3xl font-bold mb-2 font-raleway tracking-wide">
-          Making you strong and healthy is our mission!
+        <h2 class="text-3xl mb-2 font-cabin font-light tracking-wide">
+          Making you strong is our mission!
         </h2>
       </div>
     </div>
@@ -39,14 +39,20 @@ const optimizedBackground = await getImage({
       >
         <!-- Text -->
         <div class="bio flex-1 max-w-3xl" style={`--i: ${index};`}>
-          <h2 class="mb-4 text-2xl font-bold font-raleway italic">
-            Elie Sabins
-            <span class="ml-2 text-lg font-medium">
-              PT, DPT, OCS, CSCS, TPS
-            </span>
-          </h2>
+          <div class="mb-4 flex flex-wrap items-baseline gap-1">
+            <div
+              class="flex-row md:flex items-baseline gap-2 border-l-3 border-light-blue pl-5 py-2.5"
+            >
+              <h2 class="text-2xl font-cabin tracking-tight">Elie Sabins</h2>
+              <span
+                class="md:ml-2 font-cabin font-thin tracking-widest text-sm italic"
+              >
+                PT, DPT, OCS, CSCS, TPS
+              </span>
+            </div>
+          </div>
 
-          <p class="text-lg leading-loose">
+          <p class="leading-loose font-cabin text-gray-600 max-w-2xl">
             Elie grew up in Bellingham, WA, and went on to obtain her BS in
             Biology from the University of Washington in Seattle. During her
             years as a graduate student, she completed an internship with Howard
@@ -92,7 +98,7 @@ const optimizedBackground = await getImage({
             class="experience grid grid-cols-1 md:grid-cols-3 gap-4 w-full md:max-w-[90%] max-w-[80%] -translate-y-4"
           >
             <div
-              class="relative overflow-hidden bg-base-100 card-bio md:min-h-56 shadow-xl rounded px-2"
+              class="relative overflow-hidden bg-base-100 card-bio min-h-36 md:min-h-56 shadow-xl rounded px-2"
             >
               <!-- Blob 1: Bottom-Left (Warm Peach) -->
               <div
@@ -124,7 +130,7 @@ const optimizedBackground = await getImage({
               </div>
             </div>
             <div
-              class="relative overflow-hidden bg-base-100 card-bio md:min-h-56 shadow-xl rounded px-2"
+              class="relative overflow-hidden bg-base-100 min-h-36 card-bio md:min-h-56 shadow-xl rounded px-2"
             >
               <!-- Blob 1: Bottom-Left (Warm Peach) -->
               <div
@@ -158,7 +164,7 @@ const optimizedBackground = await getImage({
             </div>
 
             <div
-              class="relative overflow-hidden bg-[#FFFFFF] bg-[radial-gradient(at_0%_0%,hsla(195,70%,93%,0.7)_0,transparent_50%),radial-gradient(at_100%_100%,hsla(210,15%,88%,0.6)_0,transparent_50%)] card-bio md:min-h-56 shadow-xl rounded px-2"
+              class="relative overflow-hidden bg-[#FFFFFF] bg-[radial-gradient(at_0%_0%,hsla(195,70%,93%,0.7)_0,transparent_50%),radial-gradient(at_100%_100%,hsla(210,15%,88%,0.6)_0,transparent_50%)] card-bio min-h-36 md:min-h-56 shadow-xl rounded px-2"
             >
               <!-- Blob 1: Bottom-Left (Warm Peach) -->
 

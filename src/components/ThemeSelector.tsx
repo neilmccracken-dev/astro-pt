@@ -68,12 +68,8 @@ const NavbarThemeWrapper = ({
             </div>
           </a>
         </div>
-
-        {/* Center/Right Side: Your entire existing Astro Navbar layout */}
-        {children}
-
         {/* Floating Developer/Client Selector */}
-        <div className="ml-4  bg-white/80 rounded  text-xs text-black z-50">
+        <div className="ml-2  bg-white/80 rounded  text-xs text-black z-50">
           <select
             value={theme}
             onChange={(e) =>
@@ -87,6 +83,9 @@ const NavbarThemeWrapper = ({
             <option value="style4">Ivory</option>
           </select>
         </div>
+
+        {/* Center/Right Side: Your entire existing Astro Navbar layout */}
+        {children}
       </nav>
     </header>
   );

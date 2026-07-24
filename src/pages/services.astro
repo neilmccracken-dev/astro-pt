@@ -6,124 +6,178 @@ import { Image, getImage } from 'astro:assets';
 import CalendlyButton from '../components/CalendyPopup';
 import CalBooking from '../components/CalBooking';
 import ServiceCard from '../components/ServiceCard';
+import DryNeedling from '@assets/images/services/dry-needling.jpg';
+import Evaluation from '@assets/images/services/evaluation.jpg';
+import FollowUpVisit from '@assets/images/services/follow-up-visit.jpg';
+import OnlineCoaching from '@assets/images/services/online-coaching.jpg';
+import PerformanceAssessment from '@assets/images/services/performance-assessment.jpg';
+type Service = {
+  name: string;
+  description: string;
+  image: ImageMetadata;
+};
+const servicesArray: Service[] = [
+  {
+    name: 'Dry Needling',
+    description:
+      'Recover from sports injuries and return to training with a personalized rehabilitation program.',
+    image: DryNeedling,
+  },
+  {
+    name: 'Evaluation',
+    description:
+      'Treatment for joint, muscle, tendon, and ligament conditions affecting everyday movement.',
+    image: Evaluation,
+  },
+  {
+    name: 'Follow Up Visit',
+    description:
+      'A guided recovery plan designed to restore strength, mobility, and confidence after surgery.',
+    image: FollowUpVisit,
+  },
+  {
+    name: 'Online Coaching',
+    description:
+      'Improve stability, coordination, and movement confidence through targeted exercises.',
+    image: OnlineCoaching,
+  },
+  {
+    name: 'Performance Assessment',
+    description:
+      'Build strength and develop practical strategies for managing persistent pain.',
+    image: PerformanceAssessment,
+  },
+];
 ---
 
-<BaseLayout title="Services">
-  <div class="max-w-5xl my-8 mx-auto">
-    <!-- Page Header Banner -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-extrabold font-raleway text-base-content mb-3">
-        Our Services
-      </h1>
-      <p class="text-gray-400 max-w-md mx-auto">
-        Select from our premium wellness packages managed directly by our team.
-      </p>
-    </div>
+<BaseLayout title="Services" hasWave={true}>
+  <section class="bg-base-100 px-5 py-16 md:px-10 mb-24">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-12 text-center">
+        <h2
+          class="font-cabin text-4xl font-light tracking-widest text-deeper-teal"
+        >
+          Our Services
+        </h2>
 
-    <!-- Single-Column Flex Container for Wide Cards -->
-    <div class="flex flex-col gap-6">
-      {
-        await Promise.all(
-          services.map(async (service) => {
-            let optimizedSrc: string | undefined = undefined;
+        <p class="mx-auto mt-4 max-w-2xl text-lg">
+          Personalized physical therapy services designed to help you move,
+          recover, and feel stronger.
+        </p>
+      </div>
 
-            // If the service has an image, extract the optimized src URL string
-            if (service.data.image) {
-              const optimized = await getImage({
-                src: service.data.image,
-                width: 600,
-                height: 400,
-              });
-              optimizedSrc = optimized.src;
-            }
+      <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
+        {
+          servicesArray.map((service) => (
+            <article
+              class="
+              flex flex-col items-center gap-6 rounded-3xl  p-6
+              text-center  transition
+              hover:-translate-y-1 hover:shadow-xl
+              md:flex-row md:text-left
+            "
+            >
+              <div class="relative size-80 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src={service.image}
+                  alt={service.name}
+                  width={800}
+                  height={600}
+                  class="h-full w-full object-cover"
+                />
 
-            return (
-              <ServiceCard
-                client:only="react"
-                name={service.data.name}
-                duration={service.data.duration}
-                description={service.data.description}
-                pricing={service.data.pricing}
-                calLink={service.data.calLink}
-                optimizedImageSrc={optimizedSrc}
-              >
-                <div
-                  slot="fallback"
-                  class="card md:card-side bg-base-100 shadow-xl overflow-hidden animate-pulse border border-base-200"
+                <div class="absolute inset-0 bg-black/35 backdrop-blur-[1px]" />
+
+                <div class="absolute inset-0 flex items-center justify-center p-5">
+                  <h3
+                    class="
+                    font-cabin text-center text-2xl font-bold
+                    leading-tight text-white drop-shadow-lg
+                  "
+                  >
+                    {service.name}
+                  </h3>
+                </div>
+              </div>
+
+              <div>
+                <p class="text-lg leading-relaxed text-gray-700 ">
+                  {service.description}
+                </p>
+
+                <a
+                  href={`/services/${service.name
+                    .toLowerCase()
+                    .replaceAll(' ', '-')
+                    .replaceAll('&', 'and')}`}
+                  class="
+                  mt-5 inline-flex items-center font-semibold
+                  text-deeper-teal transition hover:underline
+                "
                 >
-                  <div class="h-48 md:h-auto md:w-2/5 min-w-[200px] shrink-0 bg-base-300 min-h-[192px]" />
-                  <div class="card-body p-6 flex flex-col justify-between w-full">
-                    <div>
-                      <div class="flex flex-wrap justify-between items-start gap-2 mb-4">
-                        <div class="h-7 bg-base-300 rounded w-1/2" />
-                        <div class="h-6 bg-base-200 rounded w-16" />
-                      </div>
-                      <div class="h-4 bg-base-200 rounded w-full mb-2" />
-                      <div class="h-4 bg-base-200 rounded w-5/6" />
+                  Learn more
+                  <span aria-hidden="true" class="ml-2">
+                    →
+                  </span>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="flex flex-col gap-6 max-w-xl lg:max-w-6xl mx-auto mb-48">
+    {
+      await Promise.all(
+        services.map(async (service) => {
+          let optimizedSrc: string | undefined = undefined;
+
+          // If the service has an image, extract the optimized src URL string
+          if (service.data.image) {
+            const optimized = await getImage({
+              src: service.data.image,
+              width: 600,
+              height: 400,
+            });
+            optimizedSrc = optimized.src;
+          }
+
+          return (
+            <ServiceCard
+              client:only="react"
+              name={service.data.name}
+              duration={service.data.duration}
+              description={service.data.description}
+              pricing={service.data.pricing}
+              calLink={service.data.calLink}
+              optimizedImageSrc={optimizedSrc}
+            >
+              <div
+                slot="fallback"
+                class="card md:card-side bg-base-100 shadow-xl overflow-hidden animate-pulse border border-base-200"
+              >
+                <div class="h-48 md:h-auto md:w-2/5 min-w-[200px] shrink-0 bg-base-300 min-h-[192px]" />
+                <div class="card-body p-6 flex flex-col justify-between w-full">
+                  <div>
+                    <div class="flex flex-wrap justify-between items-start gap-2 mb-4">
+                      <div class="h-7 bg-base-300 rounded w-1/2" />
+                      <div class="h-6 bg-base-200 rounded w-16" />
                     </div>
-                    <div class="card-actions justify-between items-center mt-6 border-t border-base-200 pt-4">
-                      <div class="h-8 bg-base-300 rounded w-20" />
-                      <div class="h-10 bg-base-300 rounded-lg w-28" />
-                    </div>
+                    <div class="h-4 bg-base-200 rounded w-full mb-2" />
+                    <div class="h-4 bg-base-200 rounded w-5/6" />
+                  </div>
+                  <div class="card-actions justify-between items-center mt-6 border-t border-base-200 pt-4">
+                    <div class="h-8 bg-base-300 rounded w-20" />
+                    <div class="h-10 bg-base-300 rounded-lg w-28" />
                   </div>
                 </div>
-              </ServiceCard>
-            );
-          }),
-        )
-      }
-    </div>
+              </div>
+            </ServiceCard>
+          );
+        }),
+      )
+    }
   </div>
 </BaseLayout>
-
-<!--  
-        {services.map((service) => {
-          const { name, duration, pricing, description, image,calLink } = service.data;
-          
-          return (
-            <div class="card md:card-side bg-base-100 shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
-              
-              <figure class="relative h-48 md:h-auto md:w-2/5 min-w-[200px] shrink-0">
-                {image ? (
-                  <Image 
-                    src={image} 
-                    alt={name} 
-                    width={600} 
-                    height={400} 
-                    class="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div class="w-full h-full bg-gradient-to-br from-neutral to-base-300 flex items-center justify-center min-h-[192px]">
-                    <span class="text-4xl">✨</span>
-                  </div>
-                )}
-              </figure>
-              
-              <div class="card-body p-6 flex flex-col justify-between">
-                
-                <div>
-                  <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
-                    <h2 class="card-title text-2xl font-bold text-base-content">
-                      {name}
-                    </h2>
-                    <span class="badge badge-neutral whitespace-nowrap">⏱ {duration} min</span>
-                  </div>
-                  
-                  <p class="text-neutral-500 leading-relaxed">
-                    {description}
-                  </p>
-                </div>
-                
-                <div class="card-actions justify-between items-center mt-6 border-t border-base-200 pt-4">
-                  <div class="text-3xl font-black text-base-content">
-                    ${pricing}
-                  </div>
-                    <CalBooking client:only="react"calLink={calLink} />
-                </div>
-
-              </div>
-            </div>
-          );
-        })}
-
-        -->
