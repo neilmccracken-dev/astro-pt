@@ -35,7 +35,7 @@ const NavbarThemeWrapper = ({
       <nav className="w-full flex justify-between  items-center px-4 py-1">
         {/* Left Side: Dynamic Logo slot */}
         <div className="flex mt-8">
-          <a href="#" className="flex items-center">
+          <a href={`${import.meta.env.BASE_URL}`} className="flex items-center">
             <div
               className={
                 currentTheme.activeLogo === 'logo1' ? 'block' : 'hidden'
