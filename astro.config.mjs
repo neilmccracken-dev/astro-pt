@@ -7,11 +7,12 @@ import netlify from '@astrojs/netlify';
 import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
 
-const isNetlify = process.env.NETLIFY;
+const isNetlify = process.env.NETLIFY === 'true';
 const isDev = process.env.NODE_ENV === 'development';
 console.log(isDev);
 console.log('NETLIFY:', process.env.NETLIFY);
 console.log('Using GitHub storage:', isNetlify);
+const useKeystatic = isDev || isNetlify;
 export default defineConfig({
   // output: 'static',
   output: isNetlify ? 'server' : 'static',
@@ -31,5 +32,5 @@ export default defineConfig({
     domains: ['images.unsplash.com', 'plus.unsplash.com'],
   },
 
-  integrations: [react(), markdoc(), ...(isNetlify ? [keystatic()] : [])],
+  integrations: [react(), markdoc(), ...(useKeystatic ? [keystatic()] : [])],
 });

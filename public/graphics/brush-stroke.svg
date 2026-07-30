@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 300" width="100%" height="100%">
+  <defs>
+    <!-- Define a light watercolor-like gradient -->
+    <linearGradient id="lightBrushGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#cccccc" stop-opacity="0.85" />
+      <stop offset="30%" stop-color="#d9d9d9" stop-opacity="0.9" />
+      <stop offset="70%" stop-color="#e6e6e6" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#cccccc" stop-opacity="0.6" />
+    </linearGradient>
+    
+    <!-- Rough texture filter to simulate brush bristles -->
+    <filter id="brushTexture" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+
+  <!-- Main brush stroke paths layered for realism -->
+  <g filter="url(#brushTexture)">
+    <!-- Whispy background stroke tail -->
+    <path d="M 600,140 Q 680,120 730,125 Q 670,140 580,150 Z" fill="url(#lightBrushGrad)" opacity="0.4" />
+    
+    <!-- Main thick swooping body -->
+    <path d="M 90,190 C 140,140 230,110 380,115 C 530,120 620,135 710,120 C 630,155 520,165 370,160 C 220,155 130,200 90,190 Z" fill="url(#lightBrushGrad)" />
+    
+    <!-- Bristle detail lines - Bottom edge -->
+    <path d="M 120,185 Q 250,145 400,150 T 680,135" fill="none" stroke="url(#lightBrushGrad)" stroke-width="3" stroke-dasharray="150 10 80 5 120" />
+    
+    <!-- Bristle detail lines - Top edge -->
+    <path d="M 105,170 Q 230,125 390,125 T 650,122" fill="none" stroke="url(#lightBrushGrad)" stroke-width="2" stroke-dasharray="200 15 50 10 100" />
+    
+    <!-- Left dry-brush starting splatter points -->
+    <path d="M 80,195 Q 85,185 92,192 Z M 75,192 Q 78,188 82,190 Z" fill="#cccccc" opacity="0.7" />
+  </g>
+</svg>

@@ -2,6 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image, getImage } from 'astro:assets';
 import elieHeadshot from '../assets/images/headshot.jpg';
+import CscsLogo from '@assets/images/certifications/cscs.svg';
+import PurreBarre from '@assets/images/certifications/pure-barre.svg';
+import Ocs from '@assets/images/certifications/ocs.svg';
+import Tps from '@assets/images/certifications/tps.png';
+import Tpi from '@assets/images/certifications/tpi.svg';
+import DryNeedling from '@assets/images/certifications/dry-needling.svg';
+import SectionHeading from '../components/SectionHeading.astro';
 interface Props {
   index?: number;
 }
@@ -15,6 +22,73 @@ const optimizedBackground = await getImage({
   inferSize: true,
   widths: [1024, 1440, 1920, 2560],
 });
+
+const certifications = [
+  {
+    short: 'OCS',
+    name: 'Orthopedic Clinical Specialist',
+    angle: 0,
+    radius: 290,
+    image: Ocs,
+    description: `A prestigious board certification representing advanced expertise in orthopedic
+     physical therapy and one of the highest levels of specialization a physical therapist can
+      achieve. This training reflects a deep understanding of complex injuries, movement mechanics,
+       and evidence-based treatment strategies to help patients recover and return to the activities
+        they love`,
+  },
+  {
+    short: 'TPS',
+    name: 'Therapeutic Pain Specialist',
+    angle: 60,
+    radius: 330,
+    image: Tps,
+    description: `Advanced training focused on understanding persistent pain through a comprehensive 
+    approach that combines modern pain science, movement, and individualized treatment strategies.`,
+  },
+  {
+    short: 'CSCS',
+    name: 'Certified Strength and Conditioning Specialist',
+    angle: 120,
+    radius: 330,
+    image: CscsLogo,
+    description: `A nationally recognized certification in strength and performance training, 
+    allowing Dr. Elie to create evidence-based programs that help patients build resilience, 
+    improve performance, and prevent future injuries.`,
+  },
+  {
+    short: 'TPI 3',
+    name: 'Titleist Performance Institute Medical Level 3',
+    angle: 180,
+    radius: 290,
+    image: Tpi,
+    description: `
+    The highest level of TPI Medical certification, representing advanced expertise in golf-specific
+     movement assessment, injury prevention, and performance optimization. This is focused on
+      identifying how the body influences the golf swing, helping golfers improve movement
+       efficiency, reduce injury risk, and return to the course with confidence.
+    `,
+  },
+  {
+    short: 'Barre',
+    name: 'Pure Barre Instructor',
+    angle: 240,
+    radius: 330,
+    image: PurreBarre,
+    description: `Specialized training in barre-based movement, emphasizing strength, mobility,
+       posture, and body awareness to help patients improve control, endurance, and overall movement quality`,
+  },
+  {
+    short: 'DN',
+    name: 'Dry Needling Certification',
+    angle: 300,
+    radius: 330,
+    image: DryNeedling,
+    description: `Advanced training in the use of dry needling as part of a comprehensive physical therapy
+       approach to address muscle tension, trigger points, and movement limitations. 
+       When clinically appropriate, Dr. Elie incorporates dry needling alongside hands-on therapy
+        and targeted exercise to help reduce pain, improve mobility, and support optimal movement.`,
+  },
+];
 ---
 
 <BaseLayout hasWave={true} title="About">
@@ -24,13 +98,6 @@ const optimizedBackground = await getImage({
       style={`background-image: url('${optimizedBackground.src}');`}
       class="col-span-full w-full bg-base-200 text-white rounded-lg bg-cover bg-center bg-no-repeat min-h-220"
     >
-      <div
-        class="w-full p-4 bg-deeper-teal/90 backdrop-blur-2xl border border-white/10 text-center"
-      >
-        <h2 class="text-3xl mb-2 font-cabin font-light tracking-wide">
-          Making you strong is our mission!
-        </h2>
-      </div>
     </div>
 
     <div class="col-span-6 p-5 py-8">
@@ -38,29 +105,44 @@ const optimizedBackground = await getImage({
         class="flex flex-col-reverse md:flex-row items-center justify-center gap-8"
       >
         <!-- Text -->
-        <div class="bio flex-1 max-w-3xl" style={`--i: ${index};`}>
+        <div class="bio flex-1 max-w-4xl" style={`--i: ${index};`}>
           <div class="mb-4 flex flex-wrap items-baseline gap-1">
             <div
               class="flex-row md:flex items-baseline gap-2 border-l-3 border-light-blue pl-5 py-2.5"
             >
-              <h2 class="text-2xl font-cabin tracking-tight">Elie Sabins</h2>
-              <span
-                class="md:ml-2 font-cabin font-thin tracking-widest text-sm italic"
-              >
+              <h2 class="text-3xl font-cabin tracking-tight">Elie Sabins</h2>
+              <span class="md:ml-2 font-cabin font-thin tracking-widest italic">
                 PT, DPT, OCS, CSCS, TPS
               </span>
             </div>
           </div>
-
+          <p class="text-lg mb-1 font-extralight underline">Meet Dr. Elie,</p>
           <p class="leading-loose font-cabin text-gray-600 max-w-2xl">
-            Elie grew up in Bellingham, WA, and went on to obtain her BS in
-            Biology from the University of Washington in Seattle. During her
-            years as a graduate student, she completed an internship with Howard
-            Head before receiving her Doctorate from Belmont University in
-            Nashville, TN. She takes a holistic approach to physical therapy and
-            also enjoys bringing components of strength and conditioning into
-            her treatment sessions. In her spare time, she enjoys running,
-            hiking, skiing, and spending time with friends and family.
+            Originally from Washington, Dr. Elie has always had a passion for
+            helping people stay active and do the things they love. After
+            earning her Doctorate of Physical Therapy at Belmont University in
+            Nashville, TN, she moved to the mountains of Colorado, where she
+            spent seven years practicing at Howard Head Sports Medicine in
+            partnership with Vail Health. There, she worked alongside the
+            world-renowned orthopedic surgeons of the Steadman Philippon
+            organization, caring for patients with a wide range of orthopedic
+            injuries and post-surgical conditions. Dr. Elie also serves as a
+            physical therapist contractor for the United States Tennis
+            Association (USTA) Pro Circuit, working with elite tennis athletes
+            and further developing her expertise in sports rehabilitation and
+            performance. Her clinical interests include persistent pain, golf,
+            tennis, running, barre, and orthopedic injuries. As a Titleist
+            Performance Institute (TPI) Medical Level 3 certified physical
+            therapist, she is passionate about helping golfers move better, play
+            with less pain, and perform at their highest level. Known for her
+            compassionate, individualized approach, Dr. Elie was honored with a
+            hospital-wide, patient-nominated award for excellence in patient
+            care during her time at Howard Head/Vail Health. She believes every
+            patient deserves one-on-one care, thoughtful treatment, and a plan
+            tailored to their unique goals. Through MVMNT Matters, Dr. Elie
+            combines advanced clinical expertise with personalized care to help
+            patients recover from injury, overcome pain, and confidently return
+            to the activities they love.
           </p>
         </div>
 
@@ -68,20 +150,20 @@ const optimizedBackground = await getImage({
           <Image
             src={elieHeadshot}
             alt="Elie Sabins"
-            class="w-48 md:w-72 rounded-full border-2 border-deep-teal md:translate-y-8"
+            class="w-64 md:w-4/5 rounded-full border-2 border-deep-teal md:translate-y-8"
           />
         </div>
       </div>
     </div>
 
-    <div class="col-span-6 bg-white py-16 md:py-24 md:my-20">
-      <div class="relative bg-sky w-full">
+    <div class="col-span-6 bg-white mt-48 lg:-mb-8 -mb-28">
+      <div class="relative bg-light-blue w-full">
         <div
           class="absolute top-0 left-0 w-full overflow-hidden leading-0 -translate-y-[100%]"
         >
           <svg
             preserveAspectRatio="none"
-            class="relative block w-full h-24 md:h-52 fill-sky"
+            class="relative block w-full h-24 md:h-52 fill-light-blue"
             xmlns="http://w3.org"
             viewBox="0 0 1440 320"
           >
@@ -91,7 +173,39 @@ const optimizedBackground = await getImage({
           </svg>
         </div>
 
+        <SectionHeading class="my-12 text-center text-stone-50">
+          Certifications &<br class="md:hidden" />
+          Advanced Training</SectionHeading
+        >
         <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 mb-48 w-4/5 mx-auto"
+        >
+          {
+            certifications.map((c, index) => (
+              <div class="flex flex-col lg:flex-row  items-center lg:items-start gap-4 mt-6 ">
+                <div class="relative mask mask-squircle bg-gray-100 lg:bg-light-blue w-68 h-68 ml-8 shrink-0">
+                  <div class="absolute inset-0 flex  items-start justify-center p-2">
+                    {c.image ? (
+                      <img src={c.image.src} class="size-full object-contain" />
+                    ) : (
+                      <p>No image</p>
+                    )}
+                  </div>
+                </div>
+
+                <div class="flex-1 min-w-0 pt-2 w-full lg:text-left ">
+                  <h2 class="text-center text-xl italic font-semibold text-stone-50 tracking-loose ">
+                    {c.name}
+                  </h2>
+                  <p class="text-stone-800 mt-6  leading-relaxed">
+                    {c.description}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <!-- <div
           class="relative z-10 h-full flex items-center justify-center px-4 pt-8 pb-20 md:px-8 md:py-16"
         >
           <div
@@ -100,25 +214,21 @@ const optimizedBackground = await getImage({
             <div
               class="relative overflow-hidden bg-base-100 card-bio min-h-36 md:min-h-56 shadow-xl rounded px-2"
             >
-              <!-- Blob 1: Bottom-Left (Warm Peach) -->
               <div
                 class="absolute -bottom-16 -left-16 w-44 h-44 bg-slate-300/80 rounded-full blur-3xl opacity-50 pointer-events-none"
               >
               </div>
 
-              <!-- Blob 2: Top-Right (Soft Pink) -->
               <div
                 class="absolute -top-16 -right-16 w-44 h-44 bg-stone-300 rounded-full blur-3xl opacity-50 pointer-events-none"
               >
               </div>
 
-              <!-- Blob 3: Center-Left (Soft Lavender) <-- NEW THIRD COLOR -->
               <div
                 class="absolute top-12 -left-20 w-40 h-40 bg-blue-100/80 rounded-full blur-3xl opacity-50 pointer-events-none"
               >
               </div>
 
-              <!-- Content Wrapper (relative and z-10 ensures text stays on top of the blur) -->
               <div class="relative z-10 text-slate-900">
                 <p class="text-center font-semibold font-raleway p-2">
                   Education
@@ -132,25 +242,21 @@ const optimizedBackground = await getImage({
             <div
               class="relative overflow-hidden bg-base-100 min-h-36 card-bio md:min-h-56 shadow-xl rounded px-2"
             >
-              <!-- Blob 1: Bottom-Left (Warm Peach) -->
               <div
                 class="absolute -bottom-16 -left-16 w-44 h-44 bg-gray-300/70 rounded-full blur-3xl opacity-50 pointer-events-none"
               >
               </div>
 
-              <!-- Blob 2: Top-Right (Soft Pink) -->
               <div
                 class="absolute -top-16 -right-16 w-44 h-44 bg-ivory rounded-full blur-3xl opacity-40 pointer-events-none"
               >
               </div>
 
-              <!-- Blob 3: Center-Left (Soft Lavender) <-- NEW THIRD COLOR -->
               <div
                 class="absolute top-12 -left-20 w-40 h-40 bg-sand/80 rounded-full blur-3xl opacity-30 pointer-events-none"
               >
               </div>
 
-              <!-- Content Wrapper (relative and z-10 ensures text stays on top of the blur) -->
               <div class="relative z-10 text-slate-900">
                 <p class="p-2 text-center w-full font-semibold font-raleway">
                   Professional Experience
@@ -166,9 +272,7 @@ const optimizedBackground = await getImage({
             <div
               class="relative overflow-hidden bg-[#FFFFFF] bg-[radial-gradient(at_0%_0%,hsla(195,70%,93%,0.7)_0,transparent_50%),radial-gradient(at_100%_100%,hsla(210,15%,88%,0.6)_0,transparent_50%)] card-bio min-h-36 md:min-h-56 shadow-xl rounded px-2"
             >
-              <!-- Blob 1: Bottom-Left (Warm Peach) -->
 
-              <!-- Content Wrapper (relative and z-10 ensures text stays on top of the blur) -->
               <div class="relative z-10 text-slate-900">
                 <p class="p-2 text-center w-full font-semibold font-raleway">
                   Professional Experience
@@ -181,14 +285,14 @@ const optimizedBackground = await getImage({
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div
           class="absolute bottom-0 left-0 w-full overflow-hidden leading-0 translate-y-[99%] -scale-x-100 -scale-y-100 transform"
         >
           <svg
             preserveAspectRatio="none"
-            class="relative block w-full h-24 md:h-52 fill-sky"
+            class="relative block w-full h-24 md:h-52 fill-light-blue"
             xmlns="http://w3.org"
             viewBox="0 0 1440 320"
           >

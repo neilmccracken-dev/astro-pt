@@ -3,7 +3,7 @@ import { config, fields, collection } from '@keystatic/core';
 const useGitHubStorage = import.meta.env.PROD;
 console.log('KEYSTATIC STORAGE:', useGitHubStorage ? 'GITHUB' : 'LOCAL');
 
-console.log('APP SLUG:', process.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG);
+// console.log('APP SLUG:', process.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG);
 export default config({
   storage: useGitHubStorage
     ? {
