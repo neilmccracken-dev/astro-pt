@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { certifications } from '../../data/certifications';
+import { Image } from 'astro:assets';
+export async function getStaticPaths() {
+  return certifications.map((certification) => ({
+    params: {
+      id: certification.slug,
+    },
+  }));
+}
+
+const { id } = Astro.params;
+
+const certification = certifications.find((c) => c.slug === id);
+if (!certification) {
+  return Astro.redirect('/404');
+}
+---
+
+<BaseLayout hasWave={true} title="About">
+  <div class="flex max-w-7xl mx-auto m-8 bg-base-100 rounded-2xl">
+    <div class="w-5/12">
+      <Image
+        src={certification.image}
+        alt={certification.name}
+        widths={[320, 480, 640]}
+        sizes="50vw"
+        class="w-full max-h-128 object-contain"
+      />
+    </div>
+    <div class="w-7/12 flex flex-col p-12">
+      <h2 class="text-4xl">{certification.name}</h2>
+      <p class="mt-4 max-w-xl">{certification.description}</p>
+    </div>
+  </div>
+</BaseLayout>
