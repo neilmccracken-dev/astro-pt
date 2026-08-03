@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const testimonials = await getCollection('testimonials');
+
 const cardThemes = [
   { bg: 'bg-ivory', text: 'text-stone-800', subtext: 'text-stone-500' }, // Card 1 (and 5, 9...)
   { bg: 'bg-stone-600', text: 'text-white', subtext: 'text-stone-400' }, // Card 0 (and 4, 8...)

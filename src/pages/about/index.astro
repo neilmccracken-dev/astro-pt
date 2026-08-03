@@ -2,14 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image, getImage } from 'astro:assets';
 import elieHeadshot from '@assets/images/headshot.jpg';
-import CscsLogo from '@assets/images/certifications/cscs.svg';
-import PurreBarre from '@assets/images/certifications/pure-barre.svg';
-import Ocs from '@assets/images/certifications/ocs.svg';
-import Tps from '@assets/images/certifications/tps.png';
-import Tpi from '@assets/images/certifications/tpi.svg';
 import SpecialtiesStock from '@assets/images/certifications/specialties.jpg';
-import DryNeedling from '@assets/images/certifications/dry-needling.svg';
 import SectionHeading from '../../components/SectionHeading.astro';
+
 interface Props {
   index?: number;
 }
@@ -205,7 +200,7 @@ const certifications = [
                   />
                 )}
 
-                <div class="absolute inset-0 bg-[#31577b]/60 transition-colors duration-300 group-hover:bg-[#31577b]/10" />
+                <div class="absolute inset-0 bg-[#31577b]/60 transition-colors duration-300 group-hover:bg-[#31577b]/90" />
                 <div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/10" />
                 <div class="relative flex h-full flex-col items-center justify-center px-6 py-10 text-center text-gray-100">
                   <h3 class="max-w-60 text-xl font-bold leading-snug">

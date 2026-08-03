@@ -19,19 +19,29 @@ if (!certification) {
 ---
 
 <BaseLayout hasWave={true} title="About">
-  <div class="flex max-w-7xl mx-auto m-8 bg-base-100 rounded-2xl">
-    <div class="w-5/12">
+  <div
+    class="flex flex-col lg:flex-row max-w-7xl overflow-hidden mx-auto m-8 shadow-2xl bg-base-200"
+  >
+    <div
+      class="flex w-full items-center justify-center
+               lg:w-3/12"
+    >
       <Image
         src={certification.image}
         alt={certification.name}
-        widths={[320, 480, 640]}
-        sizes="50vw"
-        class="w-full max-h-128 object-contain"
+        widths={[320, 480, 640, 960]}
+        sizes="(max-width: 1023px) 100vw, 25vw"
+        class="h-auto max-h-110 w-full object-contain"
       />
     </div>
-    <div class="w-7/12 flex flex-col p-12">
-      <h2 class="text-4xl">{certification.name}</h2>
-      <p class="mt-4 max-w-xl">{certification.description}</p>
+    <div
+      class="flex w-full flex-col items-center justify-center
+               lg:bg-base-200 px-6 py-10
+               sm:px-10
+               lg:w-9/12 lg:p-12"
+    >
+      <h2 class="text-2xl">{certification.name}</h2>
+      <p class="mt-4 leading-loose max-w-xl">{certification.description}</p>
     </div>
   </div>
 </BaseLayout>
