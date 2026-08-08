@@ -1,115 +1,239 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CscsLogo from '@assets/images/certifications/cscs.svg';
-import PurreBarre from '@assets/images/certifications/pure-barre.svg';
-import Ocs from '@assets/images/certifications/ocs.svg';
-import Tps from '@assets/images/certifications/tps.png';
-import Tpi from '@assets/images/certifications/tpi.svg';
-import DryNeedling from '@assets/images/certifications/dry-needling.svg';
-import SectionHeading from '../components/SectionHeading.astro';
-const certifications = [
-  {
-    short: 'OCS',
-    name: 'Orthopedic Clinical Specialist',
-    angle: 0,
-    radius: 290,
-    image: Ocs,
-    description: `A prestigious board certification representing advanced expertise in orthopedic
-     physical therapy and one of the highest levels of specialization a physical therapist can
-      achieve. This training reflects a deep understanding of complex injuries, movement mechanics,
-       and evidence-based treatment strategies to help patients recover and return to the activities
-        they love`,
-  },
-  {
-    short: 'TPS',
-    name: 'Therapeutic Pain Specialist',
-    angle: 60,
-    radius: 330,
-    image: Tps,
-    description: `Advanced training focused on understanding persistent pain through a comprehensive 
-    approach that combines modern pain science, movement, and individualized treatment strategies.`,
-  },
-  {
-    short: 'CSCS',
-    name: 'Certified Strength and Conditioning Specialist',
-    angle: 120,
-    radius: 330,
-    image: CscsLogo,
-    description: `A nationally recognized certification in strength and performance training, 
-    allowing Dr. Elie to create evidence-based programs that help patients build resilience, 
-    improve performance, and prevent future injuries.`,
-  },
-  {
-    short: 'TPI 3',
-    name: 'Titleist Performance Institute Medical Level 3',
-    angle: 180,
-    radius: 290,
-    image: Tpi,
-    description: `
-    The highest level of TPI Medical certification, representing advanced expertise in golf-specific
-     movement assessment, injury prevention, and performance optimization. This is focused on
-      identifying how the body influences the golf swing, helping golfers improve movement
-       efficiency, reduce injury risk, and return to the course with confidence.
-    `,
-  },
-  {
-    short: 'Barre',
-    name: 'Pure Barre Instructor',
-    angle: 240,
-    radius: 330,
-    image: PurreBarre,
-    description: `Specialized training in barre-based movement, emphasizing strength, mobility,
-       posture, and body awareness to help patients improve control, endurance, and overall movement quality`,
-  },
-  {
-    short: 'DN',
-    name: 'Dry Needling Certification',
-    angle: 300,
-    radius: 330,
-    image: DryNeedling,
-    description: `Advanced training in the use of dry needling as part of a comprehensive physical therapy
-       approach to address muscle tension, trigger points, and movement limitations. 
-       When clinically appropriate, Dr. Elie incorporates dry needling alongside hands-on therapy
-        and targeted exercise to help reduce pain, improve mobility, and support optimal movement.`,
-  },
-];
+const contactEmail = 'mccrackenneild@gmail.com';
 ---
 
-<BaseLayout hasWave={true} title={'contact'} />
+<BaseLayout hasWave={true} title={'contact'}>
+  <section
+    class="relative overflow-hidden bg-white md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8 mb-48"
+  >
+    <!-- Soft background glow -->
+    <div
+      class="pointer-events-none absolute inset-0 -z-10 bg-white md:bg-[radial-gradient(circle_at_center,rgba(163,230,53,0.18),transparent_55%)]"
+    >
+    </div>
 
-<!-- <script define:vars={{ certifications }}>
-  const title = document.getElementById('cert-title');
-  const short = document.getElementById('cert-short');
-  const description = document.getElementById('cert-description');
+    <div
+      class="mx-auto grid w-full max-w-7xl overflow-hidden lg:rounded-2xl
+      shadow-2xl lg:grid-cols-[0.95fr_1.05fr]"
+    >
+      <!-- Left panel -->
+      <div
+        class="relative flex flex-col justify-center bg-deeper-teal px-8 py-12 text-neutral-content sm:px-12 lg:px-16 lg:py-20"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(125,211,252,0.30),transparent_50%)]"
+        >
+        </div>
 
-  const buttons = document.querySelectorAll('.cert-btn');
+        <div class="relative max-w-lg">
+          <p
+            class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-light-blue"
+          >
+            Contact Dr. Elie
+          </p>
 
-  function updateCard(index) {
-    const cert = certifications[index];
+          <h2
+            class="max-w-md text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl"
+          >
+            Let's Connect
+          </h2>
 
-    short.textContent = cert.short;
-    title.textContent = cert.name;
-    description.textContent = cert.description;
-  }
+          <p
+            class="mt-6 max-w-md text-base leading-relaxed text-neutral-content/70"
+          >
+            Complete the form and I will respond as soon as possible.
+          </p>
 
-  // Initial card
-  updateCard(0);
+          <ul class="mt-10 space-y-5">
+            <li class="flex items-start gap-4">
+              <span
+                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-light-blue text-sm font-bold text-neutral"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
 
-  buttons.forEach((button) => {
-    const index = Number(button.dataset.index);
+              <span class="text-neutral-content/85">
+                Expect a response within one business day.
+              </span>
+            </li>
 
-    button.addEventListener('mouseenter', () => {
-      updateCard(index);
-    });
+            <li class="flex items-start gap-4">
+              <span
+                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-light-blue text-sm font-bold text-neutral"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
 
-    // Makes keyboard navigation work too
-    button.addEventListener('focus', () => {
-      updateCard(index);
-    });
+              <span class="text-neutral-content/85">
+                Your information will remain private.
+              </span>
+            </li>
 
-    // Mobile fallback
-    button.addEventListener('click', () => {
-      updateCard(index);
-    });
+            <li class="flex items-start gap-4">
+              <span
+                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-light-blue text-sm font-bold text-neutral"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+
+              <span class="text-neutral-content/85">
+                We are happy to answer any initial questions.
+              </span>
+            </li>
+          </ul>
+
+          <div class="mt-10">
+            <p class="text-sm text-neutral-content/60">Prefer email?</p>
+
+            <a
+              href={`mailto:${contactEmail}`}
+              class="mt-1 inline-block font-medium underline decoration-light-blue decoration-2 underline-offset-4 transition hover:text-light-blue"
+            >
+              {contactEmail}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form panel -->
+      <div class="bg-sky px-5 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+        <form
+          name="contact"
+          method="POST"
+          id="contact-form"
+          class="rounded-2xl p-6 sm:p-8"
+        >
+          <div class="grid gap-6 sm:grid-cols-2">
+            <!-- First name -->
+            <label class="form-control w-full">
+              <span class="mb-2 text-sm font-medium">First name</span>
+
+              <input
+                type="text"
+                name="firstName"
+                autocomplete="given-name"
+                placeholder="Enter your first name"
+                required
+                class="input input-bordered w-full bg-base-100 focus:border-lime-500 focus:outline-none"
+              />
+            </label>
+
+            <!-- Last name -->
+            <label class="form-control w-full">
+              <span class="mb-2 text-sm font-medium">Last name</span>
+
+              <input
+                type="text"
+                name="lastName"
+                autocomplete="family-name"
+                placeholder="Enter your last name"
+                required
+                class="input input-bordered w-full bg-base-100 focus:border-lime-500 focus:outline-none"
+              />
+            </label>
+
+            <!-- Email -->
+            <label class="form-control w-full sm:col-span-2">
+              <span class="mb-2 text-sm font-medium">Email</span>
+
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+                class="input input-bordered w-full bg-base-100 focus:border-lime-500 focus:outline-none"
+              />
+            </label>
+
+            <!-- Subject -->
+            <label class="form-control w-full sm:col-span-2">
+              <span class="mb-2 text-sm font-medium">Subject</span>
+
+              <input
+                type="text"
+                name="subject"
+                placeholder="How can we help?"
+                required
+                class="input input-bordered w-full bg-base-100 focus:border-lime-500 focus:outline-none"
+              />
+            </label>
+
+            <!-- Message -->
+            <label class="form-control w-full sm:col-span-2">
+              <span class="mb-2 text-sm font-medium">Message</span>
+
+              <textarea
+                name="message"
+                rows="7"
+                placeholder="Write your message here..."
+                required
+                class="textarea textarea-bordered w-full resize-y bg-base-100 leading-relaxed focus:border-sky focus:outline-none"
+              ></textarea>
+            </label>
+            <div
+              class="sm:col-span-2 rounded-lg border border-amber-300 bg-amber-50 p-4"
+            >
+              <p class="text-xs leading-relaxed text-base-content/80">
+                <strong
+                  >Please do not include protected health information (PHI).</strong
+                >
+                This contact form is intended for general inquiries only. Do not include
+                medical history, diagnoses, treatment information, or other sensitive
+                health information in the subject or message.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <p class="text-sm text-base-content/60">All fields are required.</p>
+
+            <button
+              type="submit"
+              class="btn bg-black text-white hover:bg-blue-500"
+            >
+              Send message
+              <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contact-form');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const data = Object.fromEntries(new FormData(form));
+
+    console.log(data);
+
+    // const response = await fetch(
+    //   "https://pt-project.netlify.app/.netlify/functions/contact",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   },
+    // );
+
+    // if (!response.ok) {
+    //   console.error("Message could not be sent");
+    //   return;
+    // }
+
+    form.reset();
   });
-</script> -->
+</script>

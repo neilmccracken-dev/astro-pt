@@ -55,7 +55,7 @@ export default function TestimonialCarousel({
       </button>
       <div
         key={currentIndex}
-        className="min-h-80 md:min-h-50 flex flex-col justify-center px-4 animate-fade-in"
+        className="min-h-80 md:min-h-40 flex flex-col justify-center px-4 animate-fade-in"
       >
         {/* Testimonial Content */}
         <div className="flex flex-col justify-center max-w-7xl mx-auto">

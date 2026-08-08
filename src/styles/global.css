@@ -37,6 +37,49 @@
   --color-gold: #d5b46c;
   --color-sand: #d8c4ab;
   --color-ivory: #f5eede;
+
+  --animate-slide-in-left: slide-in-left 1.5s ease-out forwards;
+  --animate-slide-in-right: slide-in-right 1.5s ease-out forwards;
+
+  @keyframes slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-120%);
+    }
+
+    70% {
+      opacity: 1;
+      transform: translateX(14px);
+    }
+
+    85% {
+      transform: translateX(-5px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(120%);
+    }
+
+    70% {
+      opacity: 1;
+      transform: translateX(-14px);
+    }
+
+    85% {
+      transform: translateX(5px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 @plugin 'daisyui' {
   themes:
@@ -48,6 +91,35 @@
     corporate,
     winter,
     coffee;
+}
+
+@utility reveal-left {
+  @media (min-width: 768px) {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+}
+
+@utility reveal-right {
+  @media (min-width: 768px) {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+
+/* Final visible state */
+@media (min-width: 768px) {
+  .reveal-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+    animation: var(--animate-slide-in-left);
+  }
+
+  .reveal-right.in-view {
+    opacity: 1;
+    transform: translateX(0);
+    animation: var(--animate-slide-in-right);
+  }
 }
 
 @layer utilities {
@@ -63,7 +135,7 @@
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
+    animation: fadeIn 1.4s ease-out forwards;
   }
 }
 @layer components {

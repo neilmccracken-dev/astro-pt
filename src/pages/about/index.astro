@@ -183,7 +183,7 @@ const certifications = [
         >
         <div
           class="mx-auto relative grid w-[90%] max-w-6xl grid-cols-1 gap-4
-        sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 justify-items-center"
+        sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 justify-items-center specialties"
         >
           {
             certifications.map((certification) => (
@@ -278,11 +278,11 @@ const certifications = [
     translate: 0 0;
     scale: 1;
   }
-  .experience {
+  .specialties {
     opacity: 0;
-    transform: translateY(2.5rem);
+    transform: translateX(-2.5rem);
     transition-property: opacity, transform;
-    transition-duration: 1s; /* Pure fades usually feel snappier at 1s instead of 1.5s */
+    transition-duration: 1.5s; /* Pure fades usually feel snappier at 1s instead of 1.5s */
     transition-timing-function: ease-out;
 
     /* Keeps your staggered layout delay feature active */
@@ -290,7 +290,7 @@ const certifications = [
   }
 
   /* 2. Final visible state triggered by the Observer */
-  .experience.fade-in {
+  .specialties.fade-in {
     opacity: 1;
     transform: translateY(0);
   }
@@ -303,7 +303,7 @@ const certifications = [
     // 1. Define the elements and their corresponding active classes
     const configs = [
       { selector: '.bio', activeClass: 'is-in-view' },
-      { selector: '.experience', activeClass: 'fade-in' }, // Your new element
+      { selector: '.specialties', activeClass: 'fade-in' }, // Your new element
     ];
 
     // 2. Gather all elements that actually exist on the current page

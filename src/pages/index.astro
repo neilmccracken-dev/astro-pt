@@ -102,10 +102,11 @@ const bgSizesAttribute = `
       </div>
     </div>
     <section
+      id="mission-section"
       class="w-full max-w-7xl mx-auto px-6 pt-10 py-24 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 min-h-150 place-items-center"
     >
       <!-- LEFT COLUMN: Company Header (Spans 4 out of 12 columns) -->
-      <div class="md:col-span-6 flex flex-col">
+      <div id="mission-left" class="reveal-left md:col-span-6 flex flex-col">
         <LogoStackedColor class="w-full h-auto" />
         <!-- <div class="w-max">
 
@@ -115,7 +116,10 @@ const bgSizesAttribute = `
       </div>
 
       <!-- RIGHT COLUMN: Multiple Paragraphs (Spans 8 out of 12 columns) -->
-      <div class="md:col-span-6 flex flex-col gap-12">
+      <div
+        id="mission-right"
+        class="reveal-right md:col-span-6 flex flex-col gap-12"
+      >
         <div>
           <SectionHeading>Our Mission</SectionHeading>
         </div>
@@ -171,6 +175,16 @@ const bgSizesAttribute = `
 </BaseLayout>
 
 <style>
+  /* @media (min-width: 768px) {
+    .mission-left {
+      animation: mission-left 1.2s ease-out forwards;
+    }
+
+    .mission-right {
+      animation: mission-right 1.2s ease-out forwards;
+    }
+  } */
+
   @keyframes textReveal {
     from {
       opacity: 0;
@@ -188,6 +202,55 @@ const bgSizesAttribute = `
     animation-fill-mode: forwards !important;
   }
 </style>
+
+<script>
+  function setupMissionObserver() {
+    const section = document.getElementById('mission-section');
+
+    if (!section) return;
+
+    const animatedElements = section.querySelectorAll(
+      '.reveal-left, .reveal-right',
+    );
+
+    if (!animatedElements.length) return;
+
+    const desktop = window.matchMedia('(min-width: 768px)');
+
+    // Mobile: ensure everything is visible.
+    if (!desktop.matches) {
+      animatedElements.forEach((element) => {
+        element.classList.add('in-view');
+      });
+
+      return;
+    }
+
+    // Reset the elements when returning to this page.
+    animatedElements.forEach((element) => {
+      element.classList.remove('in-view');
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+
+        animatedElements.forEach((element) => {
+          element.classList.add('in-view');
+        });
+
+        observer.disconnect();
+      },
+      {
+        threshold: 0.25,
+      },
+    );
+
+    observer.observe(section);
+  }
+
+  document.addEventListener('astro:page-load', setupMissionObserver);
+</script>
 
 <!-- <Image
       src={unsplashUrl}
