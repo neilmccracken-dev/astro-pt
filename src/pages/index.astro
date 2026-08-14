@@ -1,13 +1,15 @@
 ---
 import AutoCarousel from '../components/Carousel';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getImage } from 'astro:assets';
+import { getImage,Image } from 'astro:assets';
 import LogoStacked from '@assets/images/mvnmt-logo-stacked-black.svg';
 import LogoStackedColor from '@assets/images/mvmnt-logo-stacked-color.svg';
 import SectionHeading from '../components/SectionHeading.astro';
 import { getCollection } from 'astro:content';
 import type { Testimonial } from '../components/TestimonialCarousel';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import elieHeadshot from '@assets/images/headshot.jpg';
+
 const testimonials = await getCollection('testimonials');
 const formattedTestimonials: Testimonial[] = testimonials.map((item) => ({
   review: item.data.review,
@@ -15,6 +17,73 @@ const formattedTestimonials: Testimonial[] = testimonials.map((item) => ({
   relationship: item.data.relationship,
   headline: item.data.relationship,
 }));
+
+const servicesWeTreat = [
+  "Back & Neck Pain",
+  "Golf Rehab & Performance",
+  "Shoulder Pain",
+  "Post-Surgical Rehab",
+  "Knee & Hip Pain",
+  "Strength & Conditioning",
+  "Running Injuries",
+  "Balance & Mobility",
+  "Tennis Injuries",
+  "Persistent Pain",
+];
+
+import neckPain from "@assets/images/we-treat/neck-pain.jpg";
+import golfSwing from "@assets/images/we-treat/golf-swing.jpg";
+import tyingShoes from "@assets/images/we-treat/tying-shoes.jpg";
+import strength from "@assets/images/we-treat/strength.jpg";
+
+const images = [
+  { src: neckPain, alt: "Neck pain treatment" },
+  { src: golfSwing, alt: "Golf rehabilitation" },
+  { src: tyingShoes, alt: "running" },
+  { src: strength, alt: "strength and conditioning" },
+];
+
+import {
+  House,
+  UserRound,
+  Mountain,
+  Heart,
+  CircleDollarSign,
+  ArrowRight,
+  CircleCheck
+} from 'lucide-react';
+
+const features = [
+  {
+    title: 'Mobile & Convenient',
+    description:
+      'We come to you, saving you time and making quality care easy.',
+    icon: House,
+  },
+  {
+    title: 'One-on-One Expert Care',
+    description:
+      'You get our full attention and a plan tailored specifically to you.',
+    icon: UserRound,
+  },
+  {
+    title: 'Advanced Training. Better Outcomes.',
+    description:
+      'Specialized expertise across orthopedics, pain, performance, and more.',
+    icon: Mountain,
+  },
+  {
+    title: 'Whole-Person Approach',
+    description:
+      'We treat the root cause—not just the symptom—so you can thrive long term.',
+    icon: Heart,
+  },
+  {
+    title: 'Transparent Pricing',
+    description: 'Cash-based care with clear pricing and no surprises.',
+    icon: CircleDollarSign,
+  },
+];
 const unsplashUrls = [
   {
     url: 'https://plus.unsplash.com/premium_photo-1664300093125-92bc8a26d3fa?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -56,7 +125,7 @@ const unsplashUrls = [
 // );
 const sizesAttribute = `(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1024px) 720px, 1024px`;
 const optimizedBg = await getImage({
-  src: 'https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?q=80&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&sat=-100',
+  src: 'https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?q=80&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   inferSize: true,
   widths: [360, 480, 640, 768, 1024, 1440, 1920],
   format: 'webp',
@@ -69,8 +138,8 @@ const bgSizesAttribute = `
 ---
 
 <BaseLayout title="" hasWave={true} isHome={true}>
-  <main class="relative w-full min-h-screen flex flex-col mb-24 pb-12">
-    <div class="relative w-full h-[60vh] md:h-screen overflow-hidden z-0">
+  <main class="relative w-full min-h-screen flex flex-col mb-24 pb-12   ">
+    <div class="relative w-full h-[60vh] md:h-[80vh] overflow-hidden z-0">
       <img
         src={optimizedBg.src}
         alt="Avatar"
@@ -81,73 +150,349 @@ const bgSizesAttribute = `
         decoding="sync"
         class="w-full h-full object-cover object-[40%_center]"
       />
+      <!-- Light gradient overlay -->
       <div
-        class="absolute inset-0 flex flex-col gap-4 items-start justify-start p-6 bg-black/30"
+        class="absolute inset-0
+           bg-[linear-gradient(90deg,rgba(245,243,245,0.98)_0%,rgba(245,243,245,0.93)_28%,rgba(245,243,245,0.75)_50%,rgba(245,243,245,0.10)_72%,rgba(245,243,245,0)_100%)]"
       >
-        <div class="overflow-hidden py-1 mx-auto">
-          <h1
-            class="text-3xl [-webkit-text-stroke:0.5px_#000000] font-raleway md:text-6xl font-bold text-white tracking-tight drop-shadow-md text-center animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0s]"
-          >
-            Movement Matters Physical Therapy
-          </h1>
-        </div>
+      </div>
 
-        <div class="overflow-hidden mx-auto">
-          <p
-            class="text-xl text-center text-white/90 max-w-md drop-shadow animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0.5s]"
+      <!-- Hero content -->
+      <div class="absolute inset-0 flex items-center px-6 md:px-16 lg:px-24">
+        <div class="max-w-6xl">
+          <h1
+            class="text-4xl md:text-6xl font-cabin-[100] font-semibold
+         leading-[1.05] text-[#000A14] animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0.25s]"
           >
-            Working to help you stay active and healthy
-          </p>
+            Mobile care
+            <br />
+            <span class="whitespace-nowrap">
+              for
+              <span class="font-serif italic text-5xl font-light text-blue-800">
+                modern life.
+              </span>
+            </span>
+          </h1>
+
+          <!-- Small divider -->
+          <div class="mt-5 h-px w-8 bg-deeper-teal ]"></div>
+
+          <div class="animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0.5s]">
+            <p
+              class="mt-5 max-w-sm text-sm md:text-base
+                 leading-relaxed text-[#111820]"
+            >
+              Premium, one-on-one physical therapy delivered to you—wherever you
+              are.
+            </p>
+            <a
+              href="/contact"
+              class="mt-6 inline-flex items-center gap-2
+                 rounded-full bg-blue-900
+                 px-10 py-3
+                 text-xs font-semibold uppercase tracking-widest
+                 text-white
+                 transition hover:opacity-90"
+            >
+              Book your visit
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-    <section
-      id="mission-section"
-      class="w-full max-w-7xl mx-auto px-6 pt-10 py-24 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 min-h-150 place-items-center"
-    >
-      <!-- LEFT COLUMN: Company Header (Spans 4 out of 12 columns) -->
-      <div id="mission-left" class="reveal-left md:col-span-6 flex flex-col">
-        <LogoStackedColor class="w-full h-auto" />
-        <!-- <div class="w-max">
-
-
-          <div class="mt-2 h-0.5 w-full bg-secondary"></div>
-        </div> -->
-      </div>
-
-      <!-- RIGHT COLUMN: Multiple Paragraphs (Spans 8 out of 12 columns) -->
+    <section class="bg-[#C49AA2]/10">
       <div
-        id="mission-right"
-        class="reveal-right md:col-span-6 flex flex-col gap-12"
+        class="mx-auto grid max-w-7xl grid-cols-1 px-6 py-12 place-items-center
+           md:grid-cols-2 md:px-12 md:py-16
+           lg:px-16 h-128"
       >
-        <div>
-          <SectionHeading>Our Mission</SectionHeading>
+        <!-- Left -->
+        <div class="md:pr-12 lg:pr-16">
+          <p
+            class="text-xs font-bold uppercase tracking-[0.12em]
+               text-deeper-teal"
+          >
+            Our Mission
+          </p>
+
+          <!-- Small line -->
+          <div class="mt-3 h-px w-8 bg-deeper-teal"></div>
+
+          <h2
+            class="mt-5 max-w-md font-serif text-3xl
+               leading-[1.15] text-[#07131D]
+               md:text-4xl"
+          >
+            Helping you move better,
+            <br />
+            feel better, and
+            <span class="italic text-deeper-teal"> live fully. </span>
+          </h2>
+
+          <a
+            href="/about"
+            class="mt-6 inline-flex items-center gap-2
+               text-xs font-extrabold uppercase tracking-widest
+               text-deeper-teal"
+          >
+            Meet your PT
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
-        <p class="leading-loose tracking-wide font-cabin text-xl">
-          At MVMNT Matters, our mission is to make exceptional physical therapy
-          fit modern life by delivering personalized, one-on-one care directly
-          to our clients, empowering them to move confidently through every
-          stage of life.
-        </p>
+
+        <!-- Right -->
+        <div
+          class="mt-10 border-t border-[#d5d0d5] pt-10
+             md:mt-0 md:border-l md:border-t-0
+             md:pl-12 md:pt-0
+             lg:pl-16"
+        >
+          <div
+            class="max-w-md space-y-5 text-sm
+               leading-7 text-[#111820]"
+          >
+            <p>
+              At MVMNT Matters, we bring expert physical therapy to your home,
+              gym, or office—so you can get better without putting your life on
+              hold.
+            </p>
+
+            <p>
+              Personalized care. Proven expertise.
+              <br />
+              Results that move with you.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="-mb-16 md:mb-0 py-16 px-4 relative bg-sky">
-      <div class="mx-auto">
-        <div
-          class="absolute top-0 left-0 w-full overflow-hidden leading-0 -translate-y-full"
-        >
-          <svg
-            preserveAspectRatio="none"
-            class="relative block w-full h-24 md:h-52 fill-sky"
-            xmlns="http://w3.org"
-            viewBox="0 0 1440 320"
+    <div class="grid place-items-center bg-[#C49AA2]/25 p-8  min-h-128">
+      <div class="mx-auto w-full max-w-6xl">
+        <div class="mb-10 text-center max-w-x">
+          <h2
+            class="text-sm font-semibold uppercase tracking-[0.18em] text-deeper-teal"
           >
-            <path
-              d="M0,192L60,170.7C120,149,240,107,360,101.3C480,96,600,128,720,165.3C840,203,960,245,1080,240C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-            ></path>
-          </svg>
+            Why Choose Us
+          </h2>
+
+          <div class="mx-auto mt-3 h-px w-10 bg-deeper-teal/60"></div>
         </div>
+        <div
+          class:list={[
+            `
+          mx-auto grid max-w-6xl grid-cols-1 w-full gap-y-4
+          md:grid-cols-2 md:gap-5 md:max-w-6xl
+          lg:grid-cols-5 lg:gap-y-0
+          `,
+          ]}
+        >
+          {
+            features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  class:list={[
+                    `
+              flex flex-col items-center gap-4 rounded-xl bg-white/60 p-5
+              shadow-sm 
+
+              sm:items-center sm:text-center
+              md:px-2 md:py-5 
+
+              lg:rounded-none lg:bg-transparent lg:px-6 lg:py-0
+              lg:shadow-none 
+            `,
+                    index < features.length - 1 &&
+                      'lg:border-r lg:border-deeper-teal/20',
+                  ]}
+                >
+                  <div class="flex h-12 items-center justify-center">
+                    <Icon
+                      className="size-8 md:size-12 stroke-[#000A14]"
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <h3
+                    class="mt-2 flex h-8 md:h-6 lg:h-14 items-start justify-center text-center
+                     text-sm font-bold uppercase leading-6
+                     tracking-[0.08em]"
+                  >
+                    {feature.title}
+                  </h3>
+                  <p class="hidden mt-2 max-w-52 text-sm leading-7 text-slate-700 md:block">
+                    {feature.description}
+                  </p>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </div>
+
+
+    <section class="bg-[#C49AA2]/10 ">
+  <div
+    class="mx-auto grid max-w-7xl grid-cols-1 items-center
+           px-6 py-12
+           md:grid-cols-2 md:gap-12 md:px-12 md:py-16
+           lg:gap-16 lg:px-16"
+  >
+    <!-- Image collage - hidden on mobile -->
+    <div class="hidden md:grid grid-cols-2 gap-1.5 max-w-2xl">
+      {
+        images.map((image) => (
+          <div class="aspect-square overflow-hidden">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              widths={[400, 600, 800]}
+              sizes="(max-width: 1024px) 40vw, 500px"
+              class="size-full object-cover"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Content -->
+    <div class="md:pl-4">
+      <p
+        class="text-xs font-bold uppercase tracking-[0.14em]
+               text-deeper-teal"
+      >
+        What We Treat
+      </p>
+
+      <div class="mt-3 h-px w-8 bg-deeper-teal"></div>
+
+      <h2
+        class="mt-5 max-w-md font-serif text-3xl leading-[1.15]
+               text-[#07131D] md:text-4xl"
+      >
+        From everyday pain
+        <br class="hidden sm:block" />
+        to your biggest goals.
+      </h2>
+
+      <p
+        class="mt-4 max-w-md text-sm leading-relaxed
+               text-base-content/70"
+      >
+        Specialized care for a wide range of conditions and activities.
+      </p>
+
+      <!-- Services -->
+      <div class="mt-7 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+        {
+          servicesWeTreat.map((service) => (
+            <div class="flex items-center gap-2.5">
+              <!-- Check icon -->
+              <CircleCheck className='text-deep-teal' />
+
+              <span class="text-sm font-medium text-[#07131D]">
+                {service}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="mt-7 text-sm text-base-content/70">
+        Don't see your condition listed?
+      </p>
+
+      <a
+        href="/contact"
+        class="mt-1 inline-block text-sm font-semibold
+               text-deeper-teal underline-offset-4
+               hover:underline"
+      >
+        Reach out—we can help.
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-[#C49AA2]/30 pb-48">
+  <div
+    class="mx-auto grid w-full md:max-w-7xl grid-cols-1 gap-8  py-12
+           md:grid-cols-2 lg:place-items-center text-center md:gap-12 md:px-10 md:py-16"
+  >
+    <!-- Image -->
+    <div class="w-full lg:max-w-2xl ">
+
+                <Image
+            src={elieHeadshot}
+            alt="Elie Sabins"
+            widths={[600, 800, 1000]}
+              sizes="(max-width: 1024px) 40vw, 500px"
+            class="    mx-auto
+    h-auto w-64 rounded-full object-cover
+    md:w-full md:rounded-xl md:translate-y-8"
+          />
+
+    </div>
+
+    <!-- Text -->
+    <div class="max-w-lg p-2">
+      <p
+        class="text-xs font-bold uppercase tracking-[0.12em]
+               text-deeper-teal"
+      >
+        Meet Elie
+      </p>
+
+      <h2
+        class="mt-3 font-serif text-3xl leading-tight text-slate-900
+               md:text-4xl"
+      >
+        Hi, I’m Elie.
+      </h2>
+
+      <p class="mt-5 text-sm leading-7 text-slate-700 md:text-base">
+        I believe great physical therapy starts with really knowing the person
+        in front of you—not just their diagnosis.
+      </p>
+
+      <p class="mt-5 text-sm leading-7 text-slate-700 md:text-base">
+        I created MVMNT Matters to offer the kind of care I believe healthcare
+        should be: personal, thoughtful, evidence-informed, and built around
+        your real life.
+      </p>
+
+      <a
+        href="/about"
+        class="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase
+               tracking-[0.12em] text-deeper-teal transition-all
+               hover:gap-3"
+      >
+        Get to know me
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<section class="relative bg-[#F9F5F6]">
+  <div
+    class="absolute left-0 top-0 w-full -translate-y-[90%]
+           overflow-hidden leading-0"
+  >
+    <svg
+      preserveAspectRatio="none"
+      class="block h-24 w-full fill-[#F9F5F6] md:h-52"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320"
+    >
+      <path
+        d="M0,192L60,170.7C120,149,240,107,360,101.3C480,96,600,128,720,165.3C840,203,960,245,1080,240C1200,235,1320,181,1380,154.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+      />
+    </svg>
+  </div>
         <!-- Section Header -->
         <TestimonialCarousel testimonials={formattedTestimonials} client:load />
         <!-- CSS Grid Container -->
@@ -157,7 +502,7 @@ const bgSizesAttribute = `
         >
           <svg
             preserveAspectRatio="none"
-            class="relative block w-full h-24 md:h-52 fill-sky"
+            class="relative block w-full h-24 md:h-52 fill-[#F9F5F6]"
             xmlns="http://w3.org"
             viewBox="0 0 1440 320"
           >
@@ -175,16 +520,6 @@ const bgSizesAttribute = `
 </BaseLayout>
 
 <style>
-  /* @media (min-width: 768px) {
-    .mission-left {
-      animation: mission-left 1.2s ease-out forwards;
-    }
-
-    .mission-right {
-      animation: mission-right 1.2s ease-out forwards;
-    }
-  } */
-
   @keyframes textReveal {
     from {
       opacity: 0;
