@@ -48,7 +48,7 @@ import {
   UserRound,
   Mountain,
   Heart,
-  CircleDollarSign,
+  DollarSign,
   ArrowRight,
   CircleCheck
 } from 'lucide-react';
@@ -81,7 +81,7 @@ const features = [
   {
     title: 'Transparent Pricing',
     description: 'Cash-based care with clear pricing and no surprises.',
-    icon: CircleDollarSign,
+    icon:DollarSign,
   },
 ];
 const unsplashUrls = [
@@ -268,8 +268,8 @@ const bgSizesAttribute = `
       </div>
     </section>
 
-    <div class="grid place-items-center bg-[#C49AA2]/25 p-8  min-h-128">
-      <div class="mx-auto w-full max-w-6xl">
+    <div class="grid place-items-center bg-[#C49AA2]/25 p-3 md:p-8  min-h-128">
+      <div class="mx-auto w-full md:max-w-6xl">
         <div class="mb-10 text-center max-w-x">
           <h2
             class="text-sm font-semibold uppercase tracking-[0.18em] text-deeper-teal"
@@ -282,9 +282,9 @@ const bgSizesAttribute = `
         <div
           class:list={[
             `
-          mx-auto grid max-w-6xl grid-cols-1 w-full gap-y-4
+          md:mx-auto w-full grid  grid-cols-1  gap-y-4
           md:grid-cols-2 md:gap-5 md:max-w-6xl
-          lg:grid-cols-5 lg:gap-y-0
+          lg:grid-cols-5 lg:gap-y-0 lg:max-w-7xl
           `,
           ]}
         >
@@ -295,25 +295,27 @@ const bgSizesAttribute = `
                 <div
                   class:list={[
                     `
-              flex flex-col items-center gap-4 rounded-xl bg-white/60 p-5
+              flex flex-col items-center gap-y-4 rounded-xl bg-white/60 py-2
               shadow-sm 
 
-              sm:items-center sm:text-center
-              md:px-2 md:py-5 
+              sm:items-center sm:text-center 0 
+              md:px-5 md:py-5 
 
               lg:rounded-none lg:bg-transparent lg:px-6 lg:py-0
               lg:shadow-none 
             `,
                     index < features.length - 1 &&
-                      'lg:border-r lg:border-deeper-teal/20',
+                      'lg:border-r lg:border-deeper-teal/20  ',
                   ]}
                 >
-                  <div class="flex h-12 items-center justify-center">
+                  <div class="flex size-14 flex-col items-center justify-center rounded-full border border-[#000A14] md:border-0 ">
                     <Icon
-                      className="size-8 md:size-12 stroke-[#000A14]"
+                      className="size-8 md:size-12 stroke-[#000A14] fill-[#000A14] md:fill-none"
                       strokeWidth={1.5}
                     />
+
                   </div>
+                  <div>
                   <h3
                     class="mt-2 flex h-8 md:h-6 lg:h-14 items-start justify-center text-center
                      text-sm font-bold uppercase leading-6
@@ -321,7 +323,10 @@ const bgSizesAttribute = `
                   >
                     {feature.title}
                   </h3>
-                  <p class="hidden mt-2 max-w-52 text-sm leading-7 text-slate-700 md:block">
+                  <div class="mx-auto mt-2 h-px w-16 bg-deeper-teal/60 lg:hidden"></div>
+                  </div>
+
+                  <p class="md:mt-2 max-w-52 text-sm leading-7 text-slate-700 md:block">
                     {feature.description}
                   </p>
                 </div>
