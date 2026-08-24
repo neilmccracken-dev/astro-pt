@@ -212,13 +212,13 @@ const bgSizesAttribute = `
     <section class="[background:var(--mission-bg)]">
       <div
         class="mx-auto grid max-w-7xl grid-cols-1 px-6 py-12 place-items-center
-           md:grid-cols-2 md:px-12 md:py-16
+           md:grid-cols-2 md:px-12 md:py-16 md:overflow-auto
            lg:px-16 h-128"
       >
       <!-- Left -->
       <div class="md:pr-12 lg:pr-16 ">
           <p
-            class=" font-bold uppercase tracking-[0.12em]
+            class="text-sm md:text-base uppercase tracking-[0.12em]
                text-(--mission-accent,deeper-teal)"
           >
             Our Mission
@@ -252,22 +252,44 @@ const bgSizesAttribute = `
         <!-- Right -->
         <div
           class="mt-10 border-t border-(--mission-accent,deeper-teal) pt-10
-             md:mt-0 md:border-l md:border-t-0
-             md:pl-12 md:pt-0
-             lg:pl-16"
+             md:mt-0 md:border-l md:border-t-0 text-sm
+             md:pl-12 md:pt-0 
+             lg:pl-16 "
         >
           <div
-            class="max-w-lg space-y-5  font-semibold lg:text-lg text-center
-               leading-8 text-(--mission-body,deeper-teal) "
+            class="max-w-lg space-y-5 text-center 
+        
+       leading-7 lg:leading-8
+       "
           >
-            <p>
-              At MVMNT Matters, we bring expert physical therapy to your home,
+            <p class="text-(--color-gray-950,deeper-teal) lg:text-xl tracking-wider">
+              Dark Gray-At MVMNT Matters, we bring expert physical therapy to your home,
               gym, or office—so you can get better without putting your life on
               hold.
             </p>
 
-            <p>
-              Personalized care. Proven expertise.
+            <p class="lg:text-md text-slate-950">
+              Slate-950-Personalized care. Proven expertise.
+              <br />
+              Results that move with you.
+            </p>
+            <p class="lg:text-xl text-(--mission-accent)">
+              Matches Our Mission and Live Fully.-Personalized care. Proven expertise.
+              <br />
+              Results that move with you.
+            </p>
+            <p class="lg:text-xl text-(deeper-teal) tracking-wide font-semibold">
+              Deeper-Teal Semi-bold.Personalized care. Proven expertise.
+              <br />
+              Results that move with you.
+            </p>
+            <p class="lg:text-xl text-(deeper-teal) tracking-wide ">
+              Deeper-Teal.Personalized care. Proven expertise.
+              <br />
+              Results that move with you.
+            </p>
+            <p class="lg:text-xl text-(--color-amber-950,deeper-teal) tracking-wider">
+              Very Dark Amber.Personalized care. Proven expertise.
               <br />
               Results that move with you.
             </p>
@@ -276,11 +298,11 @@ const bgSizesAttribute = `
       </div>
     </section>
 
-    <div class="grid place-items-center bg-(--choose-us-bg) p-3 md:p-8  min-h-128">
-      <div class="mx-auto w-full md:max-w-7xl">
+    <div class="grid place-items-center bg-(--choose-us-bg) p-6 md:p-8  min-h-128">
+      <div class="mx-auto mt-8 sm:mt-0  w-full md:max-w-7xl">
         <div class="mb-12 text-center max-w-x">
           <h2
-            class=" font-semibold uppercase tracking-[0.18em] text-(--choose-us-heading,deeper-teal)"
+            class=" font-semibold uppercase tracking-[0.18em] text-(--choose-us-heading,--meet-body)"
           >
             Why Choose Us
           </h2>
@@ -327,7 +349,7 @@ const bgSizesAttribute = `
                   <h3
                     class="mt-2 flex lg:h-16 max-w-48 md:px-0 items-start justify-center text-center
                      text-sm font-bold uppercase leading-6
-                     tracking-[0.08em] text-(--choose-us-accent,deeper-teal) "
+                     tracking-[0.08em] text-(--mission-body)"
                   >
                     {feature.title}
                   </h3>
@@ -346,12 +368,12 @@ const bgSizesAttribute = `
     </div>
 
 
-    <section class="[background:var(--we-treat-bg)]">
+    <section class="[background:var(--we-treat-bg)] ">
   <div
     class="mx-auto grid max-w-7xl grid-cols-1 items-center
            px-6 py-12
            md:grid-cols-2 md:gap-12 md:px-12 md:py-16
-           lg:gap-16 lg:px-16"
+           lg:gap-16 lg:px-16 lg:min-h-192"
   >
     <!-- Image collage - hidden on mobile -->
     <div class="hidden md:grid grid-cols-2 gap-1.5 max-w-2xl">
@@ -371,24 +393,25 @@ const bgSizesAttribute = `
     </div>
 
     <!-- Content -->
-    <div class="md:pl-4">
+    <div class="md:pl-4 ">
       <p
-        class="text-xs font-bold uppercase tracking-[0.14em]
-               text-(--mission-italic,deeper-teal)"
+        class="text-xs sm:text-sm font-bold uppercase tracking-[0.14em]
+               text-(deeper-teal)"
       >
         What We Treat
       </p>
 
-      <div class="mt-3 h-px w-8 bg-(--mission-text,deeper-teal)"></div>
+      <div class="mt-3 h-px w-8 bg-(--mission-accent,deeper-teal)"></div>
 
       <h2
-        class="mt-5 max-w-md font-serif text-3xl leading-[1.15]
-               text-(--mission-text,deeper-teal) md:text-4xl"
+        class="mt-5 max-w-md font-serif  text-3xl leading-[1.15]
+               text-(--light-heading,deeper-teal) md:text-4xl"
       >
         From everyday pain
-        <br class="hidden sm:block" />
-        to your biggest goals.
+        <br class=" sm:block" />
+        <span class="italic text-deeper-teal">to your biggest goals.</span>
       </h2>
+ 
 
       <p
         class="mt-4 max-w-md text-sm leading-relaxed
@@ -405,7 +428,7 @@ const bgSizesAttribute = `
               <!-- Check icon -->
               <CircleCheck className='text-(--mission-paragraph,deeper-teal)' />
 
-              <span class="text-sm font-medium text-(--mission-paragraph,deeper-teal)">
+              <span class="text-sm md:text-base font-bold text-(deeper-teal)">
                 {service}
               </span>
             </div>
@@ -419,7 +442,7 @@ const bgSizesAttribute = `
 
       <a
         href="/contact"
-        class="mt-1 inline-block text-sm font-semibold
+        class="mt-1 inline-block text-sm font-extrabold
                text-(--mission-italic,deeper-teal) underline-offset-4
                hover:underline"
       >
@@ -452,8 +475,8 @@ const bgSizesAttribute = `
     <!-- Text -->
     <div class="max-w-lg p-2">
       <p
-        class="text-sm font-bold uppercase tracking-[0.12em]
-               text-(--meet-accent,deeper-teal)"
+        class="text-sm md:text-base font-semibold  uppercase tracking-[0.12em]
+               text-[deeper-teal]"
       >
         Meet Elie
       </p>
@@ -466,20 +489,25 @@ const bgSizesAttribute = `
       </h2>
 
       <p class="mt-5 text-sm leading-7 text-(--meet-body,slate-700) md:text-base">
-        I believe great physical therapy starts with really knowing the person
+        I'M DEEPER TEAL.I believe great physical therapy starts with really knowing the person
         in front of you—not just their diagnosis.
       </p>
 
-      <p class="mt-5 text-sm leading-7 text-(--meet-body,slate-700) md:text-base">
-        I created MVMNT Matters to offer the kind of care I believe healthcare
+      <p class="mt-5 text-sm leading-7 text-(--mission-body) md:text-base">
+        I'M A DARK STONE. I created MVMNT Matters to offer the kind of care I believe healthcare
+        should be: personal, thoughtful, evidence-informed, and built around
+        your real life.
+      </p>
+      <p class="mt-5 text-sm leading-7 md:text-base">
+        I'M DEFAULT BLACK. I created MVMNT Matters to offer the kind of care I believe healthcare
         should be: personal, thoughtful, evidence-informed, and built around
         your real life.
       </p>
 
       <a
         href="/about"
-        class="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase
-               tracking-[0.12em] text-(--meet-accent,slate-700) transition-all
+        class="mt-7 inline-flex items-center gap-2 text-xs text-(--meet-body) font-semibold uppercase
+               tracking-[0.12em] 
                hover:gap-3 animate-float"
       >
         Get to know me
@@ -501,7 +529,55 @@ const bgSizesAttribute = `
 
 <style>
 
-  #theme-preview[data-theme="default"] {
+   #theme-preview[data-theme="default"]{
+    --dark-heading:#102a33;
+    --dark-body:#263D48;
+    --dark-muted:#49636D;
+    --dark-accent:#F5D58A;
+    --light-heading:white;
+
+    --meet-heading:white;
+    --meet-body:var(--color-deeper-teal);
+    
+    --mission-heading:white;
+    --mission-body: var(--color-stone-950);
+    --mission-accent: var(--color-neutral-900) ;
+    --mission-muted:#102a33 ;
+
+--mission-bg: color-mix(
+  in srgb,
+  var(--color-sky-alt) 50%,
+  white
+);
+    --choose-us-bg: color-mix(
+  in srgb,
+  var(--color-sand) 40%,
+  white
+);
+  --we-treat-bg:
+  color-mix(
+  in srgb,
+  var(--color-sky-alt) 50%,
+  white
+);
+    --me-bg: color-mix(
+  in srgb,
+  var(--color-sand) 40%,
+  white
+);
+    --testimonial-bg:color-mix(
+  in srgb,
+  var(--color-sky-alt) 50%,
+  white
+);
+
+  }
+
+  #theme-preview[data-theme="option-3"] {
+      --mission-heading:var(--color-deep-teal);
+    --mission-body: var(--color-deep-teal);
+    --mission-accent: #287A8E ;
+
     --mission-bg: var(--color-ivory);
     --mission-text: #07131D;
     --choose-us-bg: var(--color-sand);
@@ -560,46 +636,7 @@ const bgSizesAttribute = `
 );;
     --testimonial-bg:var(--color-sand);
   }
-  #theme-preview[data-theme="option-3"]{
-    --dark-heading:#102a33;
-    --dark-body:#263D48;
-    --dark-muted:#49636D;
-    --dark-accent:#F5D58A;
-    --light-heading:white;
-    
-    --mission-heading:white;
-    --mission-body: white;
-    --mission-accent: #07131D ;
-    --mission-muted:#60747C ;
-
---mission-bg: color-mix(
-  in srgb,
-  var(--color-sky-alt) 45%,
-  white
-);
-    --choose-us-bg: color-mix(
-  in srgb,
-  var(--color-sand) 30%,
-  white
-);
-  --we-treat-bg:
-  color-mix(
-  in srgb,
-  var(--color-sky-alt) 45%,
-  white
-);
-    --me-bg: color-mix(
-  in srgb,
-  var(--color-sand) 30%,
-  white
-);
-    --testimonial-bg:color-mix(
-  in srgb,
-  var(--color-sky-alt) 55%,
-  white
-);
-
-  }
+ 
   #theme-preview[data-theme="option-4"]{
 --mission-bg: color-mix(
   in srgb,
