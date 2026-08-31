@@ -1,15 +1,24 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
+@import '@fontsource/raleway/200.css';
 @import '@fontsource/raleway/400.css';
 @import '@fontsource/raleway/700.css';
 @import '@fontsource-variable/inter/wght.css';
 @import '@fontsource-variable/montserrat/wght.css';
+@import '@fontsource-variable/caveat/wght.css';
+@import '@fontsource-variable/cormorant-garamond/wght.css';
+@import '@fontsource-variable/cabin/wght.css';
+@import '@fontsource/allura';
+@import '@fontsource/parisienne';
 
 @theme {
   --font-sans: 'Cabin Variable', sans-serif;
   --font-raleway: 'Raleway', sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --font-cabin: 'Cabin', sans-serif;
+  --font-cormorant: 'Cormorant Garamond Variable', serif;
+  --font-caveat: 'Caveat Variable', cursive;
+  --font-signature: 'Parisienne', cursive;
   /* Elie's custom palette */
   --color-bianco-caldo: #f6f3ee;
   --color-bianco-caldo-300: #d9cebc;
@@ -33,6 +42,9 @@
   --color-gold: #d5b46c;
   --color-sand: #d8c4ab;
   --color-ivory: #f5eede;
+
+  --color-sand-bg: color-mix(in srgb, var(--color-sand) 40%, white);
+  --color-sky-alt-bg: color-mix(in srgb, var(--color-sky-alt) 50%, white);
 
   --animate-slide-in-left: slide-in-left 1.5s ease-out forwards;
   --animate-slide-in-right: slide-in-right 1.5s ease-out forwards;
