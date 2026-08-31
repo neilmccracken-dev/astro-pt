@@ -1,21 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-// import { certifications } from '../../data/certifications';
-// import { Image } from 'astro:assets';
-// export async function getStaticPaths() {
-//   return certifications.map((certification) => ({
-//     params: {
-//       id: certification.slug,
-//     },
-//   }));
-// }
+import { certifications } from '../../data/certifications';
+import { Image } from 'astro:assets';
+export async function getStaticPaths() {
+  return certifications.map((certification) => ({
+    params: {
+      id: certification.slug,
+    },
+  }));
+}
 
-// const { id } = Astro.params;
+const { id } = Astro.params;
 
-// const certification = certifications.find((c) => c.slug === id);
-// if (!certification) {
-//   return Astro.redirect('/404');
-// }
+const certification = certifications.find((c) => c.slug === id);
+if (!certification) {
+  return Astro.redirect('/404');
+}
 ---
 
 <BaseLayout hasWave={true} title="About">
