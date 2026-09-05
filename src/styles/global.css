@@ -1,24 +1,24 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@import '@fontsource/raleway/200.css';
-@import '@fontsource/raleway/400.css';
-@import '@fontsource/raleway/700.css';
-@import '@fontsource-variable/inter/wght.css';
-@import '@fontsource-variable/montserrat/wght.css';
-@import '@fontsource-variable/caveat/wght.css';
-@import '@fontsource-variable/cormorant-garamond/wght.css';
-@import '@fontsource-variable/cabin/wght.css';
-@import '@fontsource/allura';
-@import '@fontsource/parisienne';
+@import "@fontsource/raleway/200.css";
+@import "@fontsource/raleway/400.css";
+@import "@fontsource/raleway/700.css";
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/montserrat/wght.css";
+@import "@fontsource-variable/cormorant-garamond/wght.css";
+@import "@fontsource-variable/cabin/wght.css";
+@import "@fontsource/allura";
+@import "@fontsource/parisienne";
+@import "@fontsource/bad-script";
 
 @theme {
-  --font-sans: 'Cabin Variable', sans-serif;
-  --font-raleway: 'Raleway', sans-serif;
-  --font-montserrat: 'Montserrat', sans-serif;
-  --font-cabin: 'Cabin', sans-serif;
-  --font-cormorant: 'Cormorant Garamond Variable', serif;
-  --font-caveat: 'Caveat Variable', cursive;
-  --font-signature: 'Parisienne', cursive;
+  --font-sans: "Cabin Variable", sans-serif;
+  --font-raleway: "Raleway", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-cabin: "Cabin", sans-serif;
+  --font-cormorant: "Cormorant Garamond Variable", serif;
+  --font-bad-script: "Bad Script", cursive;
+  --font-signature: "Parisienne", cursive;
   /* Elie's custom palette */
   --color-bianco-caldo: #f6f3ee;
   --color-bianco-caldo-300: #d9cebc;
@@ -155,12 +155,12 @@
   }
 
   .section-heading::after {
-    content: '';
+    content: "";
     @apply pointer-events-none absolute left-0 right-0 h-4;
 
     bottom: -0.75rem;
     margin-bottom: 0.5;
-    background-image: url('/graphics/underline.svg');
+    background-image: url("/graphics/underline.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
