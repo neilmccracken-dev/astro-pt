@@ -1,16 +1,16 @@
 ---
-import AutoCarousel from '../components/Carousel';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getImage,Image } from 'astro:assets';
-import LogoStacked from '@assets/images/mvnmt-logo-stacked-black.svg';
-import LogoStackedColor from '@assets/images/mvmnt-logo-stacked-color.svg';
-import SectionHeading from '../components/SectionHeading.astro';
-import { getCollection } from 'astro:content';
-import type { Testimonial } from '../components/TestimonialCarousel';
-import TestimonialCarousel from '../components/TestimonialCarousel';
-import elieHeadshot from '@assets/images/headshot.jpg';
+import AutoCarousel from "../components/Carousel";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getImage, Image } from "astro:assets";
+import LogoStacked from "@assets/images/mvnmt-logo-stacked-black.svg";
+import LogoStackedColor from "@assets/images/mvmnt-logo-stacked-color.svg";
+import SectionHeading from "../components/SectionHeading.astro";
+import { getCollection } from "astro:content";
+import type { Testimonial } from "../components/TestimonialCarousel";
+import TestimonialCarousel from "../components/TestimonialCarousel";
+import elieHeadshot from "@assets/images/headshot.jpg";
 
-const testimonials = await getCollection('testimonials');
+const testimonials = await getCollection("testimonials");
 const formattedTestimonials: Testimonial[] = testimonials.map((item) => ({
   review: item.data.review,
   name: item.data.name,
@@ -50,57 +50,57 @@ import {
   Heart,
   DollarSign,
   ArrowRight,
-  CircleCheck
-} from 'lucide-react';
+  CircleCheck,
+} from "lucide-react";
 
 const features = [
   {
-    title: 'Mobile & Convenient',
+    title: "Mobile & Convenient",
     description:
-      'We come to you, saving you time and making quality care easy.',
+      "We come to you, saving you time and making quality care easy.",
     icon: House,
   },
   {
-    title: 'One-on-One Expert Care',
+    title: "One-on-One Expert Care",
     description:
-      'You get our full attention and a plan tailored specifically to you.',
+      "You get our full attention and a plan tailored specifically to you.",
     icon: UserRound,
   },
   {
-    title: 'Advanced Training. Better Outcomes.',
+    title: "Advanced Training. Better Outcomes.",
     description:
-      'Specialized expertise across orthopedics, pain, performance, and more.',
+      "Specialized expertise across orthopedics, pain, performance, and more.",
     icon: Mountain,
   },
   {
-    title: 'Whole-Person Approach',
+    title: "Whole-Person Approach",
     description:
-      'We treat the root cause—not just the symptom—so you can thrive long term.',
+      "We treat the root cause—not just the symptom—so you can thrive long term.",
     icon: Heart,
   },
   {
-    title: 'Transparent Pricing',
-    description: 'Cash-based care with clear pricing and no surprises.',
-    icon:DollarSign,
+    title: "Transparent Pricing",
+    description: "Cash-based care with clear pricing and no surprises.",
+    icon: DollarSign,
   },
 ];
 const unsplashUrls = [
   {
-    url: 'https://plus.unsplash.com/premium_photo-1664300093125-92bc8a26d3fa?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: "https://plus.unsplash.com/premium_photo-1664300093125-92bc8a26d3fa?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     focalY: 0.75,
-    ar: '16:9',
+    ar: "16:9",
     isTall: false,
   },
   {
-    url: 'https://images.unsplash.com/photo-1608561807980-6e39958ae1c8?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: "https://images.unsplash.com/photo-1608561807980-6e39958ae1c8?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     focalY: 0.65,
-    ar: '4:3',
+    ar: "4:3",
     isTall: true,
   },
   {
-    url: 'https://images.unsplash.com/photo-1628609108761-7d1dbec20e4a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: "https://images.unsplash.com/photo-1628609108761-7d1dbec20e4a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     focalY: 0.45,
-    ar: '4:3',
+    ar: "4:3",
     isTall: true,
   },
 ];
@@ -125,10 +125,10 @@ const unsplashUrls = [
 // );
 const sizesAttribute = `(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1024px) 720px, 1024px`;
 const optimizedBg = await getImage({
-  src: 'https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?q=80&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  src: "https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?q=80&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   inferSize: true,
   widths: [360, 480, 640, 768, 1024, 1440, 1920],
-  format: 'webp',
+  format: "webp",
 });
 const bgSizesAttribute = `
   (max-width: 640px) 100vw,
@@ -138,7 +138,11 @@ const bgSizesAttribute = `
 ---
 
 <BaseLayout title="" hasWave={false} isHome={true}>
-  <main class="relative w-full min-h-screen flex flex-col" id="theme-preview" data-theme="default">
+  <main
+    class="relative w-full min-h-screen flex flex-col"
+    id="theme-preview"
+    data-theme="default"
+  >
     <div class="relative w-full h-[60vh] md:h-[80vh] overflow-hidden z-0">
       <img
         src={optimizedBg.src}
@@ -161,7 +165,7 @@ const bgSizesAttribute = `
       <div class="absolute inset-0 flex items-center px-6 md:px-16 lg:px-24">
         <div class="max-w-6xl">
           <h1
-            class="text-4xl md:text-6xl font-serif 
+            class="text-4xl md:text-6xl font-serif
          leading-[1.05] text-[#000A14] animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0.25s]"
           >
             Mobile care
@@ -175,7 +179,7 @@ const bgSizesAttribute = `
           </h1>
 
           <!-- Small divider -->
-          <div class="mt-5 h-px w-8 bg-deeper-teal "></div>
+          <div class="mt-5 h-px w-8 bg-deeper-teal"></div>
 
           <div class="animate-[textReveal_1s_cubic-bezier(0.25,1,0.5,1)_0.5s]">
             <p
@@ -215,11 +219,11 @@ const bgSizesAttribute = `
            md:grid-cols-2 md:px-12 md:py-16 md:overflow-auto
            lg:px-16 h-128"
       >
-      <!-- Left -->
-      <div class="md:pr-12 lg:pr-16 ">
+        <!-- Left -->
+        <div class="md:pr-12 lg:pr-16">
           <p
             class="text-sm md:text-base uppercase tracking-[0.12em]
-               text-(--mission-accent,deeper-teal)"
+               text-(--mission-body,deeper-teal)"
           >
             Our Mission
           </p>
@@ -235,14 +239,16 @@ const bgSizesAttribute = `
             Helping you move better,
             <br />
             feel better, and
-            <span class="italic text-(--mission-accent,deeper-teal)"> live fully. </span>
+            <span class="italic text-(--mission-accent,deeper-teal)">
+              live fully.
+            </span>
           </h2>
 
           <a
             href="/about"
             class="animate-float mt-6 inline-flex items-center gap-2
-               text-xs font-extrabold  uppercase tracking-widest
-               text-(--mission-muted,deeper-teal)"
+               text-xs font-extrabold uppercase tracking-widest
+               text-stone-950"
           >
             Meet your PT
             <span aria-hidden="true">→</span>
@@ -251,39 +257,39 @@ const bgSizesAttribute = `
 
         <!-- Right -->
         <div
-          class="mt-10 border-t border-(--mission-accent,deeper-teal) pt-10
+          class="mt-10 border-t border-(--mission-body,deeper-teal) pt-10
              md:mt-0 md:border-l md:border-t-0 text-sm
-             md:pl-12 md:pt-0 
-             lg:pl-16 "
+             md:pl-12 md:pt-0
+             lg:pl-16"
         >
           <div
-            class="max-w-lg space-y-5 text-center 
-        
-       leading-7 lg:leading-8
-       "
+            class="max-w-lg space-y-5 text-center
+        text-(--mission-body) lg:text-xl tracking-wider
+       leading-7 lg:leading-8"
           >
-            <p class="text-(--color-gray-950,deeper-teal) lg:text-xl tracking-wider">
-              Dark Gray-At MVMNT Matters, we bring expert physical therapy to your home,
+            <p>
+              At MVMNT Matters, we bring expert physical therapy to your home,
               gym, or office—so you can get better without putting your life on
               hold.
             </p>
 
-            <p class="lg:text-xl text-(--mission-body)">
-              Dark-Stone-Personalized care. Proven expertise.
+            <p>
+              Personalized care. Proven expertise.
               <br />
               Results that move with you.
             </p>
-
           </div>
         </div>
       </div>
     </section>
 
-    <div class="grid place-items-center bg-(--choose-us-bg) p-6 md:p-8  min-h-128">
-      <div class="mx-auto mt-8 sm:mt-0  w-full md:max-w-7xl">
+    <div
+      class="grid place-items-center bg-(--choose-us-bg) p-6 md:p-8 min-h-128"
+    >
+      <div class="mx-auto mt-8 sm:mt-0 w-full md:max-w-7xl">
         <div class="mb-12 text-center max-w-x">
           <h2
-            class=" font-semibold uppercase tracking-[0.18em] text-deeper-teal"
+            class="font-semibold uppercase tracking-[0.18em] text-deeper-teal"
           >
             Why Choose Us
           </h2>
@@ -316,7 +322,7 @@ const bgSizesAttribute = `
               lg:shadow-none 
             `,
                     index < features.length - 1 &&
-                      'lg:border-r lg:border-deeper-teal/30  ',
+                      "lg:border-r lg:border-deeper-teal/30  ",
                   ]}
                 >
                   <div class="flex size-14  flex-col items-center justify-center rounded-full border border-[#000A14] md:border-0 ">
@@ -324,17 +330,16 @@ const bgSizesAttribute = `
                       className="size-8 md:size-12 stroke-[#000A14] fill-[#000A14] md:fill-none"
                       strokeWidth={1.5}
                     />
-
                   </div>
                   <div class=" md:px-0">
-                  <h3
-                    class="mt-2 flex lg:h-16 max-w-48 md:px-0 items-start justify-center text-center
+                    <h3
+                      class="mt-2 flex lg:h-16 max-w-48 md:px-0 items-start justify-center text-center
                      text-sm font-bold uppercase leading-6
                      tracking-[0.08em] text-(--mission-body)"
-                  >
-                    {feature.title}
-                  </h3>
-                  <div class="mx-auto mt-2 h-px w-16 bg-deeper-teal/60 lg:hidden"></div>
+                    >
+                      {feature.title}
+                    </h3>
+                    <div class="mx-auto mt-2 h-px w-16 bg-deeper-teal/60 lg:hidden" />
                   </div>
 
                   <p class="md:mt-2 max-w-52 text-sm leading-7  md:block text-center">
@@ -348,328 +353,263 @@ const bgSizesAttribute = `
       </div>
     </div>
 
-
-    <section class="[background:var(--we-treat-bg)] ">
-  <div
-    class="mx-auto grid max-w-7xl grid-cols-1 items-center
+    <section class="[background:var(--we-treat-bg)]">
+      <div
+        class="mx-auto grid max-w-7xl grid-cols-1 items-center
            px-6 py-12
            md:grid-cols-2 md:gap-12 md:px-12 md:py-16
            lg:gap-16 lg:px-16 lg:min-h-192"
-  >
-    <!-- Image collage - hidden on mobile -->
-    <div class="hidden md:grid grid-cols-2 gap-1.5 max-w-2xl">
-      {
-        images.map((image) => (
-          <div class="aspect-square overflow-hidden">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              widths={[400, 600, 800]}
-              sizes="(max-width: 1024px) 40vw, 500px"
-              class="size-full object-cover"
-            />
-          </div>
-        ))
-      }
-    </div>
+      >
+        <!-- Image collage - hidden on mobile -->
+        <div class="hidden md:grid grid-cols-2 gap-1.5 max-w-2xl">
+          {
+            images.map((image) => (
+              <div class="aspect-square overflow-hidden">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  widths={[400, 600, 800]}
+                  sizes="(max-width: 1024px) 40vw, 500px"
+                  class="size-full object-cover"
+                />
+              </div>
+            ))
+          }
+        </div>
 
-    <!-- Content -->
-    <div class="md:pl-4 ">
-      <p
-        class="text-xs sm:text-sm font-bold uppercase tracking-[0.14em]
+        <!-- Content -->
+        <div class="md:pl-4">
+          <p
+            class="text-xs sm:text-sm font-bold uppercase tracking-[0.14em]
                text-(deeper-teal)"
-      >
-        What We Treat
-      </p>
+          >
+            What We Treat
+          </p>
 
-      <div class="mt-3 h-px w-8 bg-(--mission-accent,deeper-teal)"></div>
+          <div class="mt-3 h-px w-8 bg-(--mission-accent,deeper-teal)"></div>
 
-      <h2
-        class="mt-5 max-w-md font-serif  text-3xl leading-[1.15]
+          <h2
+            class="mt-5 max-w-md font-serif text-3xl leading-[1.15]
                text-(--light-heading,deeper-teal) md:text-4xl"
-      >
-        From everyday pain
-        <br class=" sm:block" />
-        <span class="italic text-deeper-teal">to your biggest goals.</span>
-      </h2>
- 
+          >
+            From everyday pain
+            <br class="sm:block" />
+            <span class="italic text-deeper-teal">to your biggest goals.</span>
+          </h2>
 
-      <p
-        class="mt-4 max-w-md text-sm leading-relaxed
+          <p
+            class="mt-4 max-w-md text-sm leading-relaxed
                text-(--mission-muted,deeper-teal)"
-      >
-        Specialized care for a wide range of conditions and activities.
-      </p>
+          >
+            Specialized care for a wide range of conditions and activities.
+          </p>
 
-      <!-- Services -->
-      <div class="mt-7 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
-        {
-          servicesWeTreat.map((service) => (
-            <div class="flex items-center gap-2.5">
-              <!-- Check icon -->
-              <CircleCheck className='text-(--mission-paragraph,deeper-teal)' />
+          <!-- Services -->
+          <div class="mt-7 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+            {
+              servicesWeTreat.map((service) => (
+                <div class="flex items-center gap-2.5">
+                  <CircleCheck className="text-(--mission-paragraph,deeper-teal)" />
 
-              <span class="text-sm md:text-base font-bold text-(deeper-teal)">
-                {service}
-              </span>
-            </div>
-          ))
-        }
-      </div>
+                  <span class="text-sm md:text-base font-bold text-(deeper-teal)">
+                    {service}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
 
-      <p class="mt-7 text-sm text-(--mission-muted,deeper-teal)">
-        Don't see your condition listed?
-      </p>
+          <p class="mt-7 text-sm text-(--mission-muted,deeper-teal)">
+            Don't see your condition listed?
+          </p>
 
-      <a
-        href="/contact"
-        class="mt-1 inline-block text-sm font-extrabold
+          <a
+            href="/contact"
+            class="mt-1 inline-block text-sm font-extrabold
                text-(--mission-italic,deeper-teal) underline-offset-4
                hover:underline"
-      >
-        Reach out—we can help.
-      </a>
-    </div>
-  </div>
-</section>
+          >
+            Reach out—we can help.
+          </a>
+        </div>
+      </div>
+    </section>
 
-<section class="[background:var(--me-bg)]">
-  <div
-    class="mx-auto grid w-full md:max-w-7xl grid-cols-1 gap-6 
+    <section class="[background:var(--me-bg)]">
+      <div
+        class="mx-auto grid w-full md:max-w-7xl grid-cols-1 gap-6
            md:grid-cols-2 lg:place-items-center text-center md:gap-12 md:px-10 p-16"
-  >
-    <!-- Image -->
-    <div class="w-full lg:max-w-xl ">
-
-                <Image
+      >
+        <!-- Image -->
+        <div class="w-full lg:max-w-xl">
+          <Image
             src={elieHeadshot}
             alt="Elie Sabins"
             widths={[600, 800, 1000]}
-              sizes="(max-width: 900px) 40vw, 500px"
-            class="    mx-auto
+            sizes="(max-width: 900px) 40vw, 500px"
+            class="mx-auto
     h-auto w-64 rounded-full object-cover
-    md:w-full md:rounded-xl "
+    md:w-full md:rounded-xl"
           />
+        </div>
 
-    </div>
-
-    <!-- Text -->
-    <div class="max-w-lg p-2">
-      <p
-        class="text-sm md:text-base font-semibold  uppercase tracking-[0.12em]
+        <!-- Text -->
+        <div class="max-w-lg p-2">
+          <p
+            class="text-sm md:text-base font-semibold uppercase tracking-[0.12em]
                text-(--mission-body)"
-      >
-        Meet Elie
-      </p>
+          >
+            Meet Elie
+          </p>
 
-      <h2
-        class="mt-3 font-serif text-3xl leading-tight text-(--meet-heading,slate-900)
+          <h2
+            class="mt-3 font-serif text-3xl leading-tight text-(--meet-heading,slate-900)
                md:text-4xl"
-      >
-        Hi, I’m Elie.
-      </h2>
+          >
+            Hi, I’m Elie.
+          </h2>
 
-      <p class="mt-5 text-sm leading-7 text-(--mission-body) lg:text-xl">
-        I believe great physical therapy starts with really knowing the person
-        in front of you—not just their diagnosis.
-      </p>
+          <p class="mt-5 text-sm leading-7 text-(--mission-body) lg:text-xl">
+            I believe great physical therapy starts with really knowing the
+            person in front of you—not just their diagnosis.
+          </p>
 
-      <p class="mt-5 text-sm leading-7 text-(--mission-body) lg:text-xl">
-        I created MVMNT Matters to offer the kind of care I believe healthcare
-        should be: personal, thoughtful, evidence-informed, and built around
-        your real life.
-      </p>
+          <p class="mt-5 text-sm leading-7 text-(--mission-body) lg:text-xl">
+            I created MVMNT Matters to offer the kind of care I believe
+            healthcare should be: personal, thoughtful, evidence-informed, and
+            built around your real life.
+          </p>
 
-
-      <a
-        href="/about"
-        class="mt-7 inline-flex items-center gap-2 text-xs text-(--mission-body) font-semibold uppercase
-               tracking-[0.12em] 
+          <a
+            href="/about"
+            class="mt-7 inline-flex items-center gap-2 text-xs text-(--mission-body) font-semibold uppercase
+               tracking-[0.12em]
                hover:gap-3 animate-float"
+          >
+            Get to know me
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-sky-alt-bg">
+      <h1
+        class="mt-4 text-center text-sm font-semibold uppercase
+                 tracking-[0.14em] text-deeper-teal
+                 md:text-lg"
       >
-        Get to know me
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<section class="[background:var(--testimonial-bg)]">
-  <h1 class="text-center font-serif lg:text-3xl mt-4 text-[#07131D]">Testimonials</h1>
-        <TestimonialCarousel testimonials={formattedTestimonials} client:load />
-
-      </section>
-
+        WHAT PATIENTS ARE SAYING
+      </h1>
+      <TestimonialCarousel testimonials={formattedTestimonials} client:load />
+    </section>
   </main>
 </BaseLayout>
 
 <style>
+  #theme-preview[data-theme="default"] {
+    --dark-heading: #102a33;
+    --dark-body: #263d48;
+    --dark-muted: #49636d;
+    --dark-accent: #f5d58a;
+    --light-heading: white;
 
-   #theme-preview[data-theme="default"]{
-    --dark-heading:#102a33;
-    --dark-body:#263D48;
-    --dark-muted:#49636D;
-    --dark-accent:#F5D58A;
-    --light-heading:white;
+    --meet-heading: white;
+    --meet-body: var(--color-deeper-teal);
 
-    --meet-heading:white;
-    --meet-body:var(--color-deeper-teal);
-    
-    --mission-heading:white;
+    --mission-heading: white;
     --mission-body: var(--color-stone-950);
-    --mission-accent: var(--color-neutral-900) ;
-    --mission-muted:#102a33 ;
+    --mission-accent: var(--color-neutral-900);
+    --mission-muted: #102a33;
 
-  --mission-bg: var(--color-sky-alt-bg);
-  --choose-us-bg: var(--color-sand-bg);
-  --we-treat-bg:
-  color-mix(
-  in srgb,
-  var(--color-sky-alt) 50%,
-  white
-);
-    --me-bg: color-mix(
-  in srgb,
-  var(--color-sand) 40%,
-  white
-);
-    --testimonial-bg:color-mix(
-  in srgb,
-  var(--color-sky-alt) 50%,
-  white
-);
-
+    --mission-bg: var(--color-sky-alt-bg);
+    --choose-us-bg: var(--color-sand-bg);
+    --we-treat-bg: color-mix(in srgb, var(--color-sky-alt) 50%, white);
+    --me-bg: color-mix(in srgb, var(--color-sand) 40%, white);
+    --testimonial-bg: color-mix(in srgb, var(--color-sky-alt) 50%, white);
   }
 
   #theme-preview[data-theme="option-3"] {
-      --mission-heading:var(--color-deep-teal);
+    --mission-heading: var(--color-deep-teal);
     --mission-body: var(--color-deep-teal);
-    --mission-accent: #287A8E ;
+    --mission-accent: #287a8e;
 
     --mission-bg: var(--color-ivory);
-    --mission-text: #07131D;
+    --mission-text: #07131d;
     --choose-us-bg: var(--color-sand);
     --we-treat-bg: var(--color-ivory);
     --me-bg: var(--color-sand);
-    --testimonial-bg:var(--color-ivory);
+    --testimonial-bg: var(--color-ivory);
   }
 
-  #theme-preview[data-theme="option-1"]{
-    --mission-heading:var(--color-deeper-teal);
+  #theme-preview[data-theme="option-1"] {
+    --mission-heading: var(--color-deeper-teal);
     --mission-body: var(--color-deeper-teal);
-    --mission-accent: #287A8E ;
-    --mission-muted:#287A8E ;
-    --mission-text: #07131D;
-    
-    --choose-us-heading:#000A14;
+    --mission-accent: #287a8e;
+    --mission-muted: #287a8e;
+    --mission-text: #07131d;
+
+    --choose-us-heading: #000a14;
     --choose-us-accent: var(--color-blue-800);
-    --choose-us-muted: #60747C;
-    
+    --choose-us-muted: #60747c;
+
     --mission-bg: var(--color-ivory);
     --choose-us-bg: var(--color-sky);
     --we-treat-bg: var(--color-ivory);
     --me-bg: var(--color-sky);
-    --testimonial-bg:var(--color-ivory);
+    --testimonial-bg: var(--color-ivory);
   }
-  #theme-preview[data-theme="option-2"]{
-    --mission-heading:ivory;
+  #theme-preview[data-theme="option-2"] {
+    --mission-heading: ivory;
     --mission-body: white;
-    --mission-accent: #07131D ;
-    --mission-muted:#07131D ;
+    --mission-accent: #07131d;
+    --mission-muted: #07131d;
 
-    --choose-us-heading:#000A14;
+    --choose-us-heading: #000a14;
     --choose-us-accent: var(--color-deeper-teal);
-    --choose-us-muted: #60747C;
+    --choose-us-muted: #60747c;
 
-    --meet-heading:var(--color-ivory);
-    --meet-accent:#07131D;
+    --meet-heading: var(--color-ivory);
+    --meet-accent: #07131d;
     --meet-body: white;
 
-    --mission-bg: color-mix(
-      in srgb,
-      var(--color-sky-alt) 95%,
-    white
-);
-    --mission-text: #07131D;
-        --choose-us-bg: color-mix(
-        in srgb,
-        var(--color-sand) 55%,
-      white
-);
+    --mission-bg: color-mix(in srgb, var(--color-sky-alt) 95%, white);
+    --mission-text: #07131d;
+    --choose-us-bg: color-mix(in srgb, var(--color-sand) 55%, white);
     --we-treat-bg: var(--color-white);
-    --me-bg: color-mix(
-      in srgb,
-      var(--color-sky-alt) 95%,
-    white
-);;
-    --testimonial-bg:var(--color-sand);
+    --me-bg: color-mix(in srgb, var(--color-sky-alt) 95%, white);
+    --testimonial-bg: var(--color-sand);
   }
- 
-  #theme-preview[data-theme="option-4"]{
---mission-bg: color-mix(
-  in srgb,
-  var(--color-deeper-teal) 95%,
-  white
-);
-    --mission-heading:#FFF1D6;
+
+  #theme-preview[data-theme="option-4"] {
+    --mission-bg: color-mix(in srgb, var(--color-deeper-teal) 95%, white);
+    --mission-heading: #fff1d6;
     --mission-body: white;
-    --mission-accent: var(--color-sky-alt) ;
-    --mission-muted:var(--color-sky-alt) ;
+    --mission-accent: var(--color-sky-alt);
+    --mission-muted: var(--color-sky-alt);
     --mission-text: var(--color-ivory);
-    --mission-italic:var(--color-sky-alt) ;
-    --mission-paragraph:#C9D6D8 ;
+    --mission-italic: var(--color-sky-alt);
+    --mission-paragraph: #c9d6d8;
 
-    --choose-us-bg: color-mix(
-  in srgb,
-  var(--color-sand) 30%,
-  white
-);
-  --we-treat-bg:
-  color-mix(
-  in srgb,
-  var(--color-deeper-teal) 95%,
-  white
-);
-    --me-bg: color-mix(
-  in srgb,
-  var(--color-sand) 30%,
-  white
-);
-    --testimonial-bg:white;
+    --choose-us-bg: color-mix(in srgb, var(--color-sand) 30%, white);
+    --we-treat-bg: color-mix(in srgb, var(--color-deeper-teal) 95%, white);
+    --me-bg: color-mix(in srgb, var(--color-sand) 30%, white);
+    --testimonial-bg: white;
   }
 
-#theme-preview[data-theme="option-5"]{
-
-    --mission-heading:ivory;
+  #theme-preview[data-theme="option-5"] {
+    --mission-heading: ivory;
     --mission-body: ivory;
     --mission-accent: var(--color-cyan-200);
     --mission-muted: var(--color-cyan-200);
-    --mission-bg: color-mix(
-      in srgb,
-      var(--color-deeper-teal) 90%,
-    white
-      );
+    --mission-bg: color-mix(in srgb, var(--color-deeper-teal) 90%, white);
     --mission-text: var(--color-ivory);
-    --mission-italic:var(--color-sky-alt) ;
-    --mission-paragraph:#C9D6D8 ;
-    --choose-us-bg: color-mix(
-  in srgb,
-  var(--color-sky-alt) 30%,
-  white
-);
-  --we-treat-bg:
-  color-mix(
-  in srgb,
-  var(--color-deeper-teal) 90%,
-  white
-);
-    --me-bg: color-mix(
-  in srgb,
-  var(--color-sky-alt) 30%,
-  white
-);
-    --testimonial-bg:white;
+    --mission-italic: var(--color-sky-alt);
+    --mission-paragraph: #c9d6d8;
+    --choose-us-bg: color-mix(in srgb, var(--color-sky-alt) 30%, white);
+    --we-treat-bg: color-mix(in srgb, var(--color-deeper-teal) 90%, white);
+    --me-bg: color-mix(in srgb, var(--color-sky-alt) 30%, white);
+    --testimonial-bg: white;
   }
   @keyframes textReveal {
     from {
@@ -683,49 +623,55 @@ const bgSizesAttribute = `
   }
 
   @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
 
-.animate-float {
-  animation: float 2s ease-in-out infinite;
-}
+  .animate-float {
+    animation: float 2s ease-in-out infinite;
+  }
 
   /* Target both elements, hide them at start, and freeze them at the end */
-  [class*='animate-[textReveal'] {
+  [class*="animate-[textReveal"] {
     opacity: 0; /* Keeps them invisible until animation starts */
     animation-fill-mode: forwards !important;
   }
 </style>
 
 <script>
-
   const preview = document.querySelector<HTMLElement>("#theme-preview");
 
-  document.querySelectorAll<HTMLButtonElement>("[data-theme-button]").forEach((button) => {
-    button.addEventListener("click", () => {
-      if(!preview) return;
-      preview.dataset.theme = button.dataset.themeButton;
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-theme-button]")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!preview) return;
+        preview.dataset.theme = button.dataset.themeButton;
+      });
     });
-  });
 
   function setupMissionObserver() {
-    const section = document.getElementById('mission-section');
+    const section = document.getElementById("mission-section");
 
     if (!section) return;
 
     const animatedElements = section.querySelectorAll(
-      '.reveal-left, .reveal-right',
+      ".reveal-left, .reveal-right",
     );
 
     if (!animatedElements.length) return;
 
-    const desktop = window.matchMedia('(min-width: 768px)');
+    const desktop = window.matchMedia("(min-width: 768px)");
 
     // Mobile: ensure everything is visible.
     if (!desktop.matches) {
       animatedElements.forEach((element) => {
-        element.classList.add('in-view');
+        element.classList.add("in-view");
       });
 
       return;
@@ -733,7 +679,7 @@ const bgSizesAttribute = `
 
     // Reset the elements when returning to this page.
     animatedElements.forEach((element) => {
-      element.classList.remove('in-view');
+      element.classList.remove("in-view");
     });
 
     const observer = new IntersectionObserver(
@@ -741,7 +687,7 @@ const bgSizesAttribute = `
         if (!entry?.isIntersecting) return;
 
         animatedElements.forEach((element) => {
-          element.classList.add('in-view');
+          element.classList.add("in-view");
         });
 
         observer.disconnect();
@@ -754,7 +700,7 @@ const bgSizesAttribute = `
     observer.observe(section);
   }
 
-  document.addEventListener('astro:page-load', setupMissionObserver);
+  document.addEventListener("astro:page-load", setupMissionObserver);
 </script>
 
 <!-- <Image
@@ -774,9 +720,7 @@ const bgSizesAttribute = `
       </p>
     </div> -->
 
-
-
-    <!-- <div
+<!-- <div
     class="absolute left-0 top-0 w-full -translate-y-[90%]
            overflow-hidden leading-0"
   >
@@ -792,7 +736,7 @@ const bgSizesAttribute = `
     </svg>
   </div> -->
 
-          <!-- <div
+<!-- <div
           class="absolute bottom-0 left-0 w-full overflow-hidden leading-0 translate-y-[99%] -scale-x-100 -scale-y-100 transform"
         >
           <svg
