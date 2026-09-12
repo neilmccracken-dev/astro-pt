@@ -3,5 +3,14 @@
   publish = "dist"
   ignore = "bash netlify-ignore.sh"
 
+[dev]
+  command = "npm run dev -- --host localhost"
+  targetPort = 4321
+  port = 8888
+  framework = "#custom"
+
+[functions]
+directory = "netlify/functions"
+
 [build.environment]
   NODE_VERSION = "22"

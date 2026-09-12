@@ -1,27 +1,27 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import react from '@astrojs/react';
-import { loadEnv } from 'vite';
-import netlify from '@astrojs/netlify';
-import markdoc from '@astrojs/markdoc';
-import keystatic from '@keystatic/astro';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react";
+import { loadEnv } from "vite";
+import netlify from "@astrojs/netlify";
+import markdoc from "@astrojs/markdoc";
+import keystatic from "@keystatic/astro";
 
-const isNetlify = process.env.NETLIFY === 'true';
-const isDev = process.env.NODE_ENV === 'development';
+const isNetlify = process.env.NETLIFY === "true";
+const isDev = process.env.NODE_ENV === "development";
 console.log(isDev);
-console.log('NETLIFY:', process.env.NETLIFY);
-console.log('Using GitHub storage:', isNetlify);
+console.log("NETLIFY:", process.env.NETLIFY);
+console.log("Using GitHub storage:", isNetlify);
 const useKeystatic = isDev || isNetlify;
 export default defineConfig({
   // output: 'static',
-  output: isNetlify ? 'server' : 'static',
+  output: isNetlify ? "server" : "static",
   site: isDev
     ? undefined
     : isNetlify
-      ? 'https://pt-project.netlify.app'
-      : 'https://neilmccracken-dev.github.io',
-  base: isDev ? undefined : isNetlify ? undefined : '/astro-pt/',
+      ? "https://pt-project.netlify.app"
+      : "https://fastzeeba.com",
+  base: isDev ? undefined : isNetlify ? undefined : "/",
   adapter: isNetlify ? netlify() : undefined,
 
   vite: {
@@ -29,7 +29,7 @@ export default defineConfig({
   },
 
   image: {
-    domains: ['images.unsplash.com', 'plus.unsplash.com'],
+    domains: ["images.unsplash.com", "plus.unsplash.com"],
   },
 
   integrations: [react(), markdoc(), ...(useKeystatic ? [keystatic()] : [])],

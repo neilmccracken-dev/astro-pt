@@ -1,31 +1,31 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Image, getImage } from "astro:assets";
-import SpecialtiesStock from "@assets/images/certifications/specialties.jpg";
-import AboutPic from "@assets/images/about-image/test-about.jpg";
-import OutsidePTPic from "@assets/images/about-image/outside-pt.jpg";
-import Background from "@assets/images/about-image/background.jpg";
-import Foreground from "@assets/images/about-image/foreground.png";
-import StoryImage from "@assets/images/about-image/story.jpg";
-import SectionHeading from "../../components/SectionHeading.astro";
-import { certifications } from "../../data/certifications";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image, getImage } from 'astro:assets';
+import SpecialtiesStock from '@assets/images/certifications/specialties.jpg';
+import AboutPic from '@assets/images/about-image/test-about.jpg';
+import OutsidePTPic from '@assets/images/about-image/outside-pt.jpg';
+import Background from '@assets/images/about-image/background.jpg';
+import Foreground from '@assets/images/about-image/foreground.png';
+import StoryImage from '@assets/images/about-image/story.jpg';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { certifications } from '../../data/certifications';
 
 interface Props {
   index?: number;
 }
 const { index = 1 } = Astro.props;
 const backgroundImg =
-  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&sat=-100";
+  'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&sat=-100';
 
 const optimizedBackground = await getImage({
   src: backgroundImg,
-  format: "webp",
+  format: 'webp',
   inferSize: true,
   widths: [1024, 1440, 1920, 2560],
 });
 ---
 
-<BaseLayout hasWave={true} title="About">
+<BaseLayout hasWave={false} title="About">
   <section class="relative overflow-hidden">
     <div
       class="relative h-[440px]
@@ -281,7 +281,7 @@ const optimizedBackground = await getImage({
                   lg:min-h-77.5
                 `,
                   index !== certifications.length - 1 &&
-                    "lg:border-r lg:border-[#163f48]/15",
+                    'lg:border-r lg:border-[#163f48]/15',
                 ]}
               >
                 <div
@@ -461,8 +461,8 @@ const optimizedBackground = await getImage({
   function initScrollAnimations() {
     // 1. Define the elements and their corresponding active classes
     const configs = [
-      { selector: ".bio", activeClass: "is-in-view" },
-      { selector: ".specialties", activeClass: "fade-in" }, // Your new element
+      { selector: '.bio', activeClass: 'is-in-view' },
+      { selector: '.specialties', activeClass: 'fade-in' }, // Your new element
     ];
 
     // 2. Gather all elements that actually exist on the current page
@@ -492,7 +492,7 @@ const optimizedBackground = await getImage({
         });
       },
       {
-        rootMargin: "0px 0px -150px 0px",
+        rootMargin: '0px 0px -150px 0px',
         threshold: 0.05,
       },
     );
@@ -506,8 +506,8 @@ const optimizedBackground = await getImage({
 
   // Astro Lifecycle Hooks (Keep these exactly as you had them)
   initScrollAnimations();
-  document.addEventListener("astro:after-swap", initScrollAnimations);
-  document.addEventListener("astro:before-swap", () => {
+  document.addEventListener('astro:after-swap', initScrollAnimations);
+  document.addEventListener('astro:before-swap', () => {
     if (activeObserver) {
       activeObserver.disconnect();
       activeObserver = null;

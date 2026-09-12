@@ -3,9 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const contactEmail = 'mccrackenneild@gmail.com';
 ---
 
-<BaseLayout hasWave={true} title={'contact'}>
+<BaseLayout hasWave={false} title={'contact'}>
   <section
-    class="relative overflow-hidden bg-white md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8 mb-48"
+    class="relative overflow-hidden bg-white md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8"
   >
     <!-- Soft background glow -->
     <div
@@ -102,7 +102,7 @@ const contactEmail = 'mccrackenneild@gmail.com';
       </div>
 
       <!-- Form panel -->
-      <div class="bg-sky px-5 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+      <div class="bg-sky-alt-bg px-5 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
         <form
           name="contact"
           method="POST"
@@ -123,6 +123,16 @@ const contactEmail = 'mccrackenneild@gmail.com';
                 class="input input-bordered w-full bg-base-100 focus:border-lime-500 focus:outline-none"
               />
             </label>
+            <div class="absolute -left-[9999px]" aria-hidden="true">
+              <label for="contact-check">Website</label>
+              <input
+                id="contact-check"
+                type="text"
+                name="contact_check"
+                tabindex="-1"
+                autocomplete="new-password"
+              />
+            </div>
 
             <!-- Last name -->
             <label class="form-control w-full">
@@ -198,7 +208,7 @@ const contactEmail = 'mccrackenneild@gmail.com';
 
             <button
               type="submit"
-              class="btn bg-black text-white hover:bg-blue-500"
+              class="btn bg-blue-900 tracking-wider border-0 text-gray-100 hover:bg-blue-500"
             >
               Send message
               <span aria-hidden="true">↗</span>
@@ -220,21 +230,18 @@ const contactEmail = 'mccrackenneild@gmail.com';
 
     console.log(data);
 
-    // const response = await fetch(
-    //   "https://pt-project.netlify.app/.netlify/functions/contact",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   },
-    // );
+    const response = await fetch('/.netlify/functions/test', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-    // if (!response.ok) {
-    //   console.error("Message could not be sent");
-    //   return;
-    // }
+    if (!response.ok) {
+      console.error('Message could not be sent');
+      return;
+    }
 
     form.reset();
   });
