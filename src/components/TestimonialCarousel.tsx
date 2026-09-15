@@ -124,7 +124,7 @@ export default function TestimonialCarousel({
         </button>
 
         {/* Mobile Navigation */}
-        <div className="flex justify-center gap-4 mt-4 md:hidden">
+        <div className="flex justify-center gap-4 p-2 md:hidden">
           <button
             onClick={handlePrev}
             className="

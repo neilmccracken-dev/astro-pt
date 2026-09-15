@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Resend } from "resend";
-
+const resend = new Resend(process.env.RESEND_API_KEY);
 const ContactSchema = z.object({
   firstName: z.string().trim().min(1).max(100),
   lastName: z.string().trim().min(1).max(100),
@@ -34,14 +34,50 @@ export default async (request: Request) => {
         { status: 400 },
       );
     }
-    const data = result.data;
+    const validatedData = result.data;
 
-    if (data.contact_check) {
+    if (validatedData.contact_check) {
       // Honeypot was filled out — likely a bot
       return Response.json({ success: true });
     }
 
-    console.log(data);
+    console.log(validatedData);
+
+    const { data: emailData, error } = await resend.emails.send({
+      from: "FastZeeba Website <website@fastzeeba.com>",
+      to: "neil.mccracken.dev@gmail.com",
+      replyTo: validatedData.email,
+      subject: `New website contact: ${validatedData.subject}`,
+      html: `
+    <h2>New Contact Form Submission</h2>
+
+    <p>
+      <strong>Name:</strong>
+      ${validatedData.firstName} ${validatedData.lastName}
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      ${validatedData.email}
+    </p>
+
+    <p>
+      <strong>Subject:</strong>
+      ${validatedData.subject}
+    </p>
+
+    <p><strong>Message:</strong></p>
+    <p>${validatedData.message}</p>
+  `,
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+
+      return new Response(JSON.stringify({ error: "Unable to send message" }), {
+        status: 500,
+      });
+    }
 
     return Response.json({
       success: true,

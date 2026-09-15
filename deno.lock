@@ -39,6 +39,7 @@
         "npm:react-calendly@^4.4.0",
         "npm:react-dom@^19.2.7",
         "npm:react@^19.2.7",
+        "npm:resend@^6.28.0",
         "npm:sharp@~0.35.1",
         "npm:tailwindcss@^4.3.1"
       ]

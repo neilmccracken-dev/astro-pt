@@ -4,6 +4,11 @@ const { hasWave = false } = Astro.props;
 import CircleLogoDark from '@assets/images/mvnmt-logo-circle-dark.svg';
 import CircleLogoLight from '@assets/images/MVMNT-logo-circle-black.svg';
 import CustomLogo from '../components/LogoCustom.astro';
+import { Mail, Phone } from 'lucide-react';
+
+const contactEmail = 'elie@mvmntmatterspt.com';
+const contactPhone = '(303) 555-1234';
+const contactPhoneHref = '+13035551234';
 ---
 
 <footer
@@ -81,7 +86,7 @@ import CustomLogo from '../components/LogoCustom.astro';
         </p>
 
         <!-- Social -->
-        <nav aria-label="Social media">
+        <!-- <nav aria-label="Social media">
           <div class="flex items-center gap-4">
             <a
               href="#"
@@ -161,7 +166,30 @@ import CustomLogo from '../components/LogoCustom.astro';
               </svg>
             </a>
           </div>
-        </nav>
+        </nav> -->
+
+        <!-- Contact - mobile -->
+        <div class="flex items-center gap-4 text-sm lg:hidden">
+          <a
+            href={`tel:${contactPhoneHref}`}
+            class="flex items-center gap-2 text-white transition
+                   hover:text-white"
+          >
+            <Phone className="size-4" strokeWidth={1.5} />
+            <span>{contactPhone}</span>
+          </a>
+
+          <span class="h-4 w-px bg-white/30" aria-hidden="true"></span>
+
+          <a
+            href={`mailto:${contactEmail}`}
+            class="flex items-center gap-2 text-white transition
+                   hover:text-white"
+          >
+            <Mail className="size-4" strokeWidth={1.5} />
+            <span>{contactEmail}</span>
+          </a>
+        </div>
       </div>
 
       <!-- Right / CTA -->
@@ -170,15 +198,13 @@ import CustomLogo from '../components/LogoCustom.astro';
                md:items-end md:text-right"
       >
         <a
-          href="/contact"
-          class:list={[
-            hasWave
-              ? ' border-deeper-teal/40 hover:border-deeper-teal text-deeper-teal'
-              : ' border-white/40 hover:border-white text-white ',
-          ]}
-          class="group inline-flex items-center gap-3 border-b pb-1 text-sm font-semibold uppercase tracking-[0.12em] transition"
+          href={`${import.meta.env.BASE_URL}contact`}
+          class="group inline-flex items-center gap-3 border-b
+                 border-white/40 pb-1 text-sm font-semibold uppercase
+                 tracking-[0.12em] text-white transition
+                 hover:border-white"
         >
-          Book Your Visit
+          Contact Us
 
           <span
             class="transition-transform duration-200
@@ -188,18 +214,34 @@ import CustomLogo from '../components/LogoCustom.astro';
             →
           </span>
         </a>
-
         <a
           href="/faq"
-          class:list={[
-            hasWave
-              ? 'text-deeper-teal/80 hover:text-deeper-teal '
-              : ' text-white/60 hover:text-white',
-          ]}
-          class="text-xs uppercase tracking-[0.1em] transition"
+          class="text-xs uppercase tracking-[0.1em] text-white/60
+                 transition hover:text-white"
         >
           Have questions? Visit our FAQs
         </a>
+
+        <!-- Contact - md+ -->
+        <div class="hidden items-center gap-4 pt-2 text-sm lg:flex">
+          <a
+            href={`tel:${contactPhoneHref}`}
+            class="flex items-center gap-2 text-white"
+          >
+            <Phone className="size-4" strokeWidth={1.5} />
+            <span>{contactPhone}</span>
+          </a>
+
+          <span class="h-4 w-px bg-white/30" aria-hidden="true"></span>
+
+          <a
+            href={`mailto:${contactEmail}`}
+            class="flex items-center gap-2 text-white"
+          >
+            <Mail className="size-4" strokeWidth={1.5} />
+            <span>{contactEmail}</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
