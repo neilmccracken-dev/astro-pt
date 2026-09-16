@@ -1,199 +1,446 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-const services = await getCollection('services');
-import { Image, getImage } from 'astro:assets';
-import CalendlyButton from '../components/CalendyPopup';
-import CalBooking from '../components/CalBooking';
-import ServiceCard from '../components/ServiceCard';
-import DryNeedling from '@assets/images/services/dry-needling.jpg';
-import Evaluation from '@assets/images/services/evaluation.jpg';
-import FollowUpVisit from '@assets/images/services/follow-up-visit.jpg';
-import OnlineCoaching from '@assets/images/services/online-coaching.jpg';
-import TennisImage from '@assets/images/services/tennis.jpg';
-import GolfImage from '@assets/images/we-treat/golf-swing.jpg';
+// const services = await getCollection('services');
+import { Image } from 'astro:assets';
+import HeroPic from '@assets/images/services/hero.jpg';
+import {services} from '../data/services'
+import {howItWorksSteps} from '../data/howItWorks'
+import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } from 'lucide-react';
 
-type Service = {
-  name: string;
-  description: string;
-  image: ImageMetadata;
-  position: string;
-};
-const servicesArray: Service[] = [
-  {
-    name: 'PT Evaluation',
-    description: `
-      A comprehensive one-on-one assessment to understand your goals, identify what's 
-      limiting your movement, and create a personalized plan to help you move and feel
-      your best.
-    `,
-    image: Evaluation,
-    position: 'object-[40%_50%]',
-  },
-  {
-    name: 'PT Follow-Up Visit',
-    description: `
-      Personalized one-on-one treatment focused on progressing your recovery, building
-      strength and mobility, and helping you return confidently to the activities you love.
-    `,
-    image: FollowUpVisit,
-    position: 'object-[50%_50%]',
-  },
-  {
-    name: 'Virtual Follow Up Visit',
-    description: `
-      Convenient one-on-one care from wherever you are, with individualized exercise
-      progression, movement coaching, and guidance to keep your progress on track.
-    `,
-    image: OnlineCoaching,
-    position: 'object-[50%_50%]',
-  },
-  {
-    name: 'Golf Assessment',
-    description: `
-      A golf-specific movement and performance assessment designed to identify
-      physical limitations that may be affecting your swing, performance, or 
-      ability to play comfortably
-    `,
-    image: GolfImage,
-    position: 'object-[20%_50%]',
-  },
-  {
-    name: 'Tennis Assessment',
-    description: `A movement based assessment focused on identifying physical limitations
-       and movement patterns that may be afecting your tennis performance, comfort,
-        or durability`,
-    image: TennisImage,
-    position: 'object-[30%_05%]',
-  },
-];
+
 ---
 
 <BaseLayout title="Services" hasWave={false}>
-  <section class="bg-sand-bg px-5 py-16 md:px-10">
-    <div class="mx-auto max-w-7xl">
-      <div class="mb-12 text-center">
-        <h2 class="text-4xl tracking-widest text-deeper-teal">Our Services</h2>
+  <section class="relative overflow-hidden">
+    <div
+      class="relative h-80 p-4
+           md:h-80
+           lg:h-155
+           xl:h-200"
+    >
+      <Image
+        src={HeroPic}
+        alt="Elie"
+        widths={[640, 960, 1200, 1600, 2400]}
+        sizes="100vw"
+        class="absolute inset-0 h-full w-full object-cover
+             object-[58%_center]
+             md:object-center
+             lg:object-[50%_30%]
+             xl:right-0
+             xl:left-auto
+             xl:w-[85%]
+             xl:object-[50%_30%]"
+      />
 
-        <p class="mx-auto font-semibold mt-4 max-w-2xl text-lg text-stone-950">
-          Personalized physical therapy services designed to help you move,
-          recover, and feel stronger.
-        </p>
+      <!-- XL transition into page background -->
+      <div
+        class="pointer-events-none absolute inset-y-0 hidden
+             xl:block
+             xl:left-[15%]
+             xl:w-56
+             xl:-translate-x-1/2
+             xl:bg-linear-to-r
+             xl:from-gray-100
+             xl:via-gray-100/90
+             xl:to-transparent"
+      >
       </div>
 
-      <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
-        {
-          servicesArray.map((service) => (
-            <article
-              class="
-              flex flex-col items-center gap-6 rounded-3xl  p-6
-              text-center  transition
-              hover:-translate-y-1 hover:shadow-xl
-              md:flex-row md:text-left
-            "
-            >
-              <div class="relative size-72 shrink-0 overflow-hidden rounded-full">
-                <Image
-                  src={service.image}
-                  alt={service.name}
-                  width={640}
-                  height={427}
-                  class="h-full w-full object-cover"
-                  class:list={[service.position]}
-                />
+      <!-- Main left-side gradient -->
+      <div
+        class="pointer-events-none absolute inset-0
+             bg-linear-to-r
+             from-gray-100 from-0%
+             via-gray-100/90 via-42%
+             to-transparent to-75%
+             
+             md:via-38%
+             md:to-58%"
+      >
+      </div>
 
-                <div class="absolute inset-0 bg-black/35 backdrop-blur-[0.5px]" />
+      <!-- Text overlay -->
+      <div
+        class="absolute left-6 top-1/2 z-10
+             -translate-y-1/4
+             md:left-[8%]
+             md:top-1/3"
+      >
+        <h1
+          class="font-serif
+             text-deeper-teal
+               text-2xl leading-[0.95]
+               sm:text-4xl
+               md:text-6xl
+               lg:text-6xl"
+        >
+          Simple Pricing
+        </h1>
 
-                <div class="absolute inset-0 flex items-center justify-center p-5">
-                  <h3
-                    class="
-                    font-cabin text-center text-xl font-semibold tracking-wider
-                     text-white drop-shadow-lg
-                  "
-                  >
-                    {service.name}
-                  </h3>
-                </div>
-              </div>
-
-              <div>
-                <p class=" leading-relaxed text-stone-950 ">
-                  {service.description}
-                </p>
-
-                <a
-                  href={`/services/${service.name
-                    .toLowerCase()
-                    .replaceAll(' ', '-')
-                    .replaceAll('&', 'and')}`}
-                  class="
-                  mt-5 inline-flex items-center font-semibold
-                  text-deeper-teal transition hover:underline
-                "
-                >
-                  Learn more
-                  <span aria-hidden="true" class="ml-2">
-                    →
-                  </span>
-                </a>
-              </div>
-            </article>
-          ))
-        }
+        <p
+          class="mt-3 font-serif text-lg italic leading-snug text-cyan-800
+               sm:text-xl
+               md:text-2xl
+               lg:text-5xl"
+        >
+          Meaningful Care
+        </p>
+        <div class="mt-5 h-px w-12 bg-deeper-teal"></div>
+        <p
+          class="mt-12 text-stone-950 text-xs lg:text-lg w-36 md:w-96 md:leading-8"
+        >
+          One-on-one physical therapy that comes to you—<br />so you can get
+          better without putting your life on hold.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- <div class="flex flex-col gap-6 max-w-xl lg:max-w-6xl mx-auto mb-48">
-    {
-      await Promise.all(
-        services.map(async (service) => {
-          let optimizedSrc: string | undefined = undefined;
+  <section class="bg-ivory px-6 py-12 md:py-12">
+  <div class="mx-auto max-w-6xl">
 
-          // If the service has an image, extract the optimized src URL string
-          if (service.data.image) {
-            const optimized = await getImage({
-              src: service.data.image,
-              width: 600,
-              height: 400,
-            });
-            optimizedSrc = optimized.src;
-          }
+    <div class="mb-4 text-center">
+      <p
+        class="mb-2 text-xs font-semibold uppercase tracking-[0.15em]
+               text-deeper-teal"
+      >
+        Invest in your health
+      </p>
+
+      <h2
+        class="font-serif text-2xl font-normal text-deeper-teal
+               md:text-3xl"
+      >
+        Choose the care that fits your goals.
+      </h2>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((service) => {
+          const Icon = service.icon;
 
           return (
-            <ServiceCard
-              client:only="react"
-              name={service.data.name}
-              duration={service.data.duration}
-              description={service.data.description}
-              pricing={service.data.pricing}
-              calLink={service.data.calLink}
-              optimizedImageSrc={optimizedSrc}
+            <article
+              class="relative overflow-visible rounded-lg"
             >
+
+
+              <!-- Card -->
               <div
-                slot="fallback"
-                class="card md:card-side bg-base-100 shadow-xl overflow-hidden animate-pulse border border-base-200"
+                class="relative h-full min-h-110 overflow-hidden
+                       rounded-lg"
               >
-                <div class="h-48 md:h-auto md:w-2/5 min-w-[200px] shrink-0 bg-base-300 min-h-[192px]" />
-                <div class="card-body p-6 flex flex-col justify-between w-full">
-                  <div>
-                    <div class="flex flex-wrap justify-between items-start gap-2 mb-4">
-                      <div class="h-7 bg-base-300 rounded w-1/2" />
-                      <div class="h-6 bg-base-200 rounded w-16" />
-                    </div>
-                    <div class="h-4 bg-base-200 rounded w-full mb-2" />
-                    <div class="h-4 bg-base-200 rounded w-5/6" />
+                <!-- Background -->
+                <img
+                  src={service.image.src}
+                  alt=""
+                  class="absolute inset-0 h-full w-full object-cover
+                         transition duration-500
+                         group-hover:scale-[1.03]"
+                />
+
+                <!-- Overlay -->
+              <div
+              class="absolute inset-0
+         bg-linear-to-b
+         from-[#294554]/75
+         via-[#19394A]/80
+         to-black/80"
+          ></div>
+
+                <div
+                  class="relative z-10 flex h-full min-h-110
+                         flex-col items-center px-7 py-8
+                         text-center text-white"
+                >
+                  <div
+                    class="mb-5 flex size-24 items-center
+                           justify-center rounded-full
+                           border border-white/70"
+                  >
+                    <Icon
+                      width={36}
+                      height={36}
+                      strokeWidth={1.5}
+                      {...service.iconProps}
+                    />
                   </div>
-                  <div class="card-actions justify-between items-center mt-6 border-t border-base-200 pt-4">
-                    <div class="h-8 bg-base-300 rounded w-20" />
-                    <div class="h-10 bg-base-300 rounded-lg w-28" />
+
+                  <h3
+                    class="text-xs font-medium uppercase
+                           tracking-[0.14em]"
+                  >
+                    {service.name}
+                  </h3>
+
+  
+
+                  <p
+                    class="mt-2 text-[10px] font-semibold
+                           uppercase tracking-[0.12em]"
+                  >
+                    {service.duration}
+                  </p>
+
+                  <p
+                    class="mt-5 max-w-64 
+                           leading-6 text-white/90"
+                  >
+                    {service.description}
+                  </p>
+
+                  <div class="mt-auto w-full pt-6">
+                    <div class="mb-5 h-px bg-white/40" />
+
+                    <a
+                      href='#'
+                      class="inline-flex items-center gap-3
+                             text-xs font-semibold uppercase
+                             tracking-[0.14em]
+                             transition-all
+                             hover:gap-5"
+                    >
+                      Learn More
+                      <span aria-hidden="true">→</span>
+                    </a>
                   </div>
                 </div>
               </div>
-            </ServiceCard>
+            </article>
           );
-        }),
-      )
-    }
-  </div> -->
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<section class="bg-sky-alt-bg py-12" >
+  <header class="mb-12 text-center">
+      <p class="text-xs font-semibold uppercase tracking-widest text-deeper-teal">
+        How It Works
+      </p>
+
+      <h2 class="mt-2 font-serif text-2xl text-deeper-teal md:text-3xl">
+        Expert care, made simple.
+      </h2>
+    </header>
+<div class="px-2 mx-auto max-w-7xl  grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] ">
+  {
+    howItWorksSteps.map((step, index) => {
+      const Icon = step.Icon;
+
+      return (
+        <>
+<div class="flex min-w-0 flex-col items-center text-center">
+
+  <!-- Number + Icon -->
+<div class="flex justify-center md:grid w-full md:grid-cols-[1fr_auto_1fr] md:items-start">
+  <span class="hidden md:flex size-8 items-center justify-center
+           rounded-full border border-deeper-teal/80
+           text-xs font-semibold bg-deeper-teal/80 text-white"
+    >
+    {step.id}
+  </span>
+
+  <Icon
+    strokeWidth={1.25}
+    className="text-deeper-teal size-10 md:size-12"
+  />
+
+  <span></span>
+</div>
+
+  <h3
+    class="mt-4 text-xs md:text-sm font-semibold uppercase
+           tracking-wide text-stone-950"
+  >
+    {step.title}
+  </h3>
+
+  <p class="mt-3 text-stone-950 hidden max-w-52 text-xs md:text-sm leading-6 md:block">
+    {step.description}
+  </p>
+
+</div>
+
+          <!-- Arrow between steps -->
+          {index < howItWorksSteps.length - 1 && (
+            <div class="flex justify-center h-20 items-center px-1 sm:px-3 md:px-6">
+              <ChevronRight
+                
+                strokeWidth={1.25}
+                className="text-deeper-teal/80 size-8 md:size-12"
+              />
+            </div>
+          )}
+        </>
+      );
+    })
+  }
+</div>
+    <div
+    class="mx-auto w-1/3   mt-16
+           border-t border-deeper-teal/40"
+  ></div>
+<div
+    class="mx-auto grid w-full max-w-7xl gap-12
+           md:grid-cols-2 md:gap-0 px-6 py-12 md:py-20"
+  >
+
+    <!-- Payment -->
+    <div class="md:pr-12 lg:pr-16">
+      <div class="mb-6 flex items-center justify-center md:justify-start gap-3 ">
+        <CreditCard
+          strokeWidth={1.25}
+          className="size-8 text-deeper-teal"
+        />
+
+        <h2 class=" font-raleway text-2xl font-semibold text-deeper-teal">
+          Payment
+        </h2>
+      </div>
+
+      <p class="max-w-xl leading-relaxed text-stone-800">
+        Payment is due at the time of service. We accept:
+      </p>
+
+      <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
+        <div class="flex items-center gap-2">
+          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
+          <span>Credit cards</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
+          <span>Debit cards</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
+          <span>HSA / FSA</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
+          <span>Cash</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Insurance -->
+    <div
+      class="border-t border-deeper-teal/20 pt-10
+             md:border-t-0 md:border-l md:pt-0 md:pl-12
+             lg:pl-16"
+    >
+      <div class="mb-6 flex items-center justify-center md:justify-start gap-3">
+        <ReceiptText
+          strokeWidth={1.25}
+          className="size-8 text-deeper-teal"
+        />
+
+        <h2 class="font-raleway text-2xl font-semibold text-deeper-teal">
+          Insurance & Superbills
+        </h2>
+      </div>
+
+      <p class="max-w-xl leading-relaxed text-stone-800">
+        MVMNT Matters is a cash-based practice and does not bill insurance
+        directly.
+      </p>
+
+      <p class="mt-4 max-w-xl leading-relaxed text-stone-800">
+        A superbill can be provided for you to submit to your insurance
+        company for possible out-of-network reimbursement.
+      </p>
+
+      <a
+        href="/contact"
+        class="mt-6 inline-flex items-center font-semibold
+               text-deeper-teal uppercase"
+      >
+        Learn more about Superbills
+        <MoveRight className='ml-2' />
+      </a>
+    </div>
+  </div>
+
+</section>
 </BaseLayout>
+
+<!-- <section class="bg-sand-bg px-5 py-16 md:px-10">
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-12 text-center">
+      <h2 class="text-4xl tracking-widest text-deeper-teal">Our Services</h2>
+
+      <p class="mx-auto font-semibold mt-4 max-w-2xl text-lg text-stone-950">
+        Personalized physical therapy services designed to help you move,
+        recover, and feel stronger.
+      </p>
+    </div>
+
+    <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
+      {
+        servicesArray.map((service) => (
+          <article
+            class="
+            flex flex-col items-center gap-6 rounded-3xl  p-6
+            text-center  transition
+            hover:-translate-y-1 hover:shadow-xl
+            md:flex-row md:text-left
+          "
+          >
+            <div class="relative size-72 shrink-0 overflow-hidden rounded-full">
+              <Image
+                src={service.image}
+                alt={service.name}
+                width={640}
+                height={427}
+                class="h-full w-full object-cover"
+                class:list={[service.position]}
+              />
+
+              <div class="absolute inset-0 bg-black/35 backdrop-blur-[0.5px]" />
+
+              <div class="absolute inset-0 flex items-center justify-center p-5">
+                <h3
+                  class="
+                  font-cabin text-center text-xl font-semibold tracking-wider
+                   text-white drop-shadow-lg
+                "
+                >
+                  {service.name}
+                </h3>
+              </div>
+            </div>
+
+            <div>
+              <p class=" leading-relaxed text-stone-950 ">
+                {service.description}
+              </p>
+
+              <a
+                href={`/services/${service.name
+                  .toLowerCase()
+                  .replaceAll(' ', '-')
+                  .replaceAll('&', 'and')}`}
+                class="
+                mt-5 inline-flex items-center font-semibold
+                text-deeper-teal transition hover:underline
+              "
+              >
+                Learn more
+                <span aria-hidden="true" class="ml-2">
+                  →
+                </span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section> -->
