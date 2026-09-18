@@ -63,8 +63,9 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
 
       <!-- Text overlay -->
       <div
-        class="absolute left-6 top-1/2 z-10
+        class="absolute left-6 top-1/4 z-10
              -translate-y-1/4
+             
              md:left-[8%]
              md:top-1/3"
       >
@@ -89,7 +90,7 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
         </p>
         <div class="mt-5 h-px w-12 bg-deeper-teal"></div>
         <p
-          class="mt-12 text-stone-950 text-xs lg:text-lg w-36 md:w-96 md:leading-8"
+          class="mt-6 md:mt-12 text-stone-950 text-xs lg:text-lg w-36 md:w-96 md:leading-8"
         >
           One-on-one physical therapy that comes to you—<br />so you can get
           better without putting your life on hold.
@@ -98,19 +99,19 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
     </div>
   </section>
 
-  <section class="bg-ivory px-6 py-12 md:py-12">
+  <section class="bg-sky-alt-bg px-6 py-12 md:py-12">
   <div class="mx-auto max-w-6xl">
 
     <div class="mb-4 text-center">
       <p
-        class="mb-2 text-xs font-semibold uppercase tracking-[0.15em]
+        class="mb-2 text-xs md:text-sm font-semibold uppercase tracking-[0.15em]
                text-deeper-teal"
       >
         Invest in your health
       </p>
 
       <h2
-        class="font-serif text-2xl font-normal text-deeper-teal
+        class="font-serif text-2xl font-normal text-stone-950
                md:text-3xl"
       >
         Choose the care that fits your goals.
@@ -217,7 +218,7 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
   </div>
 </section>
 
-<section class="bg-sky-alt-bg py-12" >
+<section class="bg-sand-bg py-12" >
   <header class="mb-12 text-center">
       <p class="text-xs font-semibold uppercase tracking-widest text-deeper-teal">
         How It Works
@@ -247,14 +248,13 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
 
   <Icon
     strokeWidth={1.25}
-    className="text-deeper-teal size-10 md:size-12"
+    className="text-deeper-teal size-8 lg:size-12"
   />
 
-  <span></span>
 </div>
 
   <h3
-    class="mt-4 text-xs md:text-sm font-semibold uppercase
+    class="mt-4 h-8 lg:h-4 text-xs md:text-sm font-semibold uppercase
            tracking-wide text-stone-950"
   >
     {step.title}
@@ -292,40 +292,44 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
 
     <!-- Payment -->
     <div class="md:pr-12 lg:pr-16">
-      <div class="mb-6 flex items-center justify-center md:justify-start gap-3 ">
-        <CreditCard
-          strokeWidth={1.25}
-          className="size-8 text-deeper-teal"
-        />
+<div class="mb-6 flex items-start justify-center gap-3 md:justify-start">
+  <CreditCard
+    strokeWidth={1.25}
+    className="size-8 text-deeper-teal"
+  />
 
-        <h2 class=" font-raleway text-2xl font-semibold text-deeper-teal">
-          Payment
-        </h2>
-      </div>
+  <div>
+    <h2 class="font-raleway text-2xl font-semibold text-deeper-teal">
+      Payment
+    </h2>
+
+    <div class="mt-2 h-px w-8 bg-deeper-teal"></div>
+  </div>
+</div>
 
       <p class="max-w-xl leading-relaxed text-stone-800">
         Payment is due at the time of service. We accept:
       </p>
 
-      <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
+      <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 font-semibold text-deeper-teal">
         <div class="flex items-center gap-2">
-          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
+          <CircleCheck className="size-4 shrink-0 " />
           <span>Credit cards</span>
         </div>
 
         <div class="flex items-center gap-2">
-          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
+          <CircleCheck className="size-4 shrink-0 " />
           <span>Debit cards</span>
         </div>
 
         <div class="flex items-center gap-2">
-          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
+          <CircleCheck className="size-4 shrink-0 " />
           <span>HSA / FSA</span>
         </div>
 
         <div class="flex items-center gap-2">
-          <CircleCheck className="size-4 shrink-0 text-deeper-teal" />
-          <span>Cash</span>
+          <CircleCheck className="size-4 shrink-0 " />
+          <span class="">Cash</span>
         </div>
       </div>
     </div>
