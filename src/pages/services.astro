@@ -11,13 +11,13 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
 
 ---
 
-<BaseLayout title="Services" hasWave={false}>
+<BaseLayout title="work with me" hasWave={false}>
   <section class="relative overflow-hidden">
     <div
-      class="relative h-80 p-4
-           md:h-80
-           lg:h-155
-           xl:h-200"
+      class="relative h-110 p-4
+           md:h-130
+           lg:h-205
+           xl:h-225"
     >
       <Image
         src={HeroPic}
@@ -63,18 +63,17 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
 
       <!-- Text overlay -->
       <div
-        class="absolute left-6 top-1/4 z-10
+        class="absolute left-2 top-1/4 z-10
              -translate-y-1/4
-             
              md:left-[8%]
              md:top-1/3"
       >
         <h1
           class="font-serif
              text-deeper-teal
-               text-2xl leading-[0.95]
+               text-3xl leading-[0.95]
                sm:text-4xl
-               md:text-6xl
+               md:text-5xl
                lg:text-6xl"
         >
           Simple Pricing
@@ -90,9 +89,9 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
         </p>
         <div class="mt-5 h-px w-12 bg-deeper-teal"></div>
         <p
-          class="mt-6 md:mt-12 text-stone-950 text-xs lg:text-lg w-36 md:w-96 md:leading-8"
+          class="mt-6 md:mt-12 max-w-1/2 text-stone-950 text-xs md:text-lg leading-6 md:leading-8"
         >
-          One-on-one physical therapy that comes to you—<br />so you can get
+          One-on-one physical therapy that comes to you—so you can get
           better without putting your life on hold.
         </p>
       </div>
@@ -361,14 +360,6 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
         company for possible out-of-network reimbursement.
       </p>
 
-      <a
-        href="/contact"
-        class="mt-6 inline-flex items-center font-semibold
-               text-deeper-teal uppercase"
-      >
-        Learn more about Superbills
-        <MoveRight className='ml-2' />
-      </a>
     </div>
   </div>
 

@@ -1,91 +1,94 @@
----
-import { Mail, Phone } from 'lucide-react';
-import BaseLayout from '../layouts/BaseLayout.astro';
-const contactEmail = 'elie@mvmntmatterspt.com';
-const contactPhone = '303-555-1234';
----
-
-<BaseLayout hasWave={false} title="let's connect">
-  <section
-    class="relative overflow-hidden md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8"
+<!-- <section
+    class="relative overflow-hidden bg-sand-bg md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8"
   >
+    <div
+      class="pointer-events-none absolute inset-0 -z-10 bg-white md:bg-[radial-gradient(circle_at_center,rgba(163,230,53,0.18),transparent_55%)]"
+    >
+    </div>
+
     <div
       class="mx-auto grid w-full max-w-7xl overflow-hidden lg:rounded-2xl
       shadow-2xl lg:grid-cols-[0.95fr_1.05fr]"
     >
-      <!-- Left panel -->
       <div
-        class="relative flex flex-col justify-center bg-sand-bg px-8 py-12 text-neutral-content sm:px-12 lg:px-16 lg:py-20"
+        class="relative flex flex-col justify-center bg-deeper-teal px-8 py-12 text-neutral-content sm:px-12 lg:px-16 lg:py-20"
       >
+        <div
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(125,211,252,0.30),transparent_50%)]"
+        >
+        </div>
+
         <div class="relative max-w-lg">
           <p
-            class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-deeper-teal"
+            class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-light-blue"
           >
             Contact Dr. Elie
           </p>
 
           <h2
-            class="max-w-md text-stone-950 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl"
+            class="max-w-md text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl"
           >
             Let's Connect
           </h2>
 
-          <p class="mt-6 max-w-md text-base leading-relaxed text-stone-800">
+          <p
+            class="mt-6 max-w-md text-base leading-relaxed text-neutral-content/70"
+          >
             Complete the form and I will respond as soon as possible.
           </p>
 
           <ul class="mt-10 space-y-5">
             <li class="flex items-start gap-4">
               <span
-                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-deeper-teal text-sm font-bold text-white"
+                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-light-blue text-sm font-bold text-neutral"
                 aria-hidden="true"
               >
                 ✓
               </span>
 
-              <span class="text-stone-950">
+              <span class="text-neutral-content/85">
                 Expect a response within one business day.
               </span>
             </li>
 
             <li class="flex items-start gap-4">
               <span
-                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-deeper-teal text-white text-sm font-bold"
+                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-light-blue text-sm font-bold text-neutral"
                 aria-hidden="true"
               >
                 ✓
               </span>
 
-              <span class="text-stone-950">
+              <span class="text-neutral-content/85">
                 Your information will remain private.
               </span>
             </li>
 
             <li class="flex items-start gap-4">
               <span
-                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-deeper-teal text-white text-sm font-bold"
+                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-light-blue text-sm font-bold text-neutral"
                 aria-hidden="true"
               >
                 ✓
               </span>
 
-              <span class="text-stone-950">
+              <span class="text-neutral-content/85">
                 We are happy to answer any initial questions.
               </span>
             </li>
           </ul>
 
           <div class="mt-10 flex flex-col">
-            <p class="text-sm text-deeper-teal font-semibold">
+            <p class="text-sm text-neutral-content/60">
               Feel free to also contact me at:
             </p>
 
-            <div class="flex items-center gap-2 mt-2 text-stone-950">
+            <div class="flex items-center gap-2 mt-2">
               <a
                 href={`mailto:${contactEmail}`}
                 class="flex items-center gap-2 font-medium transition hover:text-light-blue"
               >
-                <Mail className=" size-4 shrink-0" strokeWidth={1.5} />
+                <Mail className="size-4 shrink-0" strokeWidth={1.5} />
                 <span>{contactEmail}</span>
               </a>
               <span class="h-4 w-px bg-white/30" aria-hidden="true"></span>
@@ -101,7 +104,6 @@ const contactPhone = '303-555-1234';
         </div>
       </div>
 
-      <!-- Form panel -->
       <div class="bg-sky-alt-bg px-5 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
         <form
           name="contact"
@@ -110,7 +112,6 @@ const contactPhone = '303-555-1234';
           class="rounded-2xl p-6 sm:p-8"
         >
           <div class="grid gap-6 sm:grid-cols-2">
-            <!-- First name -->
             <label class="form-control w-full">
               <span class="mb-2 text-sm font-medium">First name</span>
 
@@ -134,7 +135,6 @@ const contactPhone = '303-555-1234';
               />
             </div>
 
-            <!-- Last name -->
             <label class="form-control w-full">
               <span class="mb-2 text-sm font-medium">Last name</span>
 
@@ -148,7 +148,6 @@ const contactPhone = '303-555-1234';
               />
             </label>
 
-            <!-- Email -->
             <label class="form-control w-full sm:col-span-2">
               <span class="mb-2 text-sm font-medium">Email</span>
 
@@ -162,7 +161,6 @@ const contactPhone = '303-555-1234';
               />
             </label>
 
-            <!-- Subject -->
             <label class="form-control w-full sm:col-span-2">
               <span class="mb-2 text-sm font-medium">Subject</span>
 
@@ -175,7 +173,6 @@ const contactPhone = '303-555-1234';
               />
             </label>
 
-            <!-- Message -->
             <label class="form-control w-full sm:col-span-2">
               <span class="mb-2 text-sm font-medium">Message</span>
 
@@ -217,32 +214,4 @@ const contactPhone = '303-555-1234';
         </form>
       </div>
     </div>
-  </section>
-</BaseLayout>
-
-<script>
-  const form = document.querySelector<HTMLFormElement>('#contact-form');
-
-  form?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const data = Object.fromEntries(new FormData(form));
-
-    console.log(data);
-
-    const response = await fetch('/.netlify/functions/test', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      console.error('Message could not be sent');
-      return;
-    }
-
-    form.reset();
-  });
-</script>
+  </section> -->

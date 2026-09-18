@@ -25,18 +25,18 @@ export const services: Service[] = [
     description: `
       A comprehensive one-on-one assessment to understand your goals, identify what's 
       limiting your movement, and create a personalized plan to help you move and feel
-      your best.
+      your best
     `,
     image: Evaluation,
     position: "object-[40%_50%]",
-    duration: "60 minutes",
+    duration: "75 minutes",
     icon: ClipboardList,
   },
   {
     name: "Follow-Up Visit",
     description: `
       Personalized one-on-one treatment focused on progressing your recovery, building
-      strength and mobility, and helping you return confidently to the activities you love.
+      strength and mobility, and helping you return confidently to the activities you love
     `,
     image: FollowUpVisit,
     position: "object-[50%_50%]",
@@ -47,11 +47,11 @@ export const services: Service[] = [
     name: "Virtual Follow Up Visit",
     description: `
       Convenient one-on-one care from wherever you are, with individualized exercise
-      progression, movement coaching, and guidance to keep your progress on track.
+      progression, movement coaching, and guidance to keep your progress on track
     `,
     image: OnlineCoaching,
     position: "object-[50%_50%]",
-    duration: "60 minutes",
+    duration: "30 minutes",
     icon: Monitor,
   },
   {
@@ -63,7 +63,7 @@ export const services: Service[] = [
     `,
     image: GolfImage,
     position: "object-[20%_50%]",
-    duration: "60 minutes",
+    duration: "90 minutes",
     icon: GolfSwing,
     iconProps: {
       width: 72,
@@ -77,7 +77,7 @@ export const services: Service[] = [
         or durability`,
     image: TennisImage,
     position: "object-[30%_5%]",
-    duration: "60 minutes",
+    duration: "90 minutes",
     icon: TennisSwing,
     iconProps: {
       width: 64,
