@@ -1,0 +1,86 @@
+---
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const faqs = await getCollection('faqs');
+const categories = [
+  {
+    label: 'Getting Started',
+    value: 'getting-started',
+  },
+  {
+    label: 'Payment & Insurance',
+    value: 'payment-insurance',
+  },
+  {
+    label: 'Appointments & Treatment',
+    value: 'appointments-treatment',
+  },
+];
+
+const groupedFaqs = categories.map((category) => ({
+  ...category,
+
+  faqs: faqs
+    .filter((faq) => faq.data.category === category.value)
+    .sort((a, b) => a.data.order - b.data.order),
+}));
+---
+
+<BaseLayout title="faq" hasWave={false}>
+  <div class="bg-sand-bg">
+    <section class="mx-auto max-w-4xl px-6 py-16">
+      <h1 class="mb-10 text-center text-3xl font-semibold text-stone-950">
+        Frequently Asked Questions
+      </h1>
+
+      {
+        groupedFaqs.map((group) => (
+          <div class="mb-12">
+            <h2 class="mb-2 text-xl font-semibold text-deeper-teal ">
+              {group.label}
+            </h2>
+            <div class="mt-2 h-px w-12 bg-" />
+
+            <div class="space-y-3">
+              {group.faqs.map((faq) => (
+                <details class="group text-sm md:text-lg collapse border-b border-deeper-teal/40">
+                  <summary class=" collapse-title flex cursor-pointer items-center justify-between text-stone-800 ">
+                    <span>{faq.data.question}</span>
+
+                    <ChevronRight
+                      className="size-5 shrink-0 transition-transform duration-300 group-open:rotate-90"
+                      strokeWidth={1.5}
+                    />
+                  </summary>
+
+                  <div class="collapse-content">
+                    <p class="text-base leading-relaxed">{faq.data.answer}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      block-size 300ms ease,
+      opacity 200ms ease,
+      content-visibility 300ms allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+</style>

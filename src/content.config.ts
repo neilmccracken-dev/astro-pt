@@ -1,12 +1,12 @@
-import { defineCollection } from 'astro:content';
-import { z } from 'astro/zod';
-import { glob } from 'astro/loaders'; // Built-in Astro loader system
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders"; // Built-in Astro loader system
 
 const blog = defineCollection({
   // Tells Astro where to hunt for Keystatic's saved blog files
   loader: glob({
-    pattern: '**/[^_]*.{md,mdx,mdoc}',
-    base: './src/content/blog',
+    pattern: "**/[^_]*.{md,mdx,mdoc}",
+    base: "./src/content/blog",
   }),
   schema: z.object({
     title: z.string(),
@@ -17,7 +17,7 @@ const blog = defineCollection({
 });
 
 const services = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/services' }),
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/services" }),
   schema: ({ image }) =>
     z.object({
       name: z.string(),
@@ -28,8 +28,28 @@ const services = defineCollection({
       image: image().optional(),
     }),
 });
+const faqs = defineCollection({
+  loader: glob({
+    pattern: "**/*.yaml",
+    base: "./src/content/faqs",
+  }),
+
+  schema: () =>
+    z.object({
+      question: z.string(),
+      answer: z.string(),
+
+      category: z.enum([
+        "getting-started",
+        "payment-insurance",
+        "appointments-treatment",
+      ]),
+
+      order: z.number(),
+    }),
+});
 const testimonials = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/testimonials' }),
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/testimonials" }),
   schema: () =>
     z.object({
       name: z.string(),
@@ -39,4 +59,4 @@ const testimonials = defineCollection({
     }),
 });
 
-export const collections = { blog, services, testimonials };
+export const collections = { blog, services, testimonials, faqs };

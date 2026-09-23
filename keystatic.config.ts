@@ -1,66 +1,107 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection } from "@keystatic/core";
 
 const useGitHubStorage = import.meta.env.PROD;
-console.log('KEYSTATIC STORAGE:', useGitHubStorage ? 'GITHUB' : 'LOCAL');
+console.log("KEYSTATIC STORAGE:", useGitHubStorage ? "GITHUB" : "LOCAL");
 
 // console.log('APP SLUG:', process.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG);
 export default config({
   storage: useGitHubStorage
     ? {
-        kind: 'github',
+        kind: "github",
         repo: {
-          owner: 'neilmccracken-dev',
-          name: 'astro-pt',
+          owner: "neilmccracken-dev",
+          name: "astro-pt",
         },
       }
     : {
-        kind: 'local',
+        kind: "local",
       },
   collections: {
     posts: collection({
-      label: 'Blog Posts',
-      slugField: 'title',
-      path: 'src/content/blog/*',
-      format: { contentField: 'content' },
+      label: "Blog Posts",
+      slugField: "title",
+      path: "src/content/blog/*",
+      format: { contentField: "content" },
       schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        description: fields.text({ label: 'Short Description' }),
-        content: fields.markdoc({ label: 'Content' }),
+        title: fields.slug({ name: { label: "Title" } }),
+        description: fields.text({ label: "Short Description" }),
+        content: fields.markdoc({ label: "Content" }),
+      },
+    }),
+    faqs: collection({
+      label: "FAQs",
+      slugField: "question",
+      path: "src/content/faqs/*",
+      format: { data: "yaml" },
+
+      schema: {
+        question: fields.slug({
+          name: { label: "Question" },
+        }),
+
+        answer: fields.text({
+          label: "Answer",
+          multiline: true,
+        }),
+
+        category: fields.select({
+          label: "Category",
+          options: [
+            {
+              label: "Getting Started",
+              value: "getting-started",
+            },
+            {
+              label: "Payment & Insurance",
+              value: "payment-insurance",
+            },
+            {
+              label: "Appointments & Treatment",
+              value: "appointments-treatment",
+            },
+          ],
+          defaultValue: "getting-started",
+        }),
+
+        order: fields.integer({
+          label: "Display Order",
+          defaultValue: 1,
+        }),
       },
     }),
     services: collection({
-      label: 'Services',
-      slugField: 'name',
-      path: 'src/content/services/*/',
-      format: { data: 'yaml' },
+      label: "Services",
+      slugField: "name",
+      path: "src/content/services/*/",
+      format: { data: "yaml" },
 
       schema: {
-        name: fields.slug({ name: { label: 'Service Name' } }),
-        duration: fields.number({ label: 'Duration (minutes)' }),
-        pricing: fields.number({ label: 'Price ($)' }),
-        description: fields.text({ label: 'Description', multiline: true }),
-        calLink: fields.text({ label: 'Calendar Link' }),
+        name: fields.slug({ name: { label: "Service Name" } }),
+        duration: fields.number({ label: "Duration (minutes)" }),
+        pricing: fields.number({ label: "Price ($)" }),
+        description: fields.text({ label: "Description", multiline: true }),
+        calLink: fields.text({ label: "Calendar Link" }),
         image: fields.image({
-          label: 'Service Image',
+          label: "Service Image",
           // The text string path Keystatic writes into the YAML file:
           validation: { isRequired: false },
         }),
       },
     }),
     testimonials: collection({
-      label: 'Testimonials',
-      slugField: 'name',
-      path: 'src/content/testimonials/*',
-      format: { data: 'yaml' },
+      label: "Testimonials",
+      slugField: "name",
+      path: "src/content/testimonials/*",
+      format: { data: "yaml" },
 
       schema: {
-        name: fields.slug({ name: { label: 'Person Name' } }),
-        relationship: fields.text({ label: 'Relationship' }),
+        name: fields.slug({ name: { label: "Person Name" } }),
+        relationship: fields.text({ label: "Relationship" }),
         headline: fields.text({
-          label: 'Headline',
+          label: "Headline",
           validation: { isRequired: false },
         }),
-        review: fields.text({ label: 'Review', multiline: true }),
+        review: fields.text({ label: "Review", multiline: true }),
       },
     }),
   },
