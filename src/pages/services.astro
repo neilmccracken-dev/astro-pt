@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import HeroPic from '@assets/images/services/hero.jpg';
 import {services} from '../data/services'
 import {howItWorksSteps} from '../data/howItWorks'
-import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } from 'lucide-react';
+import { ChevronRight, CreditCard, ReceiptText,CircleCheck } from 'lucide-react';
 
 
 ---
@@ -196,7 +196,7 @@ import { ChevronRight, CreditCard, ReceiptText, Check,MoveRight,CircleCheck } fr
                     <div class="mb-5 h-px bg-white/40" />
 
                     <a
-                      href='#'
+                      href={`${import.meta.env.BASE_URL}contact`}
                       class="inline-flex items-center gap-3
                              text-xs font-semibold uppercase
                              tracking-[0.14em]

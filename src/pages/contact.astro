@@ -80,7 +80,9 @@ const contactPhone = '303-555-1234';
               Feel free to also contact me at:
             </p>
 
-            <div class="flex items-center gap-2 mt-2 text-stone-950">
+            <div
+              class="flex flex-col items-start md:flex-row gap-2 mt-2 text-stone-950"
+            >
               <a
                 href={`mailto:${contactEmail}`}
                 class="flex items-center gap-2 font-medium transition hover:text-light-blue"
@@ -88,7 +90,7 @@ const contactPhone = '303-555-1234';
                 <Mail className=" size-4 shrink-0" strokeWidth={1.5} />
                 <span>{contactEmail}</span>
               </a>
-              <span class="h-4 w-px bg-white/30" aria-hidden="true"></span>
+              <!-- <span class="h-4 w-px bg-white/30" aria-hidden="true"></span> -->
               <a
                 href="tel:303-555-1234"
                 class="flex items-center gap-2 font-medium transition hover:text-light-blue"

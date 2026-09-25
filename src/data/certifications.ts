@@ -24,7 +24,7 @@ export const certifications: Certification[] = [
     name: "Orthopedic Clinical Specialist",
     icon: Star,
     description:
-      "The highest level of clinical education in orthopedic physical therapy",
+      "The highest certification level for orthopedic physical therapy",
   },
   {
     short: "TPI 3",
