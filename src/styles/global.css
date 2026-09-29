@@ -130,6 +130,26 @@
   }
 }
 
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility text-reveal {
+  animation: textReveal 1s cubic-bezier(0.25, 1, 0.5, 1) 0.25s both;
+}
+
+@utility text-reveal-late {
+  animation: textReveal 1s cubic-bezier(0.25, 1, 0.5, 1) 0.7s both;
+}
+
 @layer utilities {
   @keyframes fadeIn {
     from {

@@ -1,17 +1,51 @@
 ---
-import { Image } from 'astro:assets';
-import MvmntLogo from '../assets/images/MVMNT-logo-hotizontal2-dark.svg';
 import MvmntLogo2 from '../assets/images/mvmnt-logo-horizontal2-color.svg';
-import MvmntLogo3 from '../assets/images/mvmnt-logo-horizontal-color.svg';
-import ThemeToggle from './ThemeToggle.astro';
-import NavbarThemeWrapper from './ThemeSelector';
 import {
-  Activity,
-  CircleHelp,
   House,
-  MessageCircle,
   UserRound,
+  HeartPulse,
+  Mail,
+  CircleHelp,
+  Activity,
 } from 'lucide-react';
+
+const currentPath = Astro.url.pathname;
+const contactHref = `${import.meta.env.BASE_URL}contact`;
+
+const isContactActive =
+  currentPath.replace(/\/$/, '') === contactHref.replace(/\/$/, '');
+const menuItems = [
+  {
+    label: 'Start here',
+    href: '',
+    icon: House,
+    desktop: true,
+  },
+  {
+    label: 'Meet your PT',
+    href: 'about',
+    icon: UserRound,
+    desktop: true,
+  },
+  {
+    label: 'Work with me',
+    href: 'services',
+    icon: Activity,
+    desktop: true,
+  },
+  {
+    label: "Let's connect",
+    href: 'contact',
+    icon: Mail,
+    desktop: false,
+  },
+  {
+    label: 'FAQ',
+    href: 'faq',
+    icon: CircleHelp,
+    desktop: true,
+  },
+];
 ---
 
 <header class=`navbar w-full shadow-md transition-colors duration-30 bg-white`>
@@ -23,25 +57,39 @@ import {
         </div>
       </a>
     </div>
+
     <div class="lg:flex items-center gap-6 hidden text-stone-950 text-lg">
-      <a
-        href={`${import.meta.env.BASE_URL}about`}
-        class="link link-hover font-cabin tracking-wider">About</a
-      >
-      <a
-        href={`${import.meta.env.BASE_URL}services`}
-        class="link link-hover font-montserrat tracking-wider">Services</a
-      >
+      {
+        menuItems
+          .filter((item) => item.desktop)
+          .map((item) => {
+            const href = `${import.meta.env.BASE_URL}${item.href}`;
+            const isActive =
+              currentPath.replace(/\/$/, '') === href.replace(/\/$/, '');
+
+            return (
+              <a
+                href={href}
+                class:list={[
+                  isActive &&
+                    'underline text-deeper-teal decoration-2 underline-offset-4 decoration-sky-alt font-semibold ',
+                  '  font-cabin tracking-wider transition-all duration-150 ease-in-out ',
+                ]}
+              >
+                {item.label}
+              </a>
+            );
+          })
+      }
 
       <a
-        href={`${import.meta.env.BASE_URL}faq`}
-        class="link link-hover font-montserrat tracking-wider">FAQ</a
-      >
-
-      <a
-        href={`${import.meta.env.BASE_URL}contact`}
-        class="btn bg-deeper-teal rounded-2xl shadow-2xl px-6 text-white font-semibold"
-        >CONTACT US</a
+        href={contactHref}
+        class:list={[
+          'btn bg-deeper-teal rounded-2xl shadow-2xl px-6 text-white font-semibold',
+          isContactActive &&
+            'underline text-deeper-teal decoration-2 underline-offset-4 decoration-sky-alt font-semibold',
+        ]}
+        class="">CONTACT US</a
       >
     </div>
     <div class="drawer drawer-end ml-auto flex justify-end lg:hidden">
@@ -79,61 +127,36 @@ import {
           <ul
             class="menu w-full gap-1 p-0 text-lg
                      [&>li:not(:last-child)]:border-b
-         [&>li:not(:last-child)]:border-stone-900/10"
+                   [&>li:not(:last-child)]:border-stone-900/10"
           >
-            <li>
-              <a href={`${import.meta.env.BASE_URL}`}>
-                <House className="size-4 text-deeper-teal" strokeWidth={1.5} />
-                <span>start here</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${import.meta.env.BASE_URL}about`}>
-                <UserRound
-                  className="size-4 text-deeper-teal"
-                  strokeWidth={1.5}
-                />
-                <span>meet your PT</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${import.meta.env.BASE_URL}services`}>
-                <Activity
-                  className="size-4 text-deeper-teal"
-                  strokeWidth={1.5}
-                />
-                <span>work with me</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${import.meta.env.BASE_URL}contact`}>
-                <MessageCircle
-                  className="size-4 text-deeper-teal"
-                  strokeWidth={1.5}
-                />
-                <span>let's connect</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${import.meta.env.BASE_URL}faq`}>
-                <CircleHelp
-                  className="size-4 text-deeper-teal"
-                  strokeWidth={1.5}
-                />
-                <span>FAQs</span>
-              </a>
-            </li>
+            {
+              menuItems.map((item) => {
+                const Icon = item.icon;
+                const href = `${import.meta.env.BASE_URL}${item.href}`;
+                const isActive =
+                  currentPath.replace(/\/$/, '') === href.replace(/\/$/, '');
+                return (
+                  <li>
+                    <a
+                      href={href}
+                      class:list={[
+                        isActive &&
+                          'underline text-deeper-teal decoration-2 underline-offset-4 decoration-sky-alt font-semibold',
+                        `flex w-full items-center rounded-md px-3 py-2 transition-all duration-150 ease-in-out
+                            active:scale-[0.98] active:bg-sky-700 active:text-white`,
+                      ]}
+                    >
+                      <Icon className="size-4 shrink-0" strokeWidth={1.5} />
+
+                      <span>{item.label}</span>
+                    </a>
+                  </li>
+                );
+              })
+            }
           </ul>
         </div>
       </div>
     </div>
   </nav>
 </header>
-
-<style>
-  @reference "tailwindcss";
-  .menu a {
-    @apply transition-all duration-150 ease-in-out flex w-full items-center px-3 py-2 rounded-md;
-    @apply active:bg-sky-700 active:text-white active:scale-[0.98];
-  }
-</style>
