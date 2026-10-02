@@ -206,14 +206,17 @@ const bgSizesAttribute = `
       </div>
     </div>
 
-    <section class="[background:var(--mission-bg)]">
+    <section
+      class="[background:var(--mission-bg)] overflow-x-clip"
+      id="mission-section"
+    >
       <div
         class="mx-auto grid max-w-7xl grid-cols-1 px-6 py-12 place-items-center
-           md:grid-cols-2 md:px-12 md:py-16 md:overflow-auto
+           md:grid-cols-2 md:px-12 md:py-16
            lg:px-16 h-128"
       >
         <!-- Left -->
-        <div class="md:pr-12 lg:pr-16">
+        <div class="md:pr-12 lg:pr-16 reveal-left">
           <p
             class="text-sm md:text-base uppercase tracking-[0.12em]
                text-stone-950"
@@ -250,7 +253,7 @@ const bgSizesAttribute = `
 
         <!-- Right -->
         <div
-          class="mt-10 border-t border-(--mission-body,deeper-teal) pt-10
+          class="reveal-right mt-10 border-t border-(--mission-body,deeper-teal) pt-10
              md:mt-0 md:border-l md:border-t-0 text-sm
              md:pl-12 md:pt-0
              lg:pl-16"
@@ -277,7 +280,7 @@ const bgSizesAttribute = `
     </section>
 
     <div
-      class="grid place-items-center bg-(--choose-us-bg) p-6 md:p-8 min-h-128"
+      class="reveal-fade grid place-items-center bg-(--choose-us-bg) p-6 md:p-8 min-h-128"
     >
       <div class="mx-auto mt-8 sm:mt-0 w-full md:max-w-7xl">
         <div class="mb-12 text-center max-w-x">
@@ -346,7 +349,7 @@ const bgSizesAttribute = `
       </div>
     </div>
 
-    <section class="[background:var(--we-treat-bg)]">
+    <section class="[background:var(--we-treat-bg)] reveal-fade">
       <div
         class="mx-auto grid max-w-7xl grid-cols-1 items-center
            px-6 py-12
@@ -566,52 +569,55 @@ const bgSizesAttribute = `
       });
     });
 
-  function setupMissionObserver() {
-    const section = document.getElementById('mission-section');
+  // function setupMissionObserver() {
+  //   const section = document.getElementById('mission-section');
 
-    if (!section) return;
+  //   if (!section) {
+  //     console.log('no section');
+  //     return;
+  //   }
 
-    const animatedElements = section.querySelectorAll(
-      '.reveal-left, .reveal-right',
-    );
+  //   const animatedElements = section.querySelectorAll(
+  //     '.reveal-left, .reveal-right',
+  //   );
 
-    if (!animatedElements.length) return;
+  //   if (!animatedElements.length) return;
 
-    const desktop = window.matchMedia('(min-width: 768px)');
+  //   const desktop = window.matchMedia('(min-width: 768px)');
 
-    // Mobile: ensure everything is visible.
-    if (!desktop.matches) {
-      animatedElements.forEach((element) => {
-        element.classList.add('in-view');
-      });
+  //   // Mobile: ensure everything is visible.
+  //   if (!desktop.matches) {
+  //     animatedElements.forEach((element) => {
+  //       element.classList.add('in-view');
+  //     });
 
-      return;
-    }
+  //     return;
+  //   }
 
-    // Reset the elements when returning to this page.
-    animatedElements.forEach((element) => {
-      element.classList.remove('in-view');
-    });
+  //   // Reset the elements when returning to this page.
+  //   animatedElements.forEach((element) => {
+  //     element.classList.remove('in-view');
+  //   });
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (!entry?.isIntersecting) return;
 
-        animatedElements.forEach((element) => {
-          element.classList.add('in-view');
-        });
+  //       animatedElements.forEach((element) => {
+  //         element.classList.add('in-view');
+  //       });
 
-        observer.disconnect();
-      },
-      {
-        threshold: 0.25,
-      },
-    );
+  //       observer.disconnect();
+  //     },
+  //     {
+  //       threshold: 0.25,
+  //     },
+  //   );
 
-    observer.observe(section);
-  }
+  //   observer.observe(section);
+  // }
 
-  document.addEventListener('astro:page-load', setupMissionObserver);
+  // document.addEventListener('astro:page-load', setupMissionObserver);
 </script>
 
 <!-- <Image

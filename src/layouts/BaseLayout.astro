@@ -45,3 +45,9 @@ const fullTitle = isHome ? BRAND_NAME : `${title} | ${BRAND_NAME}`;
     <Footer hasWave={hasWave} />
   </body>
 </html>
+
+<script>
+  import { setupRevealObserver } from '../scripts/intersectionObserver';
+  setupRevealObserver();
+  document.addEventListener('astro:page-load', setupRevealObserver);
+</script>

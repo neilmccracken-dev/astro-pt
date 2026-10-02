@@ -104,14 +104,14 @@
 @utility reveal-left {
   @media (min-width: 768px) {
     opacity: 0;
-    transform: translateX(-120%);
+    transform: translateX(-40px);
   }
 }
 
 @utility reveal-right {
   @media (min-width: 768px) {
     opacity: 0;
-    transform: translateX(120%);
+    transform: translateX(40px);
   }
 }
 
@@ -149,7 +149,28 @@
 @utility text-reveal-late {
   animation: textReveal 1s cubic-bezier(0.25, 1, 0.5, 1) 0.7s both;
 }
+@utility reveal-stagger-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 3000ms ease,
+    transform 3000ms ease;
 
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility reveal-fade {
+  opacity: 0;
+
+  transition: opacity 2200ms ease-out;
+
+  &.in-view {
+    opacity: 1;
+  }
+}
 @layer utilities {
   @keyframes fadeIn {
     from {

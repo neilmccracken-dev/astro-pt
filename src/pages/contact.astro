@@ -7,7 +7,7 @@ const contactPhone = '303-555-1234';
 
 <BaseLayout hasWave={false} title="let's connect">
   <section
-    class="relative overflow-hidden md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8"
+    class="text-reveal relative overflow-hidden md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8"
   >
     <div
       class="mx-auto grid w-full max-w-7xl overflow-hidden lg:rounded-2xl
@@ -228,7 +228,7 @@ const contactPhone = '303-555-1234';
 
     const data = Object.fromEntries(new FormData(form));
 
-    console.log(data);
+    // console.log(data);
 
     const response = await fetch('/.netlify/functions/test', {
       method: 'POST',
