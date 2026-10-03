@@ -1,6 +1,29 @@
 import { z } from "zod";
 import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const allowedOrigins = ["https://fastzeeba.com", "https://www.fastzeeba.com"];
+
+function corsHeaders(origin: string | null) {
+  const allowedOrigin = origin && allowedOrigins.includes(origin) ? origin : "";
+
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
+
+function jsonResponse(
+  body: object,
+  status: number,
+  headers: Record<string, string>,
+) {
+  return Response.json(body, {
+    status,
+    headers,
+  });
+}
 const ContactSchema = z.object({
   firstName: z.string().trim().min(1).max(100),
   lastName: z.string().trim().min(1).max(100),
@@ -19,25 +42,38 @@ const ContactSchema = z.object({
 });
 
 export default async (request: Request) => {
+  const origin = request.headers.get("origin");
+  const headers = corsHeaders(origin);
+
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers,
+    });
+  }
+
   if (request.method !== "POST") {
-    return Response.json(
+    return jsonResponse(
       { success: false, message: "Method not allowed" },
-      { status: 405 },
+      405,
+      headers,
     );
   }
   try {
     const body = await request.json();
     const result = ContactSchema.safeParse(body);
     if (!result.success) {
-      return Response.json(
-        { success: false, message: "Invalid form data" },
-        { status: 400 },
+      return jsonResponse(
+        { success: false, messsage: "Invalid Form Data" },
+        400,
+        headers,
       );
     }
     const validatedData = result.data;
 
+    // Honeypot
     if (validatedData.contact_check) {
-      return Response.json({ success: true });
+      return jsonResponse({ success: true }, 200, headers);
     }
 
     const { data: emailData, error } = await resend.emails.send({
@@ -71,19 +107,26 @@ export default async (request: Request) => {
     if (error) {
       console.error("Resend error:", error);
 
-      return new Response(JSON.stringify({ error: "Unable to send message" }), {
-        status: 500,
-      });
+      return jsonResponse(
+        { success: false, message: "Unable to send message" },
+        500,
+        headers,
+      );
     }
 
-    return Response.json({
-      success: true,
-      message: "Form submitted successfully",
-    });
+    return jsonResponse(
+      {
+        success: true,
+        message: "Form submitted successfully",
+      },
+      200,
+      headers,
+    );
   } catch {
-    return Response.json(
+    return jsonResponse(
       { success: false, message: "Invalid request" },
-      { status: 400 },
+      400,
+      headers,
     );
   }
 };

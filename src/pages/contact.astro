@@ -3,6 +3,9 @@ import { Mail, Phone } from 'lucide-react';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const contactEmail = 'elie@mvmntmatterspt.com';
 const contactPhone = '303-555-1234';
+const contactEndpoint = import.meta.env.DEV
+  ? '/.netlify/functions/test'
+  : 'https://pt-project.netlify.app/.netlify/functions/test';
 ---
 
 <BaseLayout hasWave={false} title="let's connect">
@@ -108,6 +111,7 @@ const contactPhone = '303-555-1234';
         <form
           name="contact"
           method="POST"
+          data-endpoint={contactEndpoint}
           id="contact-form"
           class="rounded-2xl p-6 sm:p-8"
         >
@@ -227,10 +231,11 @@ const contactPhone = '303-555-1234';
     event.preventDefault();
 
     const data = Object.fromEntries(new FormData(form));
-
+    const endpoint = form.dataset.endpoint;
+    if (!endpoint) return;
     // console.log(data);
 
-    const response = await fetch('/.netlify/functions/test', {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
