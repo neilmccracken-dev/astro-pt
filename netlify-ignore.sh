@@ -11,7 +11,7 @@ echo "Changed files:"
 echo "$CHANGED_FILES"
 
 if echo "$CHANGED_FILES" | grep -Eq \
-'^(astro\.config\.mjs|keystatic\.config\.ts|netlify\.toml|netlify-ignore\.sh|package\.json|package-lock\.json|src/middleware(\..*)?)$'
+'^(astro\.config\.mjs|keystatic\.config\.ts|netlify\.toml|netlify-ignore\.sh|package\.json|package-lock\.json|src/middleware(\..*)?$|netlify/functions/)'
 then
   echo "Netlify or Keystatic infrastructure changed — build."
   exit 1

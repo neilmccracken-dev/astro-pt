@@ -37,11 +37,8 @@ export default async (request: Request) => {
     const validatedData = result.data;
 
     if (validatedData.contact_check) {
-      // Honeypot was filled out — likely a bot
       return Response.json({ success: true });
     }
-
-    console.log(validatedData);
 
     const { data: emailData, error } = await resend.emails.send({
       from: "FastZeeba Website <website@fastzeeba.com>",
