@@ -71,7 +71,7 @@ function setupStaggerReveals() {
         items.forEach((item, index) => {
           const element = item as HTMLElement;
 
-          element.style.transitionDelay = `${index * 150}ms`;
+          element.style.transitionDelay = `${index * 500}ms`;
           element.classList.add("in-view");
         });
 

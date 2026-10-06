@@ -43,8 +43,9 @@ const ContactSchema = z.object({
 
 export default async (request: Request) => {
   const origin = request.headers.get("origin");
+  console.log(origin);
   const headers = corsHeaders(origin);
-
+  console.log(headers);
   if (request.method === "OPTIONS") {
     return new Response(null, {
       status: 204,

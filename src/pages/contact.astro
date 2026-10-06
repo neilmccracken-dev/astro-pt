@@ -208,7 +208,7 @@ const contactEndpoint = import.meta.env.DEV
           <div
             class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
           >
-            <p class="text-sm text-base-content/60">All fields are required.</p>
+            <p class="text-sm text-stone-850">All fields are required.</p>
 
             <button
               type="submit"
@@ -217,6 +217,16 @@ const contactEndpoint = import.meta.env.DEV
               Send message
               <span aria-hidden="true">↗</span>
             </button>
+          </div>
+          <div
+            id="form-toast"
+            class="mt-4 hidden"
+            role="status"
+            aria-live="polite"
+          >
+            <div id="form-toast-alert" class="alert">
+              <span id="form-toast-message"></span>
+            </div>
           </div>
         </form>
       </div>
@@ -227,13 +237,34 @@ const contactEndpoint = import.meta.env.DEV
 <script>
   const form = document.querySelector<HTMLFormElement>('#contact-form');
 
+  function showToast(message: string, type: 'success' | 'error') {
+    const toast = document.querySelector<HTMLDivElement>('#form-toast');
+    const alert = document.querySelector<HTMLDivElement>('#form-toast-alert');
+    const toastMessage = document.querySelector<HTMLSpanElement>(
+      '#form-toast-message',
+    );
+
+    if (!toast || !alert || !toastMessage) return;
+
+    toastMessage.textContent = message;
+
+    alert.classList.remove('alert-success', 'alert-error');
+
+    alert.classList.add(type === 'success' ? 'alert-success' : 'alert-error');
+
+    toast.classList.remove('hidden');
+
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 5000);
+  }
+
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const data = Object.fromEntries(new FormData(form));
     const endpoint = form.dataset.endpoint;
     if (!endpoint) return;
-    // console.log(data);
 
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -243,10 +274,16 @@ const contactEndpoint = import.meta.env.DEV
       body: JSON.stringify(data),
     });
 
+    const result = await response.json();
+
     if (!response.ok) {
-      console.error('Message could not be sent');
+      showToast(
+        result.message || 'Something went wrong. Please try again.',
+        'error',
+      );
       return;
     }
+    showToast('Thanks! Your message has been sent.', 'success');
 
     form.reset();
   });
