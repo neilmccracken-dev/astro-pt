@@ -22,10 +22,9 @@ const services = defineCollection({
     z.object({
       name: z.string(),
       duration: z.number(),
-      pricing: z.number(),
       description: z.string(),
-      calLink: z.string(),
       image: image().optional(),
+      position: z.string(),
     }),
 });
 const faqs = defineCollection({

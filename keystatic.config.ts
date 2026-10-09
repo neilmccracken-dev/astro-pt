@@ -78,13 +78,15 @@ export default config({
       schema: {
         name: fields.slug({ name: { label: "Service Name" } }),
         duration: fields.number({ label: "Duration (minutes)" }),
-        pricing: fields.number({ label: "Price ($)" }),
         description: fields.text({ label: "Description", multiline: true }),
-        calLink: fields.text({ label: "Calendar Link" }),
         image: fields.image({
           label: "Service Image",
           // The text string path Keystatic writes into the YAML file:
           validation: { isRequired: false },
+        }),
+        position: fields.text({
+          label: "Image Position",
+          defaultValue: "50% 50%",
         }),
       },
     }),

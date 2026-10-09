@@ -1,14 +1,49 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-// const services = await getCollection('services');
 import { Image } from 'astro:assets';
 import HeroPic from '@assets/images/services/hero.jpg';
-import {services} from '../data/services'
 import {howItWorksSteps} from '../data/howItWorks'
-import { ChevronRight, CreditCard, ReceiptText,CircleCheck } from 'lucide-react';
+import { ChevronRight, CreditCard, ReceiptText,CircleCheck,ClipboardList,UserRound,Monitor } from 'lucide-react';
+import GolfSwing from "../components/GolfSwing.tsx";
+import TennisSwing from "../components/svgs/TennisSwing.tsx";
+import type { ComponentType, SVGProps } from "react";
+type ServiceIcon = ComponentType<SVGProps<SVGSVGElement>>;
+
+type ServiceDisplayConfig = {
+  icon: ServiceIcon;
+  iconProps?: SVGProps<SVGSVGElement>;
+};
 
 
+const serviceEntries=await getCollection('services')
+
+const serviceIconConfig: Record<string, ServiceDisplayConfig> = {
+  "tennis-assessment": {
+    icon: TennisSwing,
+    iconProps: {
+      width: 64,
+      height: 64,
+    },
+  },
+
+  "golf-assessment": {
+    icon: GolfSwing,
+    iconProps: {
+      width: 56,
+      height: 56,
+    },
+  },
+    "evaluation": {icon:ClipboardList},
+  "follow-up-visit":{icon:UserRound},
+  "virtual-follow-up-visit":{icon:Monitor},
+}
+const services = serviceEntries.map((service) => ({
+  ...service.data,
+   ...serviceIconConfig[
+    service.id as keyof typeof serviceIconConfig
+  ],
+}));
 ---
 
 <BaseLayout title="work with me" hasWave={false}>
@@ -137,7 +172,7 @@ import { ChevronRight, CreditCard, ReceiptText,CircleCheck } from 'lucide-react'
               >
                 <!-- Background -->
                 <img
-                  src={service.image.src}
+                  src={service.image?.src}
                   alt=""
                   class="absolute inset-0 h-full w-full object-cover
                          transition duration-500
@@ -184,7 +219,7 @@ import { ChevronRight, CreditCard, ReceiptText,CircleCheck } from 'lucide-react'
                     class="mt-2 text-[10px] font-semibold
                            uppercase tracking-[0.12em]"
                   >
-                    {service.duration}
+                    {service.duration} minutes
                   </p>
 
                   <p
