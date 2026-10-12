@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image, getImage } from 'astro:assets';
 import SpecialtiesStock from '@assets/images/certifications/specialties.jpg';
-import AboutPic from '@assets/images/about-image/test-about.jpg';
+import HeroPic from '@assets/images/about-image/hero-4.jpg';
 import OutsidePTPic from '@assets/images/about-image/outside-pt.jpg';
 import Background from '@assets/images/about-image/background.jpg';
 import Foreground from '@assets/images/about-image/foreground.png';
@@ -34,7 +34,7 @@ const optimizedBackground = await getImage({
            xl:h-225"
     >
       <Image
-        src={AboutPic}
+        src={HeroPic}
         alt="Elie"
         widths={[640, 960, 1200, 1600, 2400]}
         sizes="100vw"

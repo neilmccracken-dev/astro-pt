@@ -52,6 +52,10 @@ export default config({
               value: "getting-started",
             },
             {
+              label: "Can you tell me more about your specialties?",
+              value: "can-you-tell-me-more-about-your-specialties?",
+            },
+            {
               label: "Payment & Insurance",
               value: "payment-insurance",
             },
