@@ -55,12 +55,12 @@ const services = serviceEntries.map((service) => ({
 <BaseLayout title="work with me" hasWave={false}>
   <section class="relative overflow-hidden">
     <div
-      class="relative h-120 
+      class="relative h-80 
            md:h-150
            lg:h-160
            xl:h-205"
     >
-    <picture>
+    <!-- <picture>
     <source
       media="(max-width: 600px)"
       srcset={mobileImage.srcSet.attribute}
@@ -68,26 +68,28 @@ const services = serviceEntries.map((service) => ({
       type="image/webp"
     />
 
+    </picture> -->
 
       <Image
         src={HeroPic}
         alt="Elie"
-        widths={[640, 960, 1200, 1600, 2400]}
+        widths={[480,640, 960, 1200, 1600, 2400]}
         sizes="100vw"
-        class="absolute inset-0 h-full w-full object-cover
-            translate-x-14
+        class="absolute  h-full w-full object-cover
+        right-0
+            translate-x-10
              md:right-0
-             lg:object-[50%_50%]
+             lg:object-[80%_50%]
              lg:w-[75%]
             lg:right-0
              lg:left-auto
              lg:translate-x-0
+             xl:translate-x-0
              xl:right-0
              xl:left-auto
-             xl:w-[65%]
+             xl:w-[70%]
              "
       />
-    </picture>
 
       <!-- XL transition into page background -->
       <!-- <div
@@ -108,8 +110,8 @@ const services = serviceEntries.map((service) => ({
         class="pointer-events-none absolute inset-0
              bg-linear-to-r
           from-gray-100 from-0%
-         via-gray-100/90 via-45%
-         to-transparent to-61%
+         via-gray-100/90 via-25%
+         to-transparent to-57%
              
              md:via-38%
              md:to-58%
@@ -153,7 +155,7 @@ const services = serviceEntries.map((service) => ({
           </p>
           <div class="mt-5 h-px w-12 bg-deeper-teal"></div>
           <p
-            class="mt-6 md:mt-12 w-44 lg:w-3/4  text-stone-950 text-xs md:text-lg leading-6 md:leading-8"
+            class="mt-6 md:mt-12 w-40 lg:w-3/4  text-stone-950 text-xs md:text-lg leading-6 md:leading-8"
           >
             One-on-one physical therapy that comes to you—so you can get
             better without putting your life on hold.
