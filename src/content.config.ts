@@ -40,7 +40,7 @@ const faqs = defineCollection({
 
       category: z.enum([
         "getting-started",
-        "can-you-tell-me-more-about-your-specialties?",
+        "specialties",
         "payment-insurance",
         "appointments-treatment",
       ]),
