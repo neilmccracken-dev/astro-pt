@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image,getImage } from 'astro:assets';
-import HeroPic from '@assets/images/services/hero.jpg';
-import HeroPicMobile from '@assets/images/services/hero-mobile.jpg';
+import HeroPic from '@assets/images/services/hero-8.jpg';
+import HeroPicMobile from '@assets/images/services/hero-9.jpg';
 import {howItWorksSteps} from '../data/howItWorks'
 import { ChevronRight, CreditCard, ReceiptText,CircleCheck,ClipboardList,UserRound,Monitor } from 'lucide-react';
 import GolfSwing from "../components/GolfSwing.tsx";
@@ -55,73 +55,35 @@ const services = serviceEntries.map((service) => ({
 <BaseLayout title="work with me" hasWave={false}>
   <section class="relative overflow-hidden">
     <div
-      class="relative h-80 
-           md:h-150
-           lg:h-160
-           xl:h-205"
+      class="relative h-120 
+           md:h-160
+           lg:h-180
+           xl:h-245"
     >
-    <!-- <picture>
+    <picture>
     <source
-      media="(max-width: 600px)"
+      media="(max-width: 1080px)"
       srcset={mobileImage.srcSet.attribute}
       sizes="100vw"
       type="image/webp"
-    />
+    /> 
 
-    </picture> -->
 
       <Image
         src={HeroPic}
         alt="Elie"
         widths={[480,640, 960, 1200, 1600, 2400]}
         sizes="100vw"
-        class="absolute  h-full w-full object-cover
-        right-0
-            translate-x-10
-             md:right-0
-             lg:object-[80%_50%]
-             lg:w-[75%]
-            lg:right-0
-             lg:left-auto
-             lg:translate-x-0
-             xl:translate-x-0
-             xl:right-0
-             xl:left-auto
-             xl:w-[70%]
-             "
+        class="hero-image"
       />
+    </picture> 
 
       <!-- XL transition into page background -->
-      <!-- <div
-        class="pointer-events-none absolute inset-y-0 hidden
-             xl:block
-             xl:left-[15%]
-             xl:w-56
-             xl:-translate-x-1/2
-             xl:bg-linear-to-r
-             xl:from-gray-100
-             xl:via-gray-100/90
-             xl:to-transparent"
-      >
-      </div> -->
+ <div class="hero-edge-gradient"></div>
 
       <!-- Main left-side gradient -->
-      <div
-        class="pointer-events-none absolute inset-0
-             bg-linear-to-r
-          from-gray-100 from-0%
-         via-gray-100/90 via-25%
-         to-transparent to-57%
-             
-             md:via-38%
-             md:to-58%
-         xl:from-gray-100
-         xl:via-gray-100/95
-         xl:via-40%
-         xl:to-transparent
-         xl:to-65%"
-      >
-      </div>
+  <!-- Main gradient -->
+    <div class="hero-gradient"></div>
 
       <!-- Text overlay -->
       <div
@@ -435,76 +397,89 @@ const services = serviceEntries.map((service) => ({
 </section>
 </BaseLayout>
 
-<!-- <section class="bg-sand-bg px-5 py-16 md:px-10">
-  <div class="mx-auto max-w-7xl">
-    <div class="mb-12 text-center">
-      <h2 class="text-4xl tracking-widest text-deeper-teal">Our Services</h2>
 
-      <p class="mx-auto font-semibold mt-4 max-w-2xl text-lg text-stone-950">
-        Personalized physical therapy services designed to help you move,
-        recover, and feel stronger.
-      </p>
-    </div>
+<style>
+  /* Mobile image */
+  .hero-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 7% 50%;
+  }
 
-    <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
-      {
-        servicesArray.map((service) => (
-          <article
-            class="
-            flex flex-col items-center gap-6 rounded-3xl  p-6
-            text-center  transition
-            hover:-translate-y-1 hover:shadow-xl
-            md:flex-row md:text-left
-          "
-          >
-            <div class="relative size-72 shrink-0 overflow-hidden rounded-full">
-              <Image
-                src={service.image}
-                alt={service.name}
-                width={640}
-                height={427}
-                class="h-full w-full object-cover"
-                class:list={[service.position]}
-              />
+  /* Mobile hero height */
+  @media (max-width: 767px) {
+    .hero-container {
+      height: 450px;
+    }
+  }
 
-              <div class="absolute inset-0 bg-black/35 backdrop-blur-[0.5px]" />
+  /* Mobile image-edge gradient */
+  .hero-edge-gradient {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(35% - 5px);
+    width: 128px;
+    transform: translateX(-50%);
+    pointer-events: none;
 
-              <div class="absolute inset-0 flex items-center justify-center p-5">
-                <h3
-                  class="
-                  font-cabin text-center text-xl font-semibold tracking-wider
-                   text-white drop-shadow-lg
-                "
-                >
-                  {service.name}
-                </h3>
-              </div>
-            </div>
+    background: linear-gradient(
+      to right,
+      #f3f4f6 0%,
+      rgb(243 244 246 / 93%) 72%,
+      transparent 100%
+    );
+  }
 
-            <div>
-              <p class=" leading-relaxed text-stone-950 ">
-                {service.description}
-              </p>
+  /* Mobile main gradient */
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
 
-              <a
-                href={`/services/${service.name
-                  .toLowerCase()
-                  .replaceAll(' ', '-')
-                  .replaceAll('&', 'and')}`}
-                class="
-                mt-5 inline-flex items-center font-semibold
-                text-deeper-teal transition hover:underline
-              "
-              >
-                Learn more
-                <span aria-hidden="true" class="ml-2">
-                  →
-                </span>
-              </a>
-            </div>
-          </article>
-        ))
-      }
-    </div>
-  </div>
-</section> -->
+    background: linear-gradient(
+      to right,
+      #f3f4f6 0%,
+      rgb(243 244 246 / 80%) 40%,
+      transparent 54%
+    );
+  }
+
+   @media (min-width: 1024px) {
+.hero-image {
+  width: 86%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.hero-container {
+  position: relative;
+  overflow: hidden;
+  height: 720px;
+}
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #f3f4f6 0%, rgb(243 244 246 / 90%) 33%, transparent 54%);
+}
+.hero-edge-gradient {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(14% + 65px);
+  width: 224px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(to right, #f3f4f6 0%, rgb(243 244 246 / 68%) 50%, transparent 100%);
+  display: block;
+}
+   }
+  
+</style>

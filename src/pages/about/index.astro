@@ -6,7 +6,7 @@ import HeroPic from '@assets/images/about-image/hero-4.jpg';
 import OutsidePTPic from '@assets/images/about-image/outside-pt.jpg';
 import Background from '@assets/images/about-image/background.jpg';
 import Foreground from '@assets/images/about-image/foreground.png';
-import StoryImage from '@assets/images/about-image/story.jpg';
+import StoryImage from '@assets/images/about-image/story-11.jpg';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { certifications } from '../../data/certifications';
 
@@ -168,18 +168,19 @@ const optimizedBackground = await getImage({
          md:min-h-130 md:grid-cols-2
          lg:max-w-none lg:w-full
          lg:h-[650px]
-         xl:h-[720px]"
+         xl:h-[1000px]
+         xl:grid-cols-[55%_45%]"
     >
       <!-- Image -->
       <div class="order-2 h-full overflow-hidden">
         <Image
           src={StoryImage}
           alt="Elie outdoors"
-          widths={[640, 960, 1200, 1600]}
-          sizes="(max-width: 767px) 100vw, 50vw"
+          widths={[640, 960]}
+          sizes="(max-width: 900px) 100vw, 50vw"
           class="h-auto w-full
       md:h-full md:object-cover
-      md:object-[50%_80%]"
+      md:object-[90%_50%]"
         />
       </div>
 

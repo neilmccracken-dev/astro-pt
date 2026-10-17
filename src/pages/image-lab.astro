@@ -1,0 +1,26 @@
+---
+import ImageLab from '../components/ImageLab';
+import '../styles/global.css';
+import AboutPic from '../assets/images/about-image/story-11.jpg';
+import ServicesPic from '../assets/images/services/hero-8.jpg';
+import ServicesPicMobile from '../assets/images/services/hero-9.jpg';
+import HomePageHero from '../assets/images/homepage/hero-2.jpg';
+
+const images = [
+  { name: 'About Hero', src: AboutPic.src },
+  { name: 'Services Hero', src: ServicesPic.src },
+  { name: 'Services Hero Mobile', src: ServicesPicMobile.src },
+  { name: 'Home Hero', src: HomePageHero.src },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Lab</title>
+  </head>
+  <body>
+    <ImageLab client:load images={images} />
+  </body>
+</html>

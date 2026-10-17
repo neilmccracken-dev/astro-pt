@@ -8,7 +8,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import { getCollection } from 'astro:content';
 import type { Testimonial } from '../components/TestimonialCarousel';
 import TestimonialCarousel from '../components/TestimonialCarousel';
-import elieHeadshot from '@assets/images/headshot.jpg';
+import elieHeadshot from '@assets/images/homepage/headshot-1.jpg';
 import heroImage from '@assets/images/homepage/hero-2.jpg';
 
 const testimonials = await getCollection('testimonials');
@@ -438,28 +438,27 @@ const bgSizesAttribute = `
       </div>
     </section>
 
-    <section class="[background:var(--me-bg)]">
+    <section class="bg-sand-bg reveal-fade">
       <div
         class="mx-auto grid w-full md:max-w-7xl grid-cols-1 gap-6
-           md:grid-cols-2 lg:place-items-center text-center md:gap-12 md:px-10 p-16"
+           md:grid-cols-2 place-items-center text-center md:gap-12 md:px-10 p-18"
       >
         <!-- Image -->
-        <div class="w-full lg:max-w-xl">
+        <div class="w-full max-w-md lg:max-w-lg">
           <Image
             src={elieHeadshot}
             alt="Elie Sabins"
-            widths={[600, 800, 1000]}
-            sizes="(max-width: 900px) 40vw, 500px"
-            class="mx-auto
-    h-auto w-64 rounded-full object-cover
-    md:w-full md:rounded-xl"
+            widths={[400, 600, 800, 1000]}
+            sizes="(max-width: 1024px) 384px, 448px"
+            class="mx-auto w-full h-auto aspect-[4/5] object-cover
+           object-center rounded-xl shadow-xl"
           />
         </div>
 
         <!-- Text -->
         <div class="max-w-lg p-2">
           <p
-            class="text-sm md:text-base font-semibold uppercase tracking-[0.12em]
+            class="font-semibold uppercase tracking-[0.12em]
                text-deeper-teal"
           >
             Meet Dr. Elie

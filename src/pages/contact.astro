@@ -1,4 +1,7 @@
 ---
+import { Image, getImage } from 'astro:assets';
+import HeroPic from '@assets/images/services/hero.jpg';
+import HeroPicMobile from '@assets/images/services/hero-mobile.jpg';
 import { Mail, Phone } from 'lucide-react';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const contactEmail = 'elie@mvmntmatterspt.com';
@@ -6,9 +9,116 @@ const contactPhone = '303-555-1234';
 const contactEndpoint = import.meta.env.DEV
   ? '/.netlify/functions/test'
   : 'https://pt-project.netlify.app/.netlify/functions/test';
+
+const mobileImage = await getImage({
+  src: HeroPicMobile,
+  widths: [400, 640, 800, 1024],
+  sizes: '100vw',
+  format: 'webp',
+});
 ---
 
 <BaseLayout hasWave={false} title="let's connect">
+  <section class="relative overflow-hidden">
+    <div
+      class="relative h-125
+           md:h-150
+           lg:h-150
+           xl:h-205"
+    >
+      <picture>
+        <source
+          media="(max-width: 600px)"
+          srcset={mobileImage.srcSet.attribute}
+          sizes="100vw"
+          type="image/webp"
+        />
+
+        <Image
+          src={HeroPic}
+          alt="Elie"
+          widths={[480, 640, 960, 1200, 1600, 2400]}
+          sizes="100vw"
+          class="absolute h-full object-cover
+          w-[87%]
+        right-0
+        object-[50%_50%]
+            translate-x-4
+             md:right-0
+             lg:object-[80%_50%]
+             lg:w-[75%]
+            lg:right-0
+             lg:left-auto
+             lg:translate-x-0
+             xl:translate-x-0
+             xl:right-0
+             xl:left-auto
+             xl:w-[70%]"
+        />
+      </picture>
+
+      <!-- XL transition into page background -->
+      <div
+        class="pointer-events-none absolute inset-y-0
+         left-[12%]
+         -translate-x-1/3
+         w-56
+         bg-linear-to-r
+         from-gray-100
+         via-gray-100/90
+         to-transparent
+         lg:left-[25%]
+         lg:translate-x-0
+         xl:left-[30%]"
+      >
+      </div>
+
+      <!-- Main left-side gradient -->
+      <div
+        class="pointer-events-none absolute inset-0
+         bg-linear-to-r
+         from-gray-100 from-0%
+         via-gray-100/90 via-35%
+         to-transparent to-52%
+ 
+         lg:via-25%
+         lg:to-44%
+         xl:via-25%
+         xl:to-44%"
+      >
+      </div>
+
+      <!-- Text overlay -->
+      <div
+        class="absolute left-2 top-1/4 z-10
+             -translate-y-1/4
+             md:left-[8%]
+             md:top-1/3
+             max-w-lg"
+      >
+        <h1
+          class="text-reveal font-serif
+             text-deeper-teal
+               text-xl leading-[0.95]
+               sm:text-2xl
+               md:text-3xl
+               lg:text-5xl"
+        >
+          Let's Connect
+        </h1>
+
+        <!-- <div class="text-reveal-late">
+          <div class="mt-5 h-px w-12 bg-deeper-teal"></div>
+          <p
+            class="mt-6 md:mt-12 w-40 lg:w-3/4 text-stone-950 text-xs md:text-lg leading-6 md:leading-8"
+          >
+            One-on-one physical therapy that comes to you—so you can get better
+            without putting your life on hold.
+          </p>
+        </div> -->
+      </div>
+    </div>
+  </section>
   <section
     class="text-reveal relative overflow-hidden md:px-4 lg:pt-16 sm:pb-16 sm:px-0 lg:px-8"
   >
